@@ -1,0 +1,365 @@
+{%- liquid
+  assign social_icons = true
+  if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+    assign social_icons = false
+  endif
+-%}
+
+{% if social_icons %}
+  {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<style>
+  .notification-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .notification-banner__left {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+  }
+
+  /* Apply primary font family to all text in notification banner */
+  .notification-banner {
+    font-family: var(--font-heading-family);
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .notification-banner__center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
+    pointer-events: none;
+  }
+
+  .notification-banner__center-text {
+    pointer-events: auto;
+  }
+
+  .notification-banner__right {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    z-index: 1;
+    margin-left: auto;
+    padding-right: 0px;
+  }
+
+  .notification-banner__link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 20px !important;
+    text-decoration: none;
+    color: #fff !important;
+    position: relative;
+    transform: skew(-20deg);
+    background-color: #bebebf;
+    margin: 0 !important;
+    border-left: 1px solid #f8f8f8 !important;
+    transition: all 0.25s ease;
+    font-size: 13px !important;
+    font-style: italic;
+    line-height: 28px !important;
+    text-transform: uppercase;
+    font-family: var(--font-heading-family), sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.25px;
+    height: 36px !important;
+    top: -1px !important;
+  }
+
+  .notification-banner__link:hover {
+    background-color: #8bc9ca;
+  }
+
+  /* Unskew the content inside the skewed button */
+  .notification-banner__link > * {
+    transform: skew(20deg);
+  }
+
+  .notification-banner__link:first-child {
+    border-left: none !important;
+  }
+
+  .notification-banner__link:last-child {
+    margin-right: -10px !important;
+    padding-right: 30px !important;
+  }
+
+  .notification-banner__link:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(15deg) skew(20deg);
+    width: 1px;
+    height: 60%;
+    background-color: currentColor;
+    opacity: 0.3;
+  }
+
+  /* Progressive responsive hiding */
+  /* Step 1: Hide center text at large tablet/small desktop */
+  @media screen and (max-width: 1200px) {
+    .notification-banner__center {
+      display: none;
+    }
+  }
+
+  /* Step 2: Hide social icons at medium tablet */
+  @media screen and (max-width: 990px) {
+    .notification-banner__left {
+      display: none;
+    }
+  }
+
+  /* Step 3: Hide last two buttons at small tablet */
+  @media screen and (max-width: 750px) {
+    .notification-banner__link--last-two {
+      display: none;
+    }
+  }
+
+  /* Step 4: First two buttons take full width at mobile */
+  @media screen and (max-width: 750px) {
+    .notification-banner {
+      /* padding: 1rem; */
+    }
+
+    .notification-banner__right {
+      width: 100%;
+      justify-content: stretch;
+    }
+
+    .notification-banner__link {
+      flex: 1 1 0;
+      justify-content: center;
+    }
+
+    .notification-banner__link:not(:last-child)::after {
+      display: none;
+    }
+
+    .notification-banner__link:first-child {
+      border-left: none !important;
+      margin-left: -10px !important;
+      background-color: #8bc9ca !important;
+    }
+
+    /* Target the second button (which becomes the last visible when last two are hidden) */
+    .notification-banner__link:nth-child(2) {
+      margin-right: -10px !important;
+    }
+  }
+
+  .notification-banner__link-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+    color: #fff;
+  }
+
+  .notification-banner__link-icon .icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .notification-banner__link-icon svg {
+    fill: #fff;
+    color: #fff;
+  }
+
+  /* Make social icons white */
+  .notification-banner__left .list-social__link {
+    color: #fff;
+  }
+
+  .notification-banner__left .list-social__link svg {
+    fill: #fff;
+    color: #fff;
+  }
+
+  .notification-banner__link-text {
+    font-family: 'Oswald', var(--font-heading-family), sans-serif;
+    white-space: nowrap;
+  }
+
+  .notification-banner__center-text {
+    font-family: var(--font-heading-family);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-style: italic;
+    margin: 0;
+  }
+</style>
+
+<div class="notification-banner color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} notification-banner--border-bottom{% endif %}">
+  {%- if section.settings.show_social and social_icons -%}
+    <div class="notification-banner__left">
+      {%- render 'social-icons' -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.center_text != blank -%}
+    <div class="notification-banner__center">
+      <p class="notification-banner__center-text">
+        {{ section.settings.center_text | escape }}
+      </p>
+    </div>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="notification-banner__right">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.text != blank -%}
+          {%- assign is_last_two = false -%}
+          {%- if section.blocks.size >= 4 and forloop.index >= 3 -%}
+            {%- assign is_last_two = true -%}
+          {%- elsif section.blocks.size == 3 and forloop.index == 3 -%}
+            {%- assign is_last_two = true -%}
+          {%- endif -%}
+          <a
+            href="{{ block.settings.link | default: '#' }}"
+            class="notification-banner__link link focus-inset{% if is_last_two %} notification-banner__link--last-two{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.icon != blank -%}
+              <span class="notification-banner__link-icon svg-wrapper">
+                {%- assign icon_name = block.settings.icon -%}
+                {%- unless icon_name contains 'icon-' -%}
+                  {%- assign icon_name = 'icon-' | append: icon_name -%}
+                {%- endunless -%}
+                {%- unless icon_name contains '.svg' -%}
+                  {%- assign icon_name = icon_name | append: '.svg' -%}
+                {%- endunless -%}
+                {{- icon_name | inline_asset_content -}}
+              </span>
+            {%- endif -%}
+            <span class="notification-banner__link-text">{{ block.settings.text | escape }}</span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Notification Banner",
+  "max_blocks": 4,
+  "class": "notification-banner-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "Show line separator"
+    },
+    {
+      "type": "header",
+      "content": "Social Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "Show social icons",
+      "info": "Social icons are configured in theme settings"
+    },
+    {
+      "type": "header",
+      "content": "Center Text"
+    },
+    {
+      "type": "text",
+      "id": "center_text",
+      "label": "Center text",
+      "default": "OFFICIAL WEBSITE OF SURREY COUNTY CRICKET CLUB"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_item",
+      "name": "Link Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon name",
+          "info": "Enter icon name without .svg extension (e.g., 'icon-account', 'icon-star')",
+          "default": "icon-star"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "TICKETS"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Notification Banner",
+      "blocks": [
+        {
+          "type": "link_item",
+          "settings": {
+            "icon": "icon-star",
+            "text": "TICKETS"
+          }
+        },
+        {
+          "type": "link_item",
+          "settings": {
+            "icon": "icon-account",
+            "text": "MEMBERSHIP"
+          }
+        },
+        {
+          "type": "link_item",
+          "settings": {
+            "icon": "icon-star",
+            "text": "HOSPITALITY"
+          }
+        },
+        {
+          "type": "link_item",
+          "settings": {
+            "icon": "icon-chat-bubble",
+            "text": "NEWSLETTER"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

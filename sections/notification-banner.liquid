@@ -16,6 +16,9 @@
     justify-content: space-between;
     position: relative;
     overflow-x: hidden;
+    font-family: var(--font-heading-family);
+    font-weight: bold;
+    font-style: italic;
   }
 
   .notification-banner__left {
@@ -23,13 +26,6 @@
     display: flex;
     align-items: center;
     z-index: 1;
-  }
-
-  /* Apply primary font family to all text in notification banner */
-  .notification-banner {
-    font-family: var(--font-heading-family);
-    font-weight: bold;
-    font-style: italic;
   }
 
   .notification-banner__center {
@@ -54,7 +50,6 @@
     gap: 0;
     z-index: 1;
     margin-left: auto;
-    padding-right: 0px;
   }
 
   .notification-banner__link {
@@ -135,10 +130,6 @@
 
   /* Step 4: First two buttons take full width at mobile */
   @media screen and (max-width: 750px) {
-    .notification-banner {
-      /* padding: 1rem; */
-    }
-
     .notification-banner__right {
       width: 100%;
       justify-content: stretch;
@@ -156,10 +147,8 @@
     .notification-banner__link:first-child {
       border-left: none !important;
       margin-left: -10px !important;
-      background-color: #8bc9ca !important;
     }
 
-    /* Target the second button (which becomes the last visible when last two are hidden) */
     .notification-banner__link:nth-child(2) {
       margin-right: -10px !important;
     }
@@ -182,14 +171,14 @@
     color: #fff;
   }
 
-  /* Make social icons white */
   .notification-banner__left .list-social__link {
-    color: #fff;
+    color: #666666;
+    padding: 0.6rem !important;
   }
 
   .notification-banner__left .list-social__link svg {
-    fill: #fff;
-    color: #fff;
+    fill: #666666;
+    color: #666666;
   }
 
   .notification-banner__link-text {
@@ -204,6 +193,10 @@
     text-transform: uppercase;
     font-style: italic;
     margin: 0;
+  }
+
+  .notification-banner--border-bottom {
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
   }
 </style>
 
@@ -226,12 +219,12 @@
     <div class="notification-banner__right">
       {%- for block in section.blocks -%}
         {%- if block.settings.text != blank -%}
-          {%- assign is_last_two = false -%}
-          {%- if section.blocks.size >= 4 and forloop.index >= 3 -%}
-            {%- assign is_last_two = true -%}
-          {%- elsif section.blocks.size == 3 and forloop.index == 3 -%}
-            {%- assign is_last_two = true -%}
-          {%- endif -%}
+          {%- liquid
+            assign is_last_two = false
+            if section.blocks.size >= 3 and forloop.index >= 3
+              assign is_last_two = true
+            endif
+          -%}
           <a
             href="{{ block.settings.link | default: '#' }}"
             class="notification-banner__link link focus-inset{% if is_last_two %} notification-banner__link--last-two{% endif %}"

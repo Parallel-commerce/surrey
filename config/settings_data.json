@@ -9,7 +9,8 @@
  */
 {
   "current": {
-    "logo_width": 90,
+    "logo": "shopify://shop_images/Surrey-Kia-Oval-Logo.svg",
+    "logo_width": 80,
     "type_header_font": "oswald_n6",
     "heading_scale": 100,
     "type_body_font": "sans_serif_n4",

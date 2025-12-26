@@ -36,6 +36,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .surrey-featured-collection-title-uppercase #collection-{{ section.id }} .card__heading {
+    text-transform: uppercase;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -65,18 +69,22 @@
 -%}
 
 <div
-  class="color-{{ section.settings.color_scheme }} isolate gradient"
+  class="color-{{ section.settings.color_scheme }} isolate gradient surrey-featured-collection-title-uppercase"
 >
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
-    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if section.settings.use_vertical_side_title %} surrey-vertical-side-title{% endif %}{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.title }}
-        </h2>
+        {%- if section.settings.use_vertical_side_title -%}
+          <h2 class="surrey-background-heading">{{ section.settings.title }}</h2>
+        {%- else -%}
+          <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.title }}
+          </h2>
+        {%- endif -%}
       {%- endif -%}
       {%- if section.settings.description != blank
         or section.settings.show_description
@@ -236,11 +244,11 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.featured-collection.settings.products_to_show.label"
-    },     
+    },
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header_text.content"
-    },   
+    },
     {
       "type": "inline_richtext",
       "id": "title",
@@ -276,6 +284,13 @@
       "label": "t:sections.all.heading_size.label"
     },
     {
+      "type": "checkbox",
+      "id": "use_vertical_side_title",
+      "label": "Background title",
+      "default": false,
+      "info": "Enable the decorative background title effect"
+    },
+    {
       "type": "richtext",
       "id": "description",
       "label": "t:sections.featured-collection.settings.description.label"
@@ -284,7 +299,7 @@
       "type": "checkbox",
       "id": "show_description",
       "label": "t:sections.featured-collection.settings.show_description.label",
-      "default": false   
+      "default": false
     },
     {
       "type": "select",
@@ -309,7 +324,7 @@
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header_collection.content"
-    },    
+    },
     {
       "type": "range",
       "id": "columns_desktop",
@@ -319,7 +334,7 @@
       "default": 4,
       "label": "t:sections.featured-collection.settings.columns_desktop.label"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_desktop_slider",
       "label": "t:sections.featured-collection.settings.enable_desktop_slider.label",
@@ -357,7 +372,7 @@
         }
       ],
       "default": "solid"
-    }, 
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -487,13 +502,13 @@
           "label": "t:sections.featured-collection.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
       "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
-    },          
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"

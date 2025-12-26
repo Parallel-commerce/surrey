@@ -21,9 +21,15 @@
 <div class="color-{{ section.settings.color_scheme }} gradient isolate">
   <div class="page-width section-{{ section.id }}-padding">
     {%- if section.settings.heading != blank -%}
-      <h2 class="collage-wrapper-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {{ section.settings.heading }}
-      </h2>
+      <div class="title-wrapper{% if section.settings.use_vertical_side_title %} surrey-vertical-side-title{% endif %}">
+        {%- if section.settings.use_vertical_side_title -%}
+          <h2 class="surrey-background-heading">{{ section.settings.heading }}</h2>
+        {%- else -%}
+          <h2 class="collage-wrapper-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+      </div>
     {%- endif -%}
     <div class="collage{% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">
       {% assign skip_card_product_styles = false %}
@@ -257,6 +263,13 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_vertical_side_title",
+      "label": "Background title",
+      "default": false,
+      "info": "Enable the decorative background title effect"
     },
     {
       "type": "header",

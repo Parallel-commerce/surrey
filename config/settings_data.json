@@ -51,7 +51,7 @@
     "card_shadow_horizontal_offset": 0,
     "card_shadow_vertical_offset": 4,
     "card_shadow_blur": 5,
-    "collection_card_style": "standard",
+    "collection_card_style": "card",
     "collection_card_image_padding": 0,
     "collection_card_text_alignment": "left",
     "collection_card_color_scheme": "scheme-2",
@@ -139,18 +139,18 @@
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#ffffff",
-          "background_gradient": "",
-          "text": "#121212",
-          "button": "#121212",
+          "background": "#f6f6f6",
+          "background_gradient": "linear-gradient(180deg, rgba(246, 246, 246, 1), rgba(239, 239, 239, 1) 100%)",
+          "text": "#202126",
+          "button": "#8bc9ca",
           "button_label": "#ffffff",
-          "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "secondary_button_label": "#8bc9ca",
+          "shadow": "#8bc9ca"
         }
       },
       "scheme-2": {
         "settings": {
-          "background": "#f3f3f3",
+          "background": "#ffffff",
           "background_gradient": "",
           "text": "#121212",
           "button": "#121212",

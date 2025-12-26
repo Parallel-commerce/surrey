@@ -553,7 +553,7 @@
       "settings": {
         "heading": "Video",
         "heading_size": "h1",
-        "use_vertical_side_title": false,
+        "use_vertical_side_title": true,
         "enable_video_looping": false,
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "description": "",

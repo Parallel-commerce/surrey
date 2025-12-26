@@ -15,6 +15,7 @@
         "slide_DThWXB": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/1576577236-3-scaled.jpg",
             "image_overlay_opacity": 20,
             "heading": "<em>Image slide</em>",
             "heading_size": "h1",
@@ -32,6 +33,7 @@
         "slide_FYEDif": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/membership-header-groundjpg-min.jpg",
             "image_overlay_opacity": 0,
             "heading": "Image slide",
             "heading_size": "h1",
@@ -39,11 +41,11 @@
             "button_label": "Button label",
             "link": "",
             "button_style_secondary": false,
-            "show_text_box": true,
+            "show_text_box": false,
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "color_scheme": "scheme-3"
           }
         }
       },

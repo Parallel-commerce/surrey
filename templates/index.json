@@ -58,6 +58,7 @@
         "layout": "full_bleed",
         "slide_height": "medium",
         "slider_visual": "dots",
+        "pagination_background": false,
         "auto_rotate": false,
         "change_slides_speed": 5,
         "image_behavior": "none",
@@ -553,7 +554,6 @@
       "settings": {
         "heading": "Video",
         "heading_size": "h1",
-        "use_vertical_side_title": true,
         "enable_video_looping": false,
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "description": "",

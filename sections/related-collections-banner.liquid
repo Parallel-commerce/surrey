@@ -9,10 +9,8 @@
     endif
   endif
 
-  assign collections_to_show = blank
   assign show_collections = false
   if has_metafield_collections
-    assign collections_to_show = related_collections
     assign show_collections = true
   elsif section.blocks.size > 0
     assign show_collections = true
@@ -72,6 +70,7 @@
 
   .related-collections-banner-{{ section.id }}__title {
     margin: 0;
+    font-style: italic;
   }
 
   .related-collections-banner-{{ section.id }}__description {
@@ -83,16 +82,32 @@
   }
 
   .related-collections-banner-{{ section.id }}__right {
-    display: grid;
-    grid-template-columns: repeat({{ section.settings.columns_mobile }}, minmax(0, 1fr));
+    display: flex;
     gap: 1.5rem;
-    justify-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 1rem;
+  }
+
+  .related-collections-banner-{{ section.id }}__right::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .related-collections-banner-{{ section.id }}__right::-webkit-scrollbar-track {
+    background: rgba(var(--color-foreground), 0.1);
+  }
+
+  .related-collections-banner-{{ section.id }}__right::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-foreground), 0.3);
+    border-radius: 2px;
   }
 
   @media screen and (min-width: 750px) {
     .related-collections-banner-{{ section.id }}__right {
-      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
-      gap: {{ section.settings.collection_spacing }}px;
+      justify-content: flex-end;
+      padding-bottom: 1rem;
     }
   }
 
@@ -101,8 +116,14 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100%;
-    max-width: {{ section.settings.circle_size }}px;
+    flex-shrink: 0;
+    width: {{ section.settings.circle_size | times: 0.75 | round }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .related-collections-banner-{{ section.id }}__collection-item {
+      width: {{ section.settings.circle_size }}px;
+    }
   }
 
   .related-collections-banner-{{ section.id }}__collection-circle {

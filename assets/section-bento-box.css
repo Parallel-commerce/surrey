@@ -1,0 +1,251 @@
+.bento-box-title {
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+
+.bento-box-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--grid-mobile-horizontal-spacing) var(--grid-mobile-vertical-spacing);
+}
+
+.bento-item {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-item > * {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+.bento-item .card-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-item .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-item .card__content {
+  flex-grow: initial;
+}
+
+/* Image card styles */
+.bento-image-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.bento-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-image-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.bento-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.bento-image-media svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bento-image--secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.bento-image-wrapper:hover .bento-image--secondary {
+  opacity: 1;
+}
+
+.bento-image-wrapper:hover .bento-image:not(.bento-image--secondary) {
+  opacity: 0;
+}
+
+.bento-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bento-image-content {
+  width: 100%;
+  color: rgb(var(--color-background));
+}
+
+.bento-image-subtitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+}
+
+.bento-image-title {
+  margin: 0;
+  color: rgb(var(--color-background));
+  font-weight: 600;
+}
+
+.bento-image-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.bento-image-content {
+  pointer-events: none;
+}
+
+.bento-price {
+  margin-top: 0.5rem;
+}
+
+/* Ensure price color matches title color */
+.bento-price,
+.bento-price .price,
+.bento-price .price-item,
+.bento-price .price-item--regular,
+.bento-price .price-item--sale,
+.bento-price .price--on-sale .price-item--regular {
+  color: rgb(var(--color-background)) !important;
+}
+
+/* Size classes for mobile (2 column grid) */
+.bento-item--1x1 {
+  grid-column: span 1;
+  grid-row: span 1;
+  aspect-ratio: 1;
+}
+
+.bento-item--2x2 {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 1;
+}
+
+.bento-item--1x2 {
+  grid-column: span 1;
+  grid-row: span 2;
+  aspect-ratio: 0.5;
+}
+
+.bento-item--4x4 {
+  grid-column: span 2;
+  grid-row: span 4;
+  aspect-ratio: 0.5;
+}
+
+@media screen and (min-width: 750px) {
+  .bento-box-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--grid-desktop-horizontal-spacing) var(--grid-desktop-vertical-spacing);
+  }
+
+  /* Size classes for desktop (4 column grid) - maintain square aspect ratios */
+  .bento-item--1x1 {
+    grid-column: span 1;
+    grid-row: span 1;
+    aspect-ratio: 1;
+  }
+
+  .bento-item--2x2 {
+    grid-column: span 2;
+    grid-row: span 2;
+    aspect-ratio: 1;
+  }
+
+  .bento-item--1x2 {
+    grid-column: span 1;
+    grid-row: span 2;
+    aspect-ratio: 0.5;
+  }
+
+  .bento-item--4x4 {
+    grid-column: span 4;
+    grid-row: span 4;
+    aspect-ratio: 1;
+  }
+
+  .bento-image-overlay {
+    padding: 3rem;
+  }
+}
+
+/* Ensure cards fill their containers */
+.bento-item .card__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-item .card--media .card__inner {
+  height: 100%;
+}
+
+.bento-item .card__media {
+  flex: 1;
+  min-height: 0;
+}
+
+.bento-item .article-card-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-item .article-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

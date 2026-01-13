@@ -1,0 +1,360 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-parallel-shop-the-look.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="shop-the-look section-{{ section.id }}-padding isolate">
+    <div class="page-width">
+      {%- if section.settings.title != blank -%}
+        <div class="shop-the-look__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <h2 class="inline-richtext {{ section.settings.heading_size }}">
+            {{ section.settings.title }}
+          </h2>
+        </div>
+      {%- endif -%}
+
+      <div class="shop-the-look__container shop-the-look__container--{{ section.settings.image_position }}">
+        <div class="shop-the-look__image-wrapper">
+          {%- if section.settings.image != blank -%}
+            <div class="shop-the-look__image-container" id="shop-the-look-image-{{ section.id }}">
+              {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+              {%- capture sizes -%}
+                (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+                (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+              {%- endcapture -%}
+              {{
+                section.settings.image
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, loading: 'lazy', class: 'shop-the-look__image'
+              }}
+
+              {%- for block in section.blocks -%}
+                {%- if block.settings.product != blank -%}
+                  <button
+                    type="button"
+                    class="shop-the-look__dot"
+                    data-product-id="{{ block.settings.product.id }}"
+                    data-block-id="{{ block.id }}"
+                    style="left: {{ block.settings.position_x }}%; top: {{ block.settings.position_y }}%;"
+                    aria-label="{% if block.settings.label != blank %}{{ block.settings.label }}{% else %}{{ block.settings.product.title }}{% endif %}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span class="shop-the-look__dot-inner"></span>
+                    {%- if block.settings.label != blank -%}
+                      <span class="shop-the-look__dot-label">{{ block.settings.label }}</span>
+                    {%- endif -%}
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <div class="shop-the-look__image-container shop-the-look__image-container--placeholder">
+              {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="shop-the-look__products">
+          {%- if section.blocks.size > 0 -%}
+            <ul class="shop-the-look__product-list grid grid--1-col" role="list">
+              {% assign skip_card_product_styles = false %}
+              {%- for block in section.blocks -%}
+                {%- if block.settings.product != blank -%}
+                  <li
+                    class="shop-the-look__product-item grid__item{% if forloop.first %} shop-the-look__product-item--active{% endif %}"
+                    data-product-id="{{ block.settings.product.id }}"
+                    data-block-id="{{ block.id }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {% render 'card-product',
+                      card_product: block.settings.product,
+                      media_aspect_ratio: 'square',
+                      image_shape: section.settings.image_shape,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: false,
+                      skip_styles: skip_card_product_styles,
+                      section_id: section.id,
+                      horizontal_class: true
+                    %}
+                  </li>
+                  {%- assign skip_card_product_styles = true -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- else -%}
+            <div class="shop-the-look__empty">
+              <p>{{ 'sections.shop_the_look.no_products' | t | default: 'Add products to get started' }}</p>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'parallel-shop-the-look.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Shop the Look",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop the Look"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        },
+        {
+          "value": "hxl",
+          "label": "Extra large"
+        },
+        {
+          "value": "hxxl",
+          "label": "Extra extra large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Image position"
+    },
+    {
+      "type": "header",
+      "content": "Product Settings"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "adapt",
+      "label": "Product image ratio"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "arch",
+          "label": "Arch"
+        },
+        {
+          "value": "blob",
+          "label": "Blob"
+        },
+        {
+          "value": "chevronleft",
+          "label": "Chevron left"
+        },
+        {
+          "value": "chevronright",
+          "label": "Chevron right"
+        },
+        {
+          "value": "diamond",
+          "label": "Diamond"
+        },
+        {
+          "value": "parallelogram",
+          "label": "Parallelogram"
+        },
+        {
+          "value": "round",
+          "label": "Round"
+        }
+      ],
+      "default": "default",
+      "label": "Product image shape"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "Show secondary image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show rating"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Dot label",
+          "info": "Optional label to show on the dot"
+        },
+        {
+          "type": "header",
+          "content": "Dot Position"
+        },
+        {
+          "type": "range",
+          "id": "position_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal position",
+          "default": 50,
+          "info": "Position from left (0-100%)"
+        },
+        {
+          "type": "range",
+          "id": "position_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical position",
+          "default": 50,
+          "info": "Position from top (0-100%)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the Look",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,198 @@
+{{ 'section-parallel-scrolling-announcement.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #ScrollingAnnouncement-{{ section.id }} {
+    --scrolling-speed: {{ section.settings.scroll_speed }}s;
+    --scrolling-direction: {{ section.settings.scroll_direction }};
+    padding-top: {{ section.settings.padding_top | times: 0.1 }}rem;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.1 }}rem;
+  }
+{%- endstyle -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div
+    id="ScrollingAnnouncement-{{ section.id }}"
+    class="scrolling-announcement color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} scrolling-announcement--border-bottom{% endif %}"
+    role="region"
+    aria-label="{{ 'sections.header.announcement' | t }}"
+  >
+    <div class="scrolling-announcement__wrapper">
+      <div class="scrolling-announcement__track scrolling-announcement__track--{{ section.settings.scroll_direction }}" data-scroll-track>
+        {%- comment -%} First set of announcements {%- endcomment -%}
+        <div class="scrolling-announcement__content">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <div class="scrolling-announcement__item" {{ block.shopify_attributes }}>
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" class="scrolling-announcement__link link link--text focus-inset">
+                {%- endif -%}
+                <span class="scrolling-announcement__text">{{ block.settings.text | escape }}</span>
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+                {%- unless forloop.last -%}
+                  <span class="scrolling-announcement__separator">{{ section.settings.separator | default: '•' }}</span>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- comment -%} Duplicate set for seamless loop {%- endcomment -%}
+        <div class="scrolling-announcement__content" aria-hidden="true">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <div class="scrolling-announcement__item">
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" class="scrolling-announcement__link link link--text focus-inset">
+                {%- endif -%}
+                <span class="scrolling-announcement__text">{{ block.settings.text | escape }}</span>
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+                {%- unless forloop.last -%}
+                  <span class="scrolling-announcement__separator">{{ section.settings.separator | default: '•' }}</span>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Scrolling Announcement",
+  "max_blocks": 20,
+  "class": "scrolling-announcement-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "•",
+      "info": "Character or text to separate announcements"
+    },
+    {
+      "type": "header",
+      "content": "Scrolling Settings"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 30,
+      "info": "Time for one complete cycle (lower = faster)"
+    },
+    {
+      "type": "select",
+      "id": "scroll_direction",
+      "label": "Scroll Direction",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Left to Right"
+        },
+        {
+          "value": "reverse",
+          "label": "Right to Left"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "Show line separator"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Welcome to our store"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Announcement",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over $50"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "New arrivals just in"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Sign up for 10% off your first order"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -13,12 +13,12 @@
   position: absolute;
   text-transform: uppercase;
   top: 8rem !important;
-  left: -8.75rem !important;
+  left: -12.75rem !important;
   font-size: calc(var(--font-heading-scale) * 2.5rem);
   line-height: 2.5rem;
   font-style: italic;
   opacity: 0.1;
-  width: 18.75rem;
+  /*width: 18.75rem;*/
   text-align: right;
   pointer-events: none;
   z-index: 0;
@@ -56,10 +56,10 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .surrey-vertical-side-title .surrey-background-heading {
+  .surrey-vertical-side-title .surrey-background-heading {
     font-size: calc(var(--font-heading-scale) * 6rem);
     top: -7rem !important;
-    }
+  }
 }
 
 /* Mobile styles (max-width 749px) */
@@ -98,7 +98,6 @@
 }
 
 /* Last child margin reset */
-.surrey-vertical-side-title > :last-child {
+.surrey-vertical-side-title> :last-child {
   margin-bottom: 0;
 }
-

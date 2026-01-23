@@ -19,7 +19,7 @@
       }
     },
     "related_collections_banner_8ABYVY": {
-      "type": "related-collections-banner",
+      "type": "parallel-related-collections-banner",
       "blocks": {
         "default_collection_WwPRh3": {
           "type": "default_collection",

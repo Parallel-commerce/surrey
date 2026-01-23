@@ -84,11 +84,12 @@
   .related-collections-banner-{{ section.id }}__right {
     display: flex;
     gap: 1.5rem;
-    overflow-x: auto;
+    overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     padding-bottom: 1rem;
+    min-width: 0;
   }
 
   .related-collections-banner-{{ section.id }}__right::-webkit-scrollbar {
@@ -108,6 +109,8 @@
     .related-collections-banner-{{ section.id }}__right {
       justify-content: flex-end;
       padding-bottom: 1rem;
+      overflow-x: scroll;
+      overflow-y: hidden;
     }
   }
 
@@ -204,13 +207,17 @@
                       style="--animation-order: {{ forloop.index }};"
                     {% endif %}
                   >
-                    <a href="{{ related_collection.url }}" class="related-collections-banner-{{ section.id }}__collection-link">
+                    <a
+                      href="{{ related_collection.url }}"
+                      class="related-collections-banner-{{ section.id }}__collection-link"
+                    >
                       <div class="related-collections-banner-{{ section.id }}__collection-circle">
                         {%- if related_collection.featured_image -%}
                           {{
                             related_collection.featured_image
                             | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: related_collection.title | escape
+                            | image_tag: loading: 'lazy', alt: related_collection.title
+                            | escape
                           }}
                         {%- else -%}
                           {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -235,13 +242,17 @@
                       style="--animation-order: {{ forloop.index }};"
                     {% endif %}
                   >
-                    <a href="{{ block_collection.url }}" class="related-collections-banner-{{ section.id }}__collection-link">
+                    <a
+                      href="{{ block_collection.url }}"
+                      class="related-collections-banner-{{ section.id }}__collection-link"
+                    >
                       <div class="related-collections-banner-{{ section.id }}__collection-circle">
                         {%- if block_collection.featured_image -%}
                           {{
                             block_collection.featured_image
                             | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: block_collection.title | escape
+                            | image_tag: loading: 'lazy', alt: block_collection.title
+                            | escape
                           }}
                         {%- else -%}
                           {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -494,4 +505,3 @@
   ]
 }
 {% endschema %}
-

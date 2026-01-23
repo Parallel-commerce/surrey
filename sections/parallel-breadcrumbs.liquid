@@ -1,0 +1,600 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .breadcrumbs-{{ section.id }} {
+    margin: 0 auto;
+  }
+
+  .breadcrumbs-{{ section.id }}__container {
+    {%- if section.settings.side_padding > 0 -%}
+      padding-left: {{ section.settings.side_padding }}px;
+      padding-right: {{ section.settings.side_padding }}px;
+    {%- endif -%}
+    text-align: {{ section.settings.alignment }};
+  }
+
+  .breadcrumbs-{{ section.id }}__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs-{{ section.id }}__item {
+    display: inline-block;
+  }
+
+  .breadcrumbs-{{ section.id }}__item:not(:last-child):after {
+    display: inline-block;
+    margin: 0 .20em;
+    vertical-align: middle;
+  }
+
+  .breadcrumbs-{{ section.id }}--chevron .breadcrumbs-{{ section.id }}__item:not(:last-child):after {
+    border-style: solid;
+    border-width: .10em .10em 0 0;
+    content: '';
+    height: .20em;
+    position: relative;
+    transform: rotate(45deg);
+    width: .20em;
+  }
+
+  .breadcrumbs-{{ section.id }}--slash .breadcrumbs-{{ section.id }}__item:not(:last-child):after {
+    content: '/';
+    font-weight: normal;
+  }
+
+  .breadcrumbs-{{ section.id }}__list {
+    font-size: {{ section.settings.font_size }}px;
+  }
+
+  .breadcrumbs-{{ section.id }}__link {
+    text-decoration: underline;
+    font-size: inherit;
+    display: inline;
+    {%- if section.settings.link_color != blank -%}
+      color: {{ section.settings.link_color }};
+    {%- endif -%}
+    {%- if section.settings.font_bold -%}
+      font-weight: bold;
+    {%- endif -%}
+    {%- if section.settings.font_italic -%}
+      font-style: italic;
+    {%- endif -%}
+    {%- if section.settings.text_uppercase -%}
+      text-transform: uppercase;
+    {%- endif -%}
+  }
+
+  .breadcrumbs-{{ section.id }}__link[aria-current="page"] {
+    color: inherit;
+    text-decoration: none;
+    {%- if section.settings.font_bold -%}
+      font-weight: bold;
+    {%- else -%}
+      font-weight: normal;
+    {%- endif -%}
+    {%- if section.settings.font_italic -%}
+      font-style: italic;
+    {%- endif -%}
+    {%- if section.settings.text_uppercase -%}
+      text-transform: uppercase;
+    {%- endif -%}
+  }
+
+  .breadcrumbs-{{ section.id }}__link[aria-current="page"]:hover,
+  .breadcrumbs-{{ section.id }}__link[aria-current="page"]:focus {
+    text-decoration: underline;
+  }
+
+  .breadcrumbs-{{ section.id }}__link:hover,
+  .breadcrumbs-{{ section.id }}__link:focus {
+    {%- if section.settings.link_color != blank -%}
+      opacity: 0.8;
+    {%- endif -%}
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign t = template | split: '.' | first
+  assign has_metafield_breadcrumbs = false
+  assign metafield_collections = null
+  assign current_item_url = ''
+  assign current_item_title = ''
+
+  if t == 'product'
+    assign metafield_collections = product.metafields.custom.breadcrumbs.value
+    if metafield_collections != blank and metafield_collections.size > 0
+      assign has_metafield_breadcrumbs = true
+    endif
+    assign current_item_url = product.url
+    assign current_item_title = product.title
+  elsif t == 'collection' and collection.handle
+    assign metafield_collections = collection.metafields.custom.breadcrumbs.value
+    if metafield_collections != blank and metafield_collections.size > 0
+      assign has_metafield_breadcrumbs = true
+    endif
+    assign current_item_url = collection.url
+    assign current_item_title = collection.title
+  endif
+-%}
+
+{%- liquid
+  assign show_breadcrumbs = true
+  if template == 'index' and section.settings.hide_on_homepage
+    assign show_breadcrumbs = false
+  elsif template == 'cart' or template == 'list-collections' or template == '404'
+    assign show_breadcrumbs = false
+  endif
+-%}
+
+{%- if show_breadcrumbs -%}
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="breadcrumbs-{{ section.id }} section-{{ section.id }}-padding isolate{% if section.settings.page_width_class != blank %} {{ section.settings.page_width_class }}{% else %} page-width{% endif %}">
+      <div class="breadcrumbs-{{ section.id }}__container">
+        <nav
+          class="breadcrumbs-{{ section.id }} breadcrumbs-{{ section.id }}--{{ section.settings.separator_type }}"
+          role="navigation"
+          aria-label="breadcrumbs"
+        >
+          <ol class="breadcrumbs-{{ section.id }}__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li
+              class="breadcrumbs-{{ section.id }}__item"
+              itemprop="itemListElement"
+              itemscope
+              itemtype="https://schema.org/ListItem"
+            >
+              <a class="breadcrumbs-{{ section.id }}__link" href="{{ routes.root_url }}" itemprop="item"
+                ><span itemprop="name">{{ section.settings.home_label | strip }}</span></a
+              >
+              <meta itemprop="position" content="1">
+            </li>
+
+            {%- if has_metafield_breadcrumbs -%}
+              {%- for collection_item in metafield_collections -%}
+                {%- if collection_item != blank -%}
+                  <li
+                    class="breadcrumbs-{{ section.id }}__item"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="https://schema.org/ListItem"
+                  >
+                    <a class="breadcrumbs-{{ section.id }}__link" href="{{ collection_item.url }}" itemprop="item">
+                      <span itemprop="name">{{ collection_item.title }}</span>
+                    </a>
+                    <meta itemprop="position" content="{{ forloop.index | plus: 1 }}">
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+              <li
+                class="breadcrumbs-{{ section.id }}__item"
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/ListItem"
+              >
+                <a
+                  class="breadcrumbs-{{ section.id }}__link"
+                  href="{{ current_item_url }}"
+                  aria-current="page"
+                  itemprop="item"
+                >
+                  <span itemprop="name">{{ current_item_title }}</span>
+                </a>
+                <meta itemprop="position" content="{{ metafield_collections.size | plus: 2 }}">
+              </li>
+            {%- else -%}
+              {%- case t -%}
+                {%- when 'page' -%}
+                  <li
+                    class="breadcrumbs-{{ section.id }}__item"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="https://schema.org/ListItem"
+                  >
+                    <a
+                      class="breadcrumbs-{{ section.id }}__link"
+                      href="{{ page.url }}"
+                      aria-current="page"
+                      itemprop="item"
+                    >
+                      <span itemprop="name">{{ page.title }}</span>
+                    </a>
+                    <meta itemprop="position" content="2">
+                  </li>
+                {%- when 'product' -%}
+                  {%- if collection.url -%}
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      <a class="breadcrumbs-{{ section.id }}__link" href="{{ collection.url }}" itemprop="item">
+                        <span itemprop="name">{{ collection.title }}</span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                    </li>
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      <a
+                        class="breadcrumbs-{{ section.id }}__link"
+                        href="{{ product.url }}"
+                        aria-current="page"
+                        itemprop="item"
+                      >
+                        <span itemprop="name">{{ product.title }}</span>
+                      </a>
+                      <meta itemprop="position" content="3">
+                    </li>
+                  {%- else -%}
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      <a
+                        class="breadcrumbs-{{ section.id }}__link"
+                        href="{{ product.url }}"
+                        aria-current="page"
+                        itemprop="item"
+                      >
+                        <span itemprop="name">{{ product.title }}</span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                    </li>
+                  {%- endif -%}
+                {%- when 'collection' and collection.handle -%}
+                  {%- if current_tags -%}
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      <a class="breadcrumbs-{{ section.id }}__link" href="{{ collection.url }}" itemprop="item">
+                        <span itemprop="name">{{ collection.title }}</span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                    </li>
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+                      <a
+                        class="breadcrumbs-{{ section.id }}__link"
+                        href="{{ tag_url }}"
+                        aria-current="page"
+                        itemprop="item"
+                      >
+                        <span itemprop="name">{{ current_tags | join: ' + ' }}</span>
+                      </a>
+                      <meta itemprop="position" content="3">
+                    </li>
+                  {%- else -%}
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      <a
+                        class="breadcrumbs-{{ section.id }}__link"
+                        href="{{ collection.url }}"
+                        aria-current="page"
+                        itemprop="item"
+                      >
+                        <span itemprop="name">{{ collection.title }}</span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                    </li>
+                  {%- endif -%}
+                {%- when 'blog' -%}
+                  {%- if current_tags -%}
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      <a class="breadcrumbs-{{ section.id }}__link" href="{{ blog.url }}" itemprop="item">
+                        <span itemprop="name">{{ blog.title }}</span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                    </li>
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+                      <a
+                        class="breadcrumbs-{{ section.id }}__link"
+                        href="{{ tag_url }}"
+                        aria-current="page"
+                        itemprop="item"
+                      >
+                        <span itemprop="name">{{ current_tags | join: ' + ' }}</span>
+                      </a>
+                      <meta itemprop="position" content="3">
+                    </li>
+                  {%- else -%}
+                    <li
+                      class="breadcrumbs-{{ section.id }}__item"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                    >
+                      <a
+                        class="breadcrumbs-{{ section.id }}__link"
+                        href="{{ blog.url }}"
+                        aria-current="page"
+                        itemprop="item"
+                      >
+                        <span itemprop="name">{{ blog.title }}</span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                    </li>
+                  {%- endif -%}
+                {%- when 'article' -%}
+                  <li
+                    class="breadcrumbs-{{ section.id }}__item"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="https://schema.org/ListItem"
+                  >
+                    <a class="breadcrumbs-{{ section.id }}__link" href="{{ blog.url }}" itemprop="item">
+                      <span itemprop="name">{{ blog.title }}</span>
+                    </a>
+                    <meta itemprop="position" content="2">
+                  </li>
+                  <li
+                    class="breadcrumbs-{{ section.id }}__item"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="https://schema.org/ListItem"
+                  >
+                    <a
+                      class="breadcrumbs-{{ section.id }}__link"
+                      href="{{ article.url }}"
+                      aria-current="page"
+                      itemprop="item"
+                    >
+                      <span itemprop="name">{{ article.title }}</span>
+                    </a>
+                    <meta itemprop="position" content="3">
+                  </li>
+                {%- else -%}
+                  <li
+                    class="breadcrumbs-{{ section.id }}__item"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="https://schema.org/ListItem"
+                  >
+                    <a
+                      class="breadcrumbs-{{ section.id }}__link"
+                      href="{{ request.path }}"
+                      aria-current="page"
+                      itemprop="item"
+                    >
+                      <span itemprop="name">{{ page_title }}</span>
+                    </a>
+                    <meta itemprop="position" content="2">
+                  </li>
+              {%- endcase -%}
+            {%- endif -%}
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  {%- if has_metafield_breadcrumbs -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "{{ section.settings.home_label | escape }}",
+            "item": "{{ shop.url }}{{ routes.root_url }}"
+          }{%- for collection_item in metafield_collections -%}{%- if collection_item != blank -%},
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index | plus: 1 }},
+            "name": "{{ collection_item.title | escape }}",
+            "item": "{{ shop.url }}{{ collection_item.url }}"
+          }{%- endif -%}{%- endfor -%},
+          {
+            "@type": "ListItem",
+            "position": {{ metafield_collections.size | plus: 2 }},
+            "name": "{{ current_item_title | escape }}",
+            "item": "{{ shop.url }}{{ current_item_url }}"
+          }
+        ]
+      }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Breadcrumbs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Basic Settings"
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Home label",
+      "default": "Home"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_homepage",
+      "label": "Hide on homepage",
+      "default": true,
+      "info": "When enabled, breadcrumbs will not display on the homepage"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "font_bold",
+      "label": "Bold",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "font_italic",
+      "label": "Italic",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "text_uppercase",
+      "label": "Uppercase",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "info": "Leave blank to use theme default link color"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "separator_type",
+      "label": "Separator type",
+      "options": [
+        {
+          "value": "chevron",
+          "label": "Chevron (arrow)"
+        },
+        {
+          "value": "slash",
+          "label": "Slash"
+        }
+      ],
+      "default": "chevron"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "page_width_class",
+      "label": "Page width class name",
+      "default": "page-width",
+      "info": "Enter your theme's page width class (e.g., 'container', 'wrapper'). For free themes, including Dawn use 'page-width' which is set by default. Do not include quotes"
+    },
+    {
+      "type": "range",
+      "id": "side_padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Side padding",
+      "default": 0,
+      "info": "Add horizontal padding. For Dawn themes, use 52px to match theme spacing"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumbs"
+    }
+  ]
+}
+{% endschema %}

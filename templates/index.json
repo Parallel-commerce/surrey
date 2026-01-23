@@ -695,6 +695,144 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "bento_box_CU6q8C": {
+      "type": "bento-box",
+      "blocks": {
+        "image_bBMtdJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/997-518.jpg",
+            "title": "Image Title",
+            "subtitle": "Image Subtitle",
+            "title_size": "h2",
+            "link": "",
+            "size": "small"
+          }
+        },
+        "product_3gHRDT": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "second_image": false,
+            "size": "small"
+          }
+        },
+        "collection_QVX39V": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "size": "small"
+          }
+        }
+      },
+      "block_order": [
+        "image_bBMtdJ",
+        "product_3gHRDT",
+        "collection_QVX39V"
+      ],
+      "name": "Bento Box",
+      "settings": {
+        "heading": "Bento Box",
+        "heading_size": "h1",
+        "use_vertical_side_title": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "parallel_scrolling_announcement_UKVe9x": {
+      "type": "parallel-scrolling-announcement",
+      "blocks": {
+        "announcement_F7E74H": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over $50",
+            "link": ""
+          }
+        },
+        "announcement_bKhkLC": {
+          "type": "announcement",
+          "settings": {
+            "text": "New arrivals just in",
+            "link": ""
+          }
+        },
+        "announcement_zeKMw8": {
+          "type": "announcement",
+          "settings": {
+            "text": "Sign up for 10% off your first order",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_F7E74H",
+        "announcement_bKhkLC",
+        "announcement_zeKMw8"
+      ],
+      "name": "Scrolling Announcement",
+      "settings": {
+        "separator": "•",
+        "scroll_speed": 55,
+        "scroll_direction": "normal",
+        "color_scheme": "",
+        "show_line_separator": true,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "parallel_shop_the_look_3yFGmL": {
+      "type": "parallel-shop-the-look",
+      "blocks": {
+        "product_zNAYUD": {
+          "type": "product",
+          "settings": {
+            "product": "2023-sccc-castore-leisure-cap-1016",
+            "label": "",
+            "position_x": 37,
+            "position_y": 26
+          }
+        },
+        "product_PEr43Q": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "position_x": 50,
+            "position_y": 50
+          }
+        },
+        "product_yTHGJM": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "label": "",
+            "position_x": 50,
+            "position_y": 50
+          }
+        }
+      },
+      "block_order": [
+        "product_zNAYUD",
+        "product_PEr43Q",
+        "product_yTHGJM"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "title": "Shop the Look",
+        "heading_size": "h1",
+        "image": "shopify://shop_images/995-500.jpg",
+        "image_position": "left",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -713,6 +851,9 @@
     "contact_form_CV9nJA",
     "video_7mGmXj",
     "featured_blog_D4mGXD",
-    "multicolumn"
+    "multicolumn",
+    "bento_box_CU6q8C",
+    "parallel_scrolling_announcement_UKVe9x",
+    "parallel_shop_the_look_3yFGmL"
   ]
 }

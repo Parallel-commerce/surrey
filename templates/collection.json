@@ -64,6 +64,26 @@
         "padding_bottom": 40
       }
     },
+    "parallel_breadcrumbs_mUnKHf": {
+      "type": "parallel-breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "home_label": "Home",
+        "color_scheme": "",
+        "hide_on_homepage": true,
+        "font_size": 12,
+        "font_bold": true,
+        "font_italic": true,
+        "text_uppercase": true,
+        "link_color": "#8bc9ca",
+        "alignment": "left",
+        "separator_type": "slash",
+        "page_width_class": "page-width",
+        "side_padding": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -88,6 +108,7 @@
   "order": [
     "banner",
     "related_collections_banner_8ABYVY",
+    "parallel_breadcrumbs_mUnKHf",
     "product-grid"
   ]
 }

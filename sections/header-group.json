@@ -63,49 +63,6 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "mega_menu_image_gVXtEY": {
-          "type": "mega_menu_image",
-          "settings": {
-            "menu_item_handle": "kit",
-            "image": "shopify://shop_images/county_campionship.jpg",
-            "column_span": "2",
-            "link": "",
-            "alt_text": "",
-            "heading": "",
-            "subheading": ""
-          }
-        },
-        "mega_menu_image_RUTWmg": {
-          "type": "mega_menu_image",
-          "settings": {
-            "menu_item_handle": "kit",
-            "image": "shopify://shop_images/One_Day_Kit.jpg",
-            "column_span": "2",
-            "link": "",
-            "alt_text": "",
-            "heading": "",
-            "subheading": ""
-          }
-        },
-        "mega_menu_image_w6CgDG": {
-          "type": "mega_menu_image",
-          "settings": {
-            "menu_item_handle": "",
-            "image": "shopify://shop_images/T20_Kit.jpg",
-            "column_span": "2",
-            "link": "",
-            "alt_text": "",
-            "heading": "",
-            "subheading": ""
-          }
-        }
-      },
-      "block_order": [
-        "mega_menu_image_gVXtEY",
-        "mega_menu_image_RUTWmg",
-        "mega_menu_image_w6CgDG"
-      ],
       "settings": {
         "logo_position": "middle-center",
         "mobile_logo_position": "center",

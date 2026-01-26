@@ -63,6 +63,23 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_menu_image_gVXtEY": {
+          "type": "mega_menu_image",
+          "settings": {
+            "menu_item_handle": "Kit",
+            "image": "shopify://shop_images/county_campionship.jpg",
+            "column_span": "2",
+            "link": "",
+            "alt_text": "",
+            "heading": "",
+            "subheading": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_image_gVXtEY"
+      ],
       "settings": {
         "logo_position": "middle-center",
         "mobile_logo_position": "center",

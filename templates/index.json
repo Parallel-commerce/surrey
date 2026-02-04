@@ -697,7 +697,7 @@
       }
     },
     "bento_box_CU6q8C": {
-      "type": "bento-box",
+      "type": "parallel-bento-box",
       "blocks": {
         "image_bBMtdJ": {
           "type": "image",

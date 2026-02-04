@@ -3,23 +3,44 @@
   margin-bottom: 3rem;
 }
 
+/* Grid: auto rows so only rows with content show (no empty rows); square items use aspect-ratio 1 */
 .bento-box-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, auto);
+  width: 100%;
   gap: var(--grid-mobile-horizontal-spacing) var(--grid-mobile-vertical-spacing);
+  align-items: stretch;
 }
 
 .bento-item {
   width: 100%;
-  min-height: 200px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
+  align-self: stretch;
 }
 
 .bento-item > * {
   width: 100%;
   height: 100%;
-  flex: 1;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+/* Square items constrain their height so rows size to content = column width (perfect squares) */
+.bento-item--1x1,
+.bento-item--2x2,
+.bento-item--4x4 {
+  aspect-ratio: 1;
+  height: auto;
+}
+
+.bento-item--1x1 > *,
+.bento-item--2x2 > *,
+.bento-item--4x4 > * {
+  flex: none;
+  height: 100%;
 }
 
 .bento-item .card-wrapper {
@@ -38,19 +59,24 @@
   flex-grow: initial;
 }
 
-/* Image card styles */
+/* Image card styles – fill container */
 .bento-image-card {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 0;
   border-radius: var(--border-radius);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .bento-image-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -62,21 +88,44 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  transform-origin: center;
+}
+
+/* Prevent collapse when image is absolute – only when there's an actual img so placeholders are unaffected */
+.bento-image-media:has(.bento-image)::before {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
 }
 
 .bento-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
-  position: relative;
-  transition: opacity 0.3s ease;
+  position: absolute;
+  inset: 0;
+}
+
+/* Placeholder SVG (when no image) – fill media area and stay visible */
+.bento-image-media:not(:has(.bento-image)) {
+  min-height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
 }
 
 .bento-image-media svg {
   width: 100%;
   height: 100%;
+  min-height: 150px;
   object-fit: cover;
+  flex: 1;
+}
+
+.bento-image-media:not(:has(.bento-image)) svg {
+  min-height: 150px;
 }
 
 .bento-image--secondary {
@@ -87,16 +136,28 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--duration-long) ease;
   z-index: 1;
 }
 
-.bento-image-wrapper:hover .bento-image--secondary {
+/* Only crossfade when there is a second image (product with hover image) */
+.bento-image-wrapper:has(.bento-image--secondary):hover .bento-image--secondary {
   opacity: 1;
 }
 
-.bento-image-wrapper:hover .bento-image:not(.bento-image--secondary) {
+.bento-image-wrapper:has(.bento-image--secondary):hover .bento-image:not(.bento-image--secondary) {
   opacity: 0;
+}
+
+/* Dawn-style slow zoom on hover (replaces fade on single-image blocks) */
+@media screen and (min-width: 990px) {
+  .bento-image-media:has(.bento-image) {
+    transition: transform var(--duration-long) ease;
+  }
+
+  .bento-image-wrapper:hover .bento-image-media:has(.bento-image) {
+    transform: scale(1.03);
+  }
 }
 
 .bento-image-overlay {
@@ -115,7 +176,9 @@
 
 .bento-image-content {
   width: 100%;
-  color: rgb(var(--color-background));
+  position: relative;
+  z-index: 1;
+  color: rgb(255, 255, 255);
 }
 
 .bento-image-subtitle {
@@ -125,11 +188,12 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   opacity: 0.9;
+  color: rgb(255, 255, 255);
 }
 
 .bento-image-title {
   margin: 0;
-  color: rgb(var(--color-background));
+  color: rgb(255, 255, 255);
   font-weight: 600;
 }
 
@@ -161,60 +225,54 @@
   color: rgb(var(--color-background)) !important;
 }
 
-/* Size classes for mobile (2 column grid) */
+/* Size classes for mobile (2×2 grid = perfect square cells); 1x2 fills 2 rows (responds to container height) */
 .bento-item--1x1 {
   grid-column: span 1;
   grid-row: span 1;
-  aspect-ratio: 1;
 }
 
 .bento-item--2x2 {
   grid-column: span 2;
   grid-row: span 2;
-  aspect-ratio: 1;
 }
 
 .bento-item--1x2 {
   grid-column: span 1;
   grid-row: span 2;
-  aspect-ratio: 0.5;
 }
 
 .bento-item--4x4 {
   grid-column: span 2;
-  grid-row: span 4;
-  aspect-ratio: 0.5;
+  grid-row: span 2;
 }
 
 @media screen and (min-width: 750px) {
   .bento-box-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, auto);
     gap: var(--grid-desktop-horizontal-spacing) var(--grid-desktop-vertical-spacing);
+    align-items: stretch;
   }
 
-  /* Size classes for desktop (4 column grid) - maintain square aspect ratios */
+  /* Size classes for desktop; 1x2 fills 2 rows */
   .bento-item--1x1 {
     grid-column: span 1;
     grid-row: span 1;
-    aspect-ratio: 1;
   }
 
   .bento-item--2x2 {
     grid-column: span 2;
     grid-row: span 2;
-    aspect-ratio: 1;
   }
 
   .bento-item--1x2 {
     grid-column: span 1;
     grid-row: span 2;
-    aspect-ratio: 0.5;
   }
 
   .bento-item--4x4 {
     grid-column: span 4;
     grid-row: span 4;
-    aspect-ratio: 1;
   }
 
   .bento-image-overlay {
@@ -222,15 +280,26 @@
   }
 }
 
-/* Ensure cards fill their containers */
+/* Ensure cards fill their containers – override ratio so they fill grid cell */
 .bento-item .card__inner {
   height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
 .bento-item .card--media .card__inner {
   height: 100%;
+}
+
+.bento-item .card--media .card__inner.ratio::before {
+  content: none;
+  padding-bottom: 0;
+}
+
+.bento-item .card--media .card__inner.ratio {
+  padding-bottom: 0;
+  aspect-ratio: auto;
 }
 
 .bento-item .card__media {
@@ -240,12 +309,19 @@
 
 .bento-item .article-card-wrapper {
   height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
 .bento-item .article-card {
   height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
+}
+
+.bento-item .card__content {
+  flex-grow: 0;
+  flex-shrink: 0;
 }

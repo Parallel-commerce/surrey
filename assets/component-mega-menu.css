@@ -90,6 +90,7 @@ details[open] > .header__menu-item .header__active-menu-item {
   display: grid;
   gap: 1.8rem 4rem;
   grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-flow: row;
   list-style: none;
 }
 
@@ -179,7 +180,9 @@ li:has(.list-unstyled .mega-menu__link--active) > .mega-menu__link--level-2.mega
 }
 
 .mega-menu .mega-menu__list--condensed {
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-flow: row;
 }
 
 .mega-menu__list--condensed .mega-menu__link {
@@ -248,6 +251,7 @@ li:has(.list-unstyled .mega-menu__link--active) > .mega-menu__link--level-2.mega
   margin: 0 0 0.5rem 0;
   font-size: 1.4rem;
   font-weight: bold;
+  font-style: italic;
   color: #fff;
   line-height: 1.2;
 }

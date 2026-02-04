@@ -241,3 +241,63 @@ details[open].menu-opening > .menu-drawer__submenu {
     transition: none !important;
   }
 }
+
+/* Menu drawer collection images */
+.menu-drawer__image-item {
+  display: block;
+  width: 100%;
+  position: relative;
+  height: 20rem;
+  overflow: hidden;
+  margin-bottom: 0.2rem;
+  padding: 0;
+}
+
+.js .menu-drawer__menu .menu-drawer__image-item {
+  margin-bottom: 0.2rem;
+}
+
+.menu-drawer__image-link {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.menu-drawer__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  transform: scale(1);
+}
+
+.menu-drawer__image-link:hover .menu-drawer__image,
+.menu-drawer__image-item:hover .menu-drawer__image {
+  transform: scale(1.1);
+}
+
+/* Image overlay container */
+.menu-drawer__image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  color: #fff;
+  z-index: 1;
+}
+
+.menu-drawer__image-heading {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+}

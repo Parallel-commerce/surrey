@@ -35,81 +35,108 @@
                   role="list"
                 >
                   {%- for childlink in link.links -%}
-                    <li>
-                      <a
-                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% if childlink.child_active %} mega-menu__link--parent-active{% endif %}{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
-                      >
-                        {{ childlink.title | escape }}
-                      </a>
+                    {%- liquid
+                      assign collection = blank
+                      assign collection_handle = blank
+                      assign menu_image = blank
+                      assign menu_image_alt = blank
+                      assign focal_point = blank
+                      
+                      if childlink.url contains '/collections/'
+                        assign url_parts = childlink.url | split: '/collections/'
+                        if url_parts.size > 1
+                          assign collection_handle = url_parts[1] | split: '/' | first
+                          assign collection = collections[collection_handle]
+                        endif
+                      endif
+                      
+                      if collection != blank
+                        assign override_image = collection.metafields.custom.menu_image_override
+                        if override_image != blank
+                          assign menu_image = override_image
+                          assign menu_image_alt = override_image.alt | default: collection.title
+                          assign focal_point = override_image.presentation.focal_point
+                        elsif collection.featured_image != blank
+                          assign menu_image = collection.featured_image
+                          assign menu_image_alt = collection.featured_image.alt | default: collection.title
+                          assign focal_point = collection.featured_image.presentation.focal_point
+                        endif
+                        
+                        if focal_point == blank
+                          assign focal_point = 'center center'
+                        endif
+                      endif
+                    -%}
+                    {%- comment -%} Display collection image if available, otherwise show the link {%- endcomment -%}
+                    {%- if menu_image != blank -%}
+                      <li class="mega-menu__image-item mega-menu__image-item--span-1" style="grid-column: span 1;">
+                        <a href="{{ childlink.url }}" class="mega-menu__image-link">
+                          <img
+                            src="{{ menu_image | image_url: width: 400 }}"
+                            loading="lazy"
+                            width="{{ menu_image.width }}"
+                            height="{{ menu_image.height }}"
+                            alt="{{ menu_image_alt | escape }}"
+                            class="mega-menu__image"
+                            style="object-position: {{ focal_point }};"
+                          >
+                          <div class="mega-menu__image-overlay">
+                            <h3 class="mega-menu__image-heading">{{ collection.title | escape }}</h3>
+                          </div>
+                        </a>
+                      </li>
+                      {%- comment -%} Show level-3 sub-menu items below the image {%- endcomment -%}
                       {%- if childlink.links != blank -%}
-                        <ul class="list-unstyled" role="list">
-                          {%- for grandchildlink in childlink.links -%}
-                            <li>
-                              <a
-                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                href="{{ grandchildlink.url }}"
-                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
-                              >
-                                {{ grandchildlink.title | escape }}
-                              </a>
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      {%- endif -%}
-                    </li>
-                  {%- endfor -%}
-                  {%- comment -%} Display mega menu images for this menu item {%- endcomment -%}
-                  {%- for block in section.blocks -%}
-                    {%- if block.type == 'mega_menu_image' -%}
-                      {%- assign show_image = false -%}
-                      {%- if block.settings.menu_item_handle == blank or block.settings.menu_item_handle == link.handle -%}
-                        {%- assign show_image = true -%}
-                      {%- endif -%}
-                      {%- if show_image and block.settings.image != blank -%}
-                        {%- assign column_span = block.settings.column_span | default: '1' -%}
-                        {%- assign column_span_num = column_span | plus: 0 -%}
-                        {%- assign flex_percent = column_span_num | times: 100 | divided_by: 6 -%}
-                        {%- assign focal_point = block.settings.image.presentation.focal_point -%}
-                        {%- if focal_point == blank -%}
-                          {%- assign focal_point = 'center center' -%}
-                        {%- endif -%}
-                        <li class="mega-menu__image-item mega-menu__image-item--span-{{ column_span }}" style="grid-column: span {{ column_span }}; --flex-width: {{ flex_percent }}%;">
-                          {%- if block.settings.link != blank -%}
-                            <a href="{{ block.settings.link }}" class="mega-menu__image-link"{% if focal_point != blank %} style="--image-focal-point: {{ focal_point }};"{% endif %}>
-                          {%- endif -%}
-                            {%- assign image_alt = block.settings.alt_text | default: block.settings.image.alt | default: '' -%}
-                            <img
-                              src="{{ block.settings.image | image_url: width: 400 }}"
-                              loading="lazy"
-                              width="{{ block.settings.image.width }}"
-                              height="{{ block.settings.image.height }}"
-                              alt="{{ image_alt }}"
-                              class="mega-menu__image"
-                              {% if focal_point != blank %}style="object-position: {{ focal_point }};"{% endif %}
-                            >
-                            {%- if block.settings.heading != blank or block.settings.subheading != blank -%}
-                              <div class="mega-menu__image-overlay">
-                                {%- if block.settings.heading != blank -%}
-                                  <h3 class="mega-menu__image-heading">{{ block.settings.heading | escape }}</h3>
-                                {%- endif -%}
-                                {%- if block.settings.subheading != blank -%}
-                                  <p class="mega-menu__image-subheading">{{ block.settings.subheading | escape }}</p>
-                                {%- endif -%}
-                              </div>
-                            {%- endif -%}
-                          {%- if block.settings.link != blank -%}
-                            </a>
-                          {%- endif -%}
+                        <li style="grid-column: span 1;">
+                          <ul class="list-unstyled" role="list">
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
                         </li>
                       {%- endif -%}
+                    {%- else -%}
+                      <li>
+                        <a
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          href="{{ childlink.url }}"
+                          class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% if childlink.child_active %} mega-menu__link--parent-active{% endif %}{% endif %}"
+                          {% if childlink.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          {{ childlink.title | escape }}
+                        </a>
+                        {%- if childlink.links != blank -%}
+                          <ul class="list-unstyled" role="list">
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      </li>
                     {%- endif -%}
                   {%- endfor -%}
                 </ul>

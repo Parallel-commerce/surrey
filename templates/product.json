@@ -139,6 +139,61 @@
         "padding_bottom": 12
       }
     },
+    "parallel_product_highlights_mfrqpj": {
+      "type": "parallel-product-highlights",
+      "blocks": {
+        "highlight_iBFCXE": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shirt",
+            "heading": "Official club merchandise",
+            "description": "Authentic licensed product"
+          }
+        },
+        "highlight_nTcVDC": {
+          "type": "highlight",
+          "settings": {
+            "icon": "star",
+            "heading": "Worn by first team",
+            "description": "Same design as match day"
+          }
+        },
+        "highlight_8DFXtC": {
+          "type": "highlight",
+          "settings": {
+            "icon": "lightning_bolt",
+            "heading": "Performance fabric",
+            "description": "Moisture-wicking and breathable"
+          }
+        },
+        "highlight_p9JTGy": {
+          "type": "highlight",
+          "settings": {
+            "icon": "price_tag",
+            "heading": "Limited edition",
+            "description": "Exclusive seasonal release"
+          }
+        }
+      },
+      "block_order": [
+        "highlight_iBFCXE",
+        "highlight_nTcVDC",
+        "highlight_8DFXtC",
+        "highlight_p9JTGy"
+      ],
+      "name": "Product Highlights",
+      "settings": {
+        "heading": "Why you'll love it",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "columns_desktop": "4",
+        "layout": "center",
+        "icon_shape": "circle",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -242,6 +297,7 @@
   "order": [
     "parallel_breadcrumbs_k7Wmwf",
     "main",
+    "parallel_product_highlights_mfrqpj",
     "image-with-text",
     "multicolumn",
     "related-products"

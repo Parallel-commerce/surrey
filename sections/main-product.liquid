@@ -191,6 +191,12 @@
                     {%- endif -%}
                   {%- endif -%}
                 </p>
+              {%- when 'short_description' -%}
+                {%- if product.metafields.custom.short_description != blank -%}
+                  <div class="product__short-description rte" {{ block.shopify_attributes }}>
+                    {{ product.metafields.custom.short_description | metafield_tag }}
+                  </div>
+                {%- endif -%}
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
@@ -927,6 +933,11 @@
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
         }
       ]
+    },
+    {
+      "type": "short_description",
+      "name": "Short description",
+      "limit": 1
     },
     {
       "type": "description",

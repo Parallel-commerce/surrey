@@ -47,18 +47,19 @@
           "type": "price",
           "settings": {}
         },
-        "text_nK3MhX": {
-          "type": "text",
-          "settings": {
-            "text": "",
-            "text_style": "body"
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle"
+          }
+        },
+        "inventory_n7iBp4": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
           }
         },
         "quantity_selector": {
@@ -119,8 +120,8 @@
         "vendor",
         "title",
         "price",
-        "text_nK3MhX",
         "variant_picker",
+        "inventory_n7iBp4",
         "quantity_selector",
         "buy_buttons",
         "collapsible-row-0",

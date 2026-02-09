@@ -193,7 +193,7 @@
                 </p>
               {%- when 'short_description' -%}
                 {%- if product.metafields.custom.short_description != blank -%}
-                  <div class="product__short-description rte" {{ block.shopify_attributes }}>
+                  <div class="product__short-description rte" style="font-size: 1rem;" {{ block.shopify_attributes }}>
                     {{ product.metafields.custom.short_description | metafield_tag }}
                   </div>
                 {%- endif -%}

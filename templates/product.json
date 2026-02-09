@@ -47,6 +47,10 @@
           "type": "price",
           "settings": {}
         },
+        "short_description_XBPPEM": {
+          "type": "short_description",
+          "settings": {}
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -114,6 +118,7 @@
         "vendor",
         "title",
         "price",
+        "short_description_XBPPEM",
         "variant_picker",
         "inventory_n7iBp4",
         "quantity_selector",

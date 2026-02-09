@@ -73,10 +73,37 @@
             "show_gift_card_recipient": true
           }
         },
+        "collapsible_tab_jnwBdY": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Description",
+            "icon": "check_mark",
+            "content": "<p>{{ product.description }}</p>",
+            "page": ""
+          }
+        },
         "collapsible_tab_P6mxw4": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Size Guide",
+            "icon": "check_mark",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_XmBNK6": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Specification",
+            "icon": "check_mark",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_MdMqDT": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Delivery & Returns",
             "icon": "check_mark",
             "content": "",
             "page": ""
@@ -91,7 +118,10 @@
         "inventory_n7iBp4",
         "quantity_selector",
         "buy_buttons",
-        "collapsible_tab_P6mxw4"
+        "collapsible_tab_jnwBdY",
+        "collapsible_tab_P6mxw4",
+        "collapsible_tab_XmBNK6",
+        "collapsible_tab_MdMqDT"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -107,68 +137,6 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
-      }
-    },
-    "collapsible_content_cHbBNr": {
-      "type": "collapsible-content",
-      "blocks": {
-        "collapsible_row_wFrpVx": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Size Guide",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_JY7zT6": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Specifications",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_AG4eJ7": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Delivery",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_wU84qz": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Returns Policy",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        }
-      },
-      "block_order": [
-        "collapsible_row_wFrpVx",
-        "collapsible_row_JY7zT6",
-        "collapsible_row_AG4eJ7",
-        "collapsible_row_wU84qz"
-      ],
-      "name": "t:sections.collapsible_content.presets.name",
-      "settings": {
-        "caption": "",
-        "heading": "",
-        "heading_size": "h1",
-        "heading_alignment": "center",
-        "layout": "none",
-        "container_color_scheme": "",
-        "color_scheme": "",
-        "open_first_collapsible_row": false,
-        "image_ratio": "adapt",
-        "desktop_layout": "image_second",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "image-with-text": {
@@ -273,7 +241,6 @@
   "order": [
     "parallel_breadcrumbs_k7Wmwf",
     "main",
-    "collapsible_content_cHbBNr",
     "image-with-text",
     "multicolumn",
     "related-products"

@@ -77,8 +77,8 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Description",
-            "icon": "check_mark",
-            "content": "<p>{{ product.description }}</p>",
+            "icon": "none",
+            "content": "{{ product.description }}",
             "page": ""
           }
         },
@@ -86,7 +86,7 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Size Guide",
-            "icon": "check_mark",
+            "icon": "none",
             "content": "",
             "page": ""
           }
@@ -95,7 +95,7 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Specification",
-            "icon": "check_mark",
+            "icon": "none",
             "content": "",
             "page": ""
           }
@@ -104,7 +104,7 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Delivery & Returns",
-            "icon": "check_mark",
+            "icon": "none",
             "content": "",
             "page": ""
           }
@@ -162,6 +162,7 @@
         "image-with-text-1"
       ],
       "settings": {
+        "image": "shopify://shop_images/1576577236-3-scaled.jpg",
         "height": "small",
         "desktop_image_width": "medium",
         "layout": "text_first",

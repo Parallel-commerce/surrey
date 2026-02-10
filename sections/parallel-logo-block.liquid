@@ -20,37 +20,16 @@
     }
   }
 
-  .logo-block-{{ section.id }} {
-    width: 100%;
-  }
-
-  .logo-block-{{ section.id }}__container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  @media screen and (min-width: 750px) {
-    .logo-block-{{ section.id }}__container {
-      padding: 0 5rem;
-    }
-  }
-
   .logo-block-{{ section.id }}__grid {
-    display: grid;
-    {%- if section.settings.mobile_columns == '2' -%}
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    {%- else -%}
-      grid-template-columns: repeat(1, minmax(0, 1fr));
-    {%- endif -%}
-    gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
+    gap: 2rem;
   }
 
   @media screen and (min-width: 750px) {
     .logo-block-{{ section.id }}__grid {
-      grid-template-columns: repeat({{ block_count }}, minmax(0, 1fr));
       gap: {{ section.settings.logo_spacing }}px;
     }
   }
@@ -59,7 +38,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    {%- if section.settings.mobile_columns == '3' -%}
+      flex: 0 1 calc(33.333% - 1.5rem);
+    {%- else -%}
+      flex: 0 1 calc(50% - 1rem);
+    {%- endif -%}
+  }
+
+  @media screen and (min-width: 750px) {
+    .logo-block-{{ section.id }}__item {
+      flex: 0 1 calc({{ 100.0 | divided_by: block_count }}% - {{ section.settings.logo_spacing }}px);
+    }
+  }
+
+  .logo-block-{{ section.id }}__item a,
+  .logo-block-{{ section.id }}__item span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    height: 100%;
+    text-decoration: none;
   }
 
   .logo-block-{{ section.id }}__item img {
@@ -77,12 +76,6 @@
     }
   {%- endif -%}
 
-  .logo-block-{{ section.id }}__item a {
-    display: block;
-    width: 100%;
-    text-decoration: none;
-  }
-
   .logo-block-{{ section.id }}__title {
     text-align: {{ section.settings.title_alignment }};
     margin-bottom: {{ section.settings.title_spacing }}px;
@@ -94,8 +87,8 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="logo-block-{{ section.id }} section-{{ section.id }}-padding isolate">
-    <div class="logo-block-{{ section.id }}__container">
+  <div class="section-{{ section.id }}-padding isolate">
+    <div class="page-width">
       {%- if section.settings.title != blank -%}
         <div class="logo-block-{{ section.id }}__title{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <h2 class="inline-richtext {{ section.settings.heading_size }}">
@@ -112,7 +105,7 @@
                 if logo_alt == blank
                   assign logo_alt = 'Logo'
                 endif
-                assign logo_sizes = '(min-width: 750px) ' | append: section.settings.logo_width | append: 'px, 100vw'
+                assign logo_sizes = '(min-width: 750px) ' | append: section.settings.logo_width | append: 'px, 50vw'
               -%}
               <div
                 class="logo-block-{{ section.id }}__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -128,7 +121,10 @@
                     {% if block.settings.link_target_blank %}
                       target="_blank" rel="noopener noreferrer"
                     {% endif %}
+                    aria-label="{{ logo_alt }}"
                   >
+                {%- else -%}
+                  <span>
                 {%- endif -%}
                 {{
                   block.settings.logo
@@ -137,6 +133,8 @@
                 }}
                 {%- if block.settings.link != blank -%}
                   </a>
+                {%- else -%}
+                  </span>
                 {%- endif -%}
               </div>
             {%- endif -%}
@@ -242,7 +240,7 @@
       "max": 300,
       "step": 10,
       "unit": "px",
-      "label": "Logo width",
+      "label": "Logo max width",
       "default": 150,
       "info": "Maximum width for each logo"
     },
@@ -286,17 +284,17 @@
       "id": "mobile_columns",
       "options": [
         {
-          "value": "1",
-          "label": "1 column"
+          "value": "2",
+          "label": "2 per row"
         },
         {
-          "value": "2",
-          "label": "2 columns"
+          "value": "3",
+          "label": "3 per row"
         }
       ],
-      "default": "1",
+      "default": "2",
       "label": "Mobile columns",
-      "info": "Logos will stack in the selected number of columns on mobile"
+      "info": "Number of logos per row on mobile"
     },
     {
       "type": "header",

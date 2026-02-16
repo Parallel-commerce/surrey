@@ -158,10 +158,10 @@
         "product_PEr43Q": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "surrey-ccc-scarf",
             "label": "",
-            "position_x": 50,
-            "position_y": 50
+            "position_x": 60,
+            "position_y": 65
           }
         },
         "product_yTHGJM": {

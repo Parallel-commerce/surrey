@@ -15,12 +15,12 @@
         "slide_DThWXB": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/1576577236-3-scaled.jpg",
+            "image": "shopify://shop_images/2000x400_2x_6a8a475c-8bb7-48ed-b72a-3fc9b00fc590.jpg",
             "image_overlay_opacity": 20,
             "heading": "<em>Image slide</em>",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
             "link": "",
             "button_style_secondary": false,
             "show_text_box": false,
@@ -33,19 +33,19 @@
         "slide_FYEDif": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/membership-header-groundjpg-min.jpg",
-            "image_overlay_opacity": 0,
-            "heading": "Image slide",
+            "image": "shopify://shop_images/SUR_251217_Retail_Darts_Range_2000x400_2x_1.jpg",
+            "image_overlay_opacity": 10,
+            "heading": "",
             "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "subheading": "",
+            "button_label": "",
             "link": "",
             "button_style_secondary": false,
             "show_text_box": false,
-            "box_align": "middle-center",
+            "box_align": "bottom-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-3"
+            "color_scheme": "scheme-2"
           }
         }
       },
@@ -56,7 +56,7 @@
       "name": "t:sections.slideshow.presets.name",
       "settings": {
         "layout": "full_bleed",
-        "slide_height": "medium",
+        "slide_height": "adapt_image",
         "slider_visual": "dots",
         "pagination_background": false,
         "auto_rotate": false,

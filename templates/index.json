@@ -117,15 +117,15 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "collection": "all-products",
-        "products_to_show": 4,
-        "title": "Featured collection",
-        "heading_size": "h1",
-        "use_vertical_side_title": true,
+        "collection": "kit",
+        "products_to_show": 3,
+        "title": "2025 Kit",
+        "heading_size": "h2",
+        "use_vertical_side_title": false,
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
@@ -138,71 +138,61 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "logo_block_EpWmnH": {
-      "type": "parallel-logo-block",
+    "parallel_shop_the_look_3yFGmL": {
+      "type": "parallel-shop-the-look",
       "blocks": {
-        "logo_zCCiRq": {
-          "type": "logo",
+        "product_zNAYUD": {
+          "type": "product",
           "settings": {
-            "logo": "shopify://shop_images/Kia_Logo_White.png",
-            "alt_text": "KIA Partner Logo",
-            "link": "",
-            "link_target_blank": false
+            "product": "sccc-rugby-jersey-stripes-brown-cream-1056",
+            "label": "",
+            "position_x": 47,
+            "position_y": 50
           }
         },
-        "logo_4jAHJT": {
-          "type": "logo",
+        "product_PEr43Q": {
+          "type": "product",
           "settings": {
-            "logo": "shopify://shop_images/JM_Finn_Logo_White.png",
-            "alt_text": "JM FINN Partner Logo",
-            "link": "https://www.jmfinn.com/?utm_source=website&utm_medium=partner_ad&utm_campaign=web_footer",
-            "link_target_blank": false
+            "product": "",
+            "label": "",
+            "position_x": 50,
+            "position_y": 50
           }
         },
-        "logo_BPmKDg": {
-          "type": "logo",
+        "product_yTHGJM": {
+          "type": "product",
           "settings": {
-            "logo": "shopify://shop_images/SSE_White.png",
-            "alt_text": "SSE Partner Logo",
-            "link": "https://www.xbox.com/en-GB/?utm_source=website&utm_medium=partner_ad&utm_campaign=web_footer",
-            "link_target_blank": false
-          }
-        },
-        "logo_gwDmpg": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/Xbox_Logo_White.png",
-            "alt_text": "Logo",
-            "link": "",
-            "link_target_blank": false
+            "product": "",
+            "label": "",
+            "position_x": 50,
+            "position_y": 50
           }
         }
       },
       "block_order": [
-        "logo_zCCiRq",
-        "logo_4jAHJT",
-        "logo_BPmKDg",
-        "logo_gwDmpg"
+        "product_zNAYUD",
+        "product_PEr43Q",
+        "product_yTHGJM"
       ],
-      "name": "Logo Block",
+      "name": "Shop the Look",
       "settings": {
-        "color_scheme": "scheme-3",
-        "title": "Our Partners",
-        "heading_size": "h1",
-        "title_alignment": "center",
-        "title_spacing": 0,
-        "logo_width": 200,
-        "logo_spacing": 40,
-        "logo_opacity": 100,
-        "logo_hover_opacity": 100,
-        "mobile_columns": "1",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "title": "Shop the Look",
+        "heading_size": "h2",
+        "image": "shopify://shop_images/Jesse_Scarf_2.jpg",
+        "image_position": "left",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "bento_box_CU6q8C": {
@@ -244,58 +234,6 @@
       "settings": {
         "heading": "Bento Box",
         "heading_size": "h1",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "parallel_shop_the_look_3yFGmL": {
-      "type": "parallel-shop-the-look",
-      "blocks": {
-        "product_zNAYUD": {
-          "type": "product",
-          "settings": {
-            "product": "2023-sccc-castore-leisure-cap-1016",
-            "label": "",
-            "position_x": 37,
-            "position_y": 26
-          }
-        },
-        "product_PEr43Q": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "label": "",
-            "position_x": 50,
-            "position_y": 50
-          }
-        },
-        "product_yTHGJM": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "label": "",
-            "position_x": 50,
-            "position_y": 50
-          }
-        }
-      },
-      "block_order": [
-        "product_zNAYUD",
-        "product_PEr43Q",
-        "product_yTHGJM"
-      ],
-      "name": "Shop the Look",
-      "settings": {
-        "title": "Shop the Look",
-        "heading_size": "h1",
-        "image": "shopify://shop_images/995-500.jpg",
-        "image_position": "left",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
@@ -385,16 +323,78 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "logo_block_EpWmnH": {
+      "type": "parallel-logo-block",
+      "blocks": {
+        "logo_zCCiRq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Kia_Logo_White.png",
+            "alt_text": "KIA Partner Logo",
+            "link": "",
+            "link_target_blank": false
+          }
+        },
+        "logo_4jAHJT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/JM_Finn_Logo_White.png",
+            "alt_text": "JM FINN Partner Logo",
+            "link": "https://www.jmfinn.com/?utm_source=website&utm_medium=partner_ad&utm_campaign=web_footer",
+            "link_target_blank": false
+          }
+        },
+        "logo_BPmKDg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/SSE_White.png",
+            "alt_text": "SSE Partner Logo",
+            "link": "https://www.xbox.com/en-GB/?utm_source=website&utm_medium=partner_ad&utm_campaign=web_footer",
+            "link_target_blank": false
+          }
+        },
+        "logo_gwDmpg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Xbox_Logo_White.png",
+            "alt_text": "Logo",
+            "link": "",
+            "link_target_blank": false
+          }
+        }
+      },
+      "block_order": [
+        "logo_zCCiRq",
+        "logo_4jAHJT",
+        "logo_BPmKDg",
+        "logo_gwDmpg"
+      ],
+      "name": "Logo Block",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "title": "Our Partners",
+        "heading_size": "h1",
+        "title_alignment": "center",
+        "title_spacing": 0,
+        "logo_width": 200,
+        "logo_spacing": 40,
+        "logo_opacity": 100,
+        "logo_hover_opacity": 100,
+        "mobile_columns": "1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "slideshow_CXXdEB",
     "parallel_scrolling_announcement_UKVe9x",
     "featured_collection_p4q3k3",
-    "logo_block_EpWmnH",
-    "bento_box_CU6q8C",
     "parallel_shop_the_look_3yFGmL",
+    "bento_box_CU6q8C",
     "parallel_product_highlights_PKdXrR",
-    "featured_collection_EPx84V"
+    "featured_collection_EPx84V",
+    "logo_block_EpWmnH"
   ]
 }

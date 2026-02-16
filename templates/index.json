@@ -17,7 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/2000x400_2x_6a8a475c-8bb7-48ed-b72a-3fc9b00fc590.jpg",
             "image_overlay_opacity": 20,
-            "heading": "<em>Image slide</em>",
+            "heading": "",
             "heading_size": "h2",
             "subheading": "",
             "button_label": "",

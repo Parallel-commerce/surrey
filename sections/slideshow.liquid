@@ -2,25 +2,60 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
-{%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
+{%- liquid
+  assign first_desktop = section.blocks.first.settings.image_desktop
+  assign first_tablet = section.blocks.first.settings.image_tablet
+  assign first_mobile = section.blocks.first.settings.image_mobile
+-%}
+{%- if section.settings.slide_height == 'adapt_image' and first_desktop != blank or first_tablet != blank or first_mobile != blank -%}
   {%- style -%}
-    @media screen and (max-width: 749px) {
-      #Slider-{{ section.id }}::before,
-      #Slider-{{ section.id }} .media::before,
-      #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
+    @media screen and (max-width: 639px) {
+      {%- if first_mobile != blank -%}
+        #Slider-{{ section.id }}::before,
+        #Slider-{{ section.id }} .media::before,
+        #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+          padding-bottom: {{ 1 | divided_by: first_mobile.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
+      {%- elsif first_desktop != blank -%}
+        #Slider-{{ section.id }}::before,
+        #Slider-{{ section.id }} .media::before,
+        #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+          padding-bottom: {{ 1 | divided_by: first_desktop.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
+      {%- endif -%}
     }
 
-    @media screen and (min-width: 750px) {
-      #Slider-{{ section.id }}::before,
-      #Slider-{{ section.id }} .media::before {
-        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
+    @media screen and (min-width: 640px) and (max-width: 1039px) {
+      {%- if first_tablet != blank -%}
+        #Slider-{{ section.id }}::before,
+        #Slider-{{ section.id }} .media::before {
+          padding-bottom: {{ 1 | divided_by: first_tablet.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
+      {%- elsif first_desktop != blank -%}
+        #Slider-{{ section.id }}::before,
+        #Slider-{{ section.id }} .media::before {
+          padding-bottom: {{ 1 | divided_by: first_desktop.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
+      {%- endif -%}
+    }
+
+    @media screen and (min-width: 1040px) {
+      {%- if first_desktop != blank -%}
+        #Slider-{{ section.id }}::before,
+        #Slider-{{ section.id }} .media::before {
+          padding-bottom: {{ 1 | divided_by: first_desktop.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
+      {%- endif -%}
     }
   {%- endstyle -%}
 {%- endif -%}
@@ -98,7 +133,7 @@
   {%- endif -%}
 
   <div
-    class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere{% if section.settings.show_text_below %} banner--mobile-bottom{% endif %}{% if section.blocks.first.settings.image == blank %} slideshow--placeholder{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+    class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere{% if section.settings.show_text_below %} banner--mobile-bottom{% endif %}{% if section.blocks.first.settings.image_desktop == blank and section.blocks.first.settings.image_tablet == blank and section.blocks.first.settings.image_mobile == blank %} slideshow--placeholder{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
     id="Slider-{{ section.id }}"
     aria-live="polite"
     aria-atomic="true"
@@ -120,35 +155,56 @@
         aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
         tabindex="-1"
       >
-        <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
-          {%- if block.settings.image -%}
+        <div class="slideshow__media banner__media media{% if block.settings.image_desktop == blank and block.settings.image_tablet == blank and block.settings.image_mobile == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+          {%- liquid
+            assign has_any_image = false
+            if block.settings.image_desktop != blank or block.settings.image_tablet != blank or block.settings.image_mobile != blank
+              assign has_any_image = true
+            endif
+          -%}
+          {%- if has_any_image -%}
             {%- liquid
-              assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
-              if section.settings.image_behavior == 'ambient'
-                assign sizes = '120vw'
-                assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
+              if block.settings.image_desktop != blank
+                assign fallback_img = block.settings.image_desktop
+              elsif block.settings.image_tablet != blank
+                assign fallback_img = block.settings.image_tablet
               else
-                assign sizes = '100vw'
-                assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+                assign fallback_img = block.settings.image_mobile
+              endif
+              assign height = fallback_img.width | divided_by: fallback_img.aspect_ratio | round
+              if section.settings.image_behavior == 'ambient'
+                assign desktop_sizes = '120vw'
+                assign desktop_widths = '1040, 1320, 1800, 2136, 2400, 3600, 7680'
+              else
+                assign desktop_sizes = '100vw'
+                assign desktop_widths = '1040, 1500, 2000, 3000, 3840'
               endif
               assign fetch_priority = 'auto'
-              if section.index == 1
+              if section.index == 1 and forloop.first
                 assign fetch_priority = 'high'
               endif
             -%}
-            {%- if forloop.first %}
-              {{
-                block.settings.image
-                | image_url: width: 3840
-                | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority
-              }}
-            {%- else -%}
-              {{
-                block.settings.image
-                | image_url: width: 3840
-                | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths
-              }}
-            {%- endif -%}
+            <picture>
+              {%- if block.settings.image_mobile -%}
+                <source
+                  media="(max-width: 639px)"
+                  srcset="{{ block.settings.image_mobile | image_url: width: 640 }} 640w, {{ block.settings.image_mobile | image_url: width: 960 }} 960w, {{ block.settings.image_mobile | image_url: width: 1280 }} 1280w"
+                  sizes="100vw"
+                >
+              {%- endif -%}
+              {%- if block.settings.image_tablet -%}
+                <source
+                  media="(min-width: 640px) and (max-width: 1039px)"
+                  srcset="{{ block.settings.image_tablet | image_url: width: 1040 }} 1040w, {{ block.settings.image_tablet | image_url: width: 1560 }} 1560w, {{ block.settings.image_tablet | image_url: width: 2080 }} 2080w"
+                  sizes="100vw"
+                >
+              {%- endif -%}
+              {%- if forloop.first -%}
+                {{ fallback_img | image_url: width: 3840 | image_tag: height: height, sizes: desktop_sizes, widths: desktop_widths, fetchpriority: fetch_priority }}
+              {%- else -%}
+                {{ fallback_img | image_url: width: 3840 | image_tag: loading: 'lazy', height: height, sizes: desktop_sizes, widths: desktop_widths }}
+              {%- endif -%}
+            </picture>
           {%- else -%}
             {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
             {%- if placeholder_slide == 1 -%}
@@ -398,9 +454,26 @@
       "limit": 5,
       "settings": [
         {
+          "type": "header",
+          "content": "Images"
+        },
+        {
           "type": "image_picker",
-          "id": "image",
-          "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+          "id": "image_desktop",
+          "label": "Desktop image",
+          "info": "Recommended size: 2000 x 400px"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_tablet",
+          "label": "Tablet image",
+          "info": "Recommended size: 1040 x 450px"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile image",
+          "info": "Recommended size: 640 x 450px"
         },
         {
           "type": "range",

@@ -15,7 +15,6 @@
         "slide_DThWXB": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/2000x400_2x_6a8a475c-8bb7-48ed-b72a-3fc9b00fc590.jpg",
             "image_overlay_opacity": 20,
             "heading": "",
             "heading_size": "h2",
@@ -33,7 +32,6 @@
         "slide_FYEDif": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/SUR_251217_Retail_Darts_Range_2000x400_2x_1.jpg",
             "image_overlay_opacity": 10,
             "heading": "",
             "heading_size": "h1",
@@ -117,16 +115,16 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "collection": "kit",
-        "products_to_show": 3,
+        "collection": "2025-kit",
+        "products_to_show": 10,
         "title": "Kit",
         "heading_size": "h1",
         "use_vertical_side_title": false,
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": false,
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -198,41 +196,44 @@
     "bento_box_CU6q8C": {
       "type": "parallel-bento-box",
       "blocks": {
-        "image_bBMtdJ": {
-          "type": "image",
+        "collection_NMqUmJ": {
+          "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/997-518.jpg",
-            "title": "Image Title",
-            "subtitle": "Image Subtitle",
-            "title_size": "h2",
-            "link": "",
-            "size": "small"
-          }
-        },
-        "product_3gHRDT": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "second_image": false,
+            "collection": "kit-county-championship",
             "size": "small"
           }
         },
         "collection_QVX39V": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "hundred",
+            "size": "medium"
+          }
+        },
+        "collection_WVkqVM": {
+          "type": "collection",
+          "settings": {
+            "collection": "kit-t20",
+            "size": "tall"
+          }
+        },
+        "collection_ymQWac": {
+          "type": "collection",
+          "settings": {
+            "collection": "kit-one-day-cup",
             "size": "small"
           }
         }
       },
       "block_order": [
-        "image_bBMtdJ",
-        "product_3gHRDT",
-        "collection_QVX39V"
+        "collection_NMqUmJ",
+        "collection_QVX39V",
+        "collection_WVkqVM",
+        "collection_ymQWac"
       ],
       "name": "Bento Box",
       "settings": {
-        "heading": "Bento Box",
+        "heading": "",
         "heading_size": "h1",
         "color_scheme": "",
         "padding_top": 36,

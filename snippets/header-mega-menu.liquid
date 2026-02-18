@@ -1,13 +1,36 @@
 {% comment %}
   Renders a megamenu for the header.
+  Accepts an optional `split_nav` parameter ('left' or 'right') to render
+  only the first or second half of menu items for a split-nav layout.
 
   Usage:
   {% render 'header-mega-menu' %}
+  {% render 'header-mega-menu', split_nav: 'left' %}
+  {% render 'header-mega-menu', split_nav: 'right' %}
 {% endcomment %}
 
-<nav class="header__inline-menu">
+{%- liquid
+  assign menu_half = section.settings.menu.links.size | plus: 1 | divided_by: 2
+  if split_nav == 'left'
+    assign nav_class = 'header__inline-menu header__inline-menu--left'
+  elsif split_nav == 'right'
+    assign nav_class = 'header__inline-menu header__inline-menu--right'
+  else
+    assign nav_class = 'header__inline-menu'
+  endif
+-%}
+
+<nav class="{{ nav_class }}">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {%- liquid
+        if split_nav == 'left' and forloop.index > menu_half
+          continue
+        endif
+        if split_nav == 'right' and forloop.index <= menu_half
+          continue
+        endif
+      -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>

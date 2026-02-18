@@ -182,10 +182,18 @@
 
     {%- liquid
       if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
+        if section.settings.logo_position == 'middle-center'
+          if section.settings.menu_type_desktop == 'dropdown'
+            render 'header-dropdown-menu', split_nav: 'left'
+          elsif section.settings.menu_type_desktop != 'drawer'
+            render 'header-mega-menu', split_nav: 'left'
+          endif
+        else
+          if section.settings.menu_type_desktop == 'dropdown'
+            render 'header-dropdown-menu'
+          elsif section.settings.menu_type_desktop != 'drawer'
+            render 'header-mega-menu'
+          endif
         endif
       endif
     %}
@@ -221,6 +229,16 @@
       {%- if request.page_type == 'index' -%}
         </h1>
       {%- endif -%}
+
+      {%- liquid
+        if section.settings.menu != blank
+          if section.settings.menu_type_desktop == 'dropdown'
+            render 'header-dropdown-menu', split_nav: 'right'
+          elsif section.settings.menu_type_desktop != 'drawer'
+            render 'header-mega-menu', split_nav: 'right'
+          endif
+        endif
+      -%}
     {%- endif -%}
 
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">

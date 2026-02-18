@@ -301,7 +301,7 @@
       "settings": {
         "collection": "hundred",
         "products_to_show": 4,
-        "title": "Featured collection",
+        "title": "Hundred",
         "heading_size": "h1",
         "use_vertical_side_title": true,
         "description": "",

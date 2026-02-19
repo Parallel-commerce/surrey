@@ -15,6 +15,7 @@
         "slide_DThWXB": {
           "type": "slide",
           "settings": {
+            "image_desktop": "shopify://shop_images/2000x400_2x_6a8a475c-8bb7-48ed-b72a-3fc9b00fc590.jpg",
             "image_overlay_opacity": 20,
             "heading": "",
             "heading_size": "h2",
@@ -116,7 +117,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "2025-kit",
-        "products_to_show": 10,
+        "products_to_show": 4,
         "title": "Kit",
         "heading_size": "h1",
         "use_vertical_side_title": false,
@@ -124,8 +125,8 @@
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
-        "enable_desktop_slider": true,
-        "full_width": false,
+        "enable_desktop_slider": false,
+        "full_width": true,
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
@@ -193,16 +194,69 @@
         "padding_bottom": 36
       }
     },
+    "custom_collection_list_NFp63g": {
+      "type": "custom-collection-list",
+      "blocks": {
+        "featured_collection_KyPUC7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kit-one-day-cup",
+            "custom_title": "One Day Cup"
+          }
+        },
+        "featured_collection_RUnynn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "training",
+            "custom_title": ""
+          }
+        },
+        "featured_collection_DeD9DY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kit-county-championship",
+            "custom_title": "County Championship"
+          }
+        },
+        "featured_collection_C9GV4D": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kit-t20",
+            "custom_title": "T20"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_KyPUC7",
+        "featured_collection_RUnynn",
+        "featured_collection_DeD9DY",
+        "featured_collection_C9GV4D"
+      ],
+      "name": "Custom Collection List",
+      "settings": {
+        "title": "Collection List",
+        "heading_size": "h1",
+        "use_vertical_side_title": false,
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "card_min_height_desktop": 500,
+        "card_min_height_mobile": 400,
+        "card_border_radius": 0,
+        "card_title_position": "below_card",
+        "card_title_alignment": "center",
+        "title_font_size": 32,
+        "title_color": "#FFFFFF",
+        "show_button": true,
+        "button_text": "Shop Now",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "bento_box_CU6q8C": {
       "type": "parallel-bento-box",
       "blocks": {
-        "collection_NMqUmJ": {
-          "type": "collection",
-          "settings": {
-            "collection": "kit-county-championship",
-            "size": "small"
-          }
-        },
         "collection_QVX39V": {
           "type": "collection",
           "settings": {
@@ -217,6 +271,13 @@
             "size": "tall"
           }
         },
+        "collection_NMqUmJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "kit-county-championship",
+            "size": "small"
+          }
+        },
         "collection_ymQWac": {
           "type": "collection",
           "settings": {
@@ -226,9 +287,9 @@
         }
       },
       "block_order": [
-        "collection_NMqUmJ",
         "collection_QVX39V",
         "collection_WVkqVM",
+        "collection_NMqUmJ",
         "collection_ymQWac"
       ],
       "name": "Bento Box",
@@ -393,6 +454,7 @@
     "parallel_scrolling_announcement_UKVe9x",
     "featured_collection_p4q3k3",
     "parallel_shop_the_look_3yFGmL",
+    "custom_collection_list_NFp63g",
     "bento_box_CU6q8C",
     "parallel_product_highlights_PKdXrR",
     "featured_collection_EPx84V",

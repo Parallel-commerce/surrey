@@ -2,64 +2,6 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  assign first_desktop = section.blocks.first.settings.image_desktop
-  assign first_tablet = section.blocks.first.settings.image_tablet
-  assign first_mobile = section.blocks.first.settings.image_mobile
--%}
-{%- if section.settings.slide_height == 'adapt_image' and first_desktop != blank or first_tablet != blank or first_mobile != blank -%}
-  {%- style -%}
-    @media screen and (max-width: 639px) {
-      {%- if first_mobile != blank -%}
-        #Slider-{{ section.id }}::before,
-        #Slider-{{ section.id }} .media::before,
-        #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-          padding-bottom: {{ 1 | divided_by: first_mobile.aspect_ratio | times: 100 }}%;
-          content: '';
-          display: block;
-        }
-      {%- elsif first_desktop != blank -%}
-        #Slider-{{ section.id }}::before,
-        #Slider-{{ section.id }} .media::before,
-        #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-          padding-bottom: {{ 1 | divided_by: first_desktop.aspect_ratio | times: 100 }}%;
-          content: '';
-          display: block;
-        }
-      {%- endif -%}
-    }
-
-    @media screen and (min-width: 640px) and (max-width: 1039px) {
-      {%- if first_tablet != blank -%}
-        #Slider-{{ section.id }}::before,
-        #Slider-{{ section.id }} .media::before {
-          padding-bottom: {{ 1 | divided_by: first_tablet.aspect_ratio | times: 100 }}%;
-          content: '';
-          display: block;
-        }
-      {%- elsif first_desktop != blank -%}
-        #Slider-{{ section.id }}::before,
-        #Slider-{{ section.id }} .media::before {
-          padding-bottom: {{ 1 | divided_by: first_desktop.aspect_ratio | times: 100 }}%;
-          content: '';
-          display: block;
-        }
-      {%- endif -%}
-    }
-
-    @media screen and (min-width: 1040px) {
-      {%- if first_desktop != blank -%}
-        #Slider-{{ section.id }}::before,
-        #Slider-{{ section.id }} .media::before {
-          padding-bottom: {{ 1 | divided_by: first_desktop.aspect_ratio | times: 100 }}%;
-          content: '';
-          display: block;
-        }
-      {%- endif -%}
-    }
-  {%- endstyle -%}
-{%- endif -%}
-
 <slideshow-component
   class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
   role="region"

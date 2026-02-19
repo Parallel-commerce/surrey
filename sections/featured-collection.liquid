@@ -40,6 +40,10 @@
   .surrey-featured-collection-title-uppercase #collection-{{ section.id }} .card__heading {
     text-transform: uppercase;
   }
+
+  #collection-{{ section.id }} slider-component:not(.slider-component-full-width) {
+    --desktop-margin-left-first-item: 0;
+  }
 {%- endstyle -%}
 
 {%- liquid

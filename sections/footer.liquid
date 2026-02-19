@@ -280,6 +280,15 @@
   -%}
 
   {%- if has_partner_logos -%}
+    {%- liquid
+      assign partner_logo_count = 0
+      for i in (1..6)
+        assign logo_key = 'partner_logo_' | append: i
+        if section.settings[logo_key] != blank
+          assign partner_logo_count = partner_logo_count | plus: 1
+        endif
+      endfor
+    -%}
     <div
       class="footer__partners{% unless section.settings.partners_transparent_bg %} color-{{ section.settings.partners_color_scheme }}{% endunless %}"
       style="{% if section.settings.partners_transparent_bg %}background: transparent;{% endif %}"
@@ -288,13 +297,13 @@
         {%- if section.settings.partners_heading != blank -%}
           <p class="footer__partners-heading">{{ section.settings.partners_heading }}</p>
         {%- endif -%}
-        <div class="footer__partners-logos">
+        <div class="footer__partners-logos" data-partner-carousel data-logo-count="{{ partner_logo_count }}" style="--partner-logo-max-width: {{ section.settings.partners_logo_width }}px;">
           {%- for i in (1..6) -%}
             {%- assign logo_key = 'partner_logo_' | append: i -%}
             {%- assign link_key = 'partner_logo_link_' | append: i -%}
             {%- if section.settings[logo_key] != blank -%}
               {%- assign logo_width_2x = section.settings.partners_logo_width | times: 2 | at_most: 5760 -%}
-              <div class="footer__partners-logo" style="width: {{ section.settings.partners_logo_width }}px; flex: 0 0 {{ section.settings.partners_logo_width }}px;">
+              <div class="footer__partners-logo">
                 {%- if section.settings[link_key] != blank -%}
                   <a href="{{ section.settings[link_key] }}">
                 {%- endif -%}
@@ -315,6 +324,54 @@
         </div>
       </div>
     </div>
+
+    <script>
+      (function() {
+        const wrapper = document.querySelector('[data-partner-carousel]');
+        if (!wrapper) return;
+
+        const logos = wrapper.querySelectorAll('.footer__partners-logo');
+        if (logos.length < 2) return;
+
+        let mobileActive = false;
+        let currentIndex = 0;
+        let intervalId = null;
+
+        function startCarousel() {
+          if (mobileActive) return;
+          mobileActive = true;
+          currentIndex = 0;
+          logos.forEach(function(logo, i) {
+            logo.classList.add('partner-fade');
+            logo.classList.toggle('partner-fade--active', i === 0);
+          });
+          intervalId = setInterval(advance, 3000);
+        }
+
+        function stopCarousel() {
+          if (!mobileActive) return;
+          mobileActive = false;
+          if (intervalId) clearInterval(intervalId);
+          intervalId = null;
+          logos.forEach(function(logo) {
+            logo.classList.remove('partner-fade', 'partner-fade--active');
+          });
+        }
+
+        function advance() {
+          logos[currentIndex].classList.remove('partner-fade--active');
+          currentIndex = (currentIndex + 1) % logos.length;
+          logos[currentIndex].classList.add('partner-fade--active');
+        }
+
+        var mql = window.matchMedia('(max-width: 749px)');
+        function handleMQ(e) {
+          if (e.matches) startCarousel(); else stopCarousel();
+        }
+        mql.addEventListener('change', handleMQ);
+        handleMQ(mql);
+      })();
+    </script>
   {%- endif -%}
 
   <div

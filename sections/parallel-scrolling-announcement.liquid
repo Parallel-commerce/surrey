@@ -3,6 +3,9 @@
       --scrolling-speed: {{ section.settings.scroll_speed }}s;
       --scrolling-direction: {{ section.settings.scroll_direction }};
       --text-size: {{ section.settings.text_size | default: 13 }}px;
+      --font-weight: {{ section.settings.font_weight | default: '500' }};
+      --font-style: {% if section.settings.font_italic %}italic{% else %}normal{% endif %};
+      --text-transform: {% if section.settings.font_uppercase %}uppercase{% else %}none{% endif %};
       padding-top: {{ section.settings.padding_top | times: 0.1 }}rem;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.1 }}rem;
     }
@@ -52,16 +55,10 @@
   .scrolling-announcement__text {
     font-size: var(--text-size, 13px);
     line-height: 1.5;
-    font-weight: 500;
+    font-weight: var(--font-weight, 500);
+    font-style: var(--font-style, normal);
+    text-transform: var(--text-transform, none);
     color: rgb(var(--color-foreground));
-  }
-
-  .scrolling-announcement__text--bold {
-    font-weight: 700;
-  }
-
-  .scrolling-announcement__text--italic {
-    font-style: italic;
   }
 
   .scrolling-announcement__link {
@@ -143,7 +140,7 @@
                 {%- if block.settings.link != blank -%}
                   <a href="{{ block.settings.link }}" class="scrolling-announcement__link link link--text focus-inset">
                 {%- endif -%}
-                <span class="scrolling-announcement__text{% if block.settings.text_bold %} scrolling-announcement__text--bold{% endif %}{% if block.settings.text_italic %} scrolling-announcement__text--italic{% endif %}">
+                <span class="scrolling-announcement__text">
                   {{- block.settings.text | escape -}}
                 </span>
                 {%- if block.settings.link != blank -%}
@@ -162,7 +159,7 @@
                 {%- if block.settings.link != blank -%}
                   <a href="{{ block.settings.link }}" class="scrolling-announcement__link link link--text focus-inset">
                 {%- endif -%}
-                <span class="scrolling-announcement__text{% if block.settings.text_bold %} scrolling-announcement__text--bold{% endif %}{% if block.settings.text_italic %} scrolling-announcement__text--italic{% endif %}">
+                <span class="scrolling-announcement__text">
                   {{- block.settings.text | escape -}}
                 </span>
                 {%- if block.settings.link != blank -%}
@@ -334,6 +331,32 @@
       "info": "Text size in pixels"
     },
     {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra-bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "checkbox",
+      "id": "font_italic",
+      "label": "Italic",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "font_uppercase",
+      "label": "Uppercase",
+      "default": false
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
@@ -379,18 +402,6 @@
           "type": "url",
           "id": "link",
           "label": "Link (optional)"
-        },
-        {
-          "type": "checkbox",
-          "id": "text_bold",
-          "label": "Bold text",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "text_italic",
-          "label": "Italic text",
-          "default": false
         }
       ]
     }

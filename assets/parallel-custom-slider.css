@@ -1,0 +1,126 @@
+.parallel-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.parallel-slider__track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.parallel-slider__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  position: relative;
+}
+
+.parallel-slider__slide a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.parallel-slider__slide picture {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 70.31%; /* 640x450 aspect ratio for mobile */
+  position: relative;
+  overflow: hidden;
+}
+
+.parallel-slider__slide picture img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media screen and (min-width: 641px) {
+  .parallel-slider__slide picture {
+    padding-bottom: 43.27%; /* 1040x450 aspect ratio for tablet */
+  }
+}
+
+@media screen and (min-width: 1041px) {
+  .parallel-slider__slide picture {
+    padding-bottom: 20%; /* 2000x400 aspect ratio for desktop */
+  }
+}
+
+.parallel-slider__indicators {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+  padding: 0.4rem 0.6rem;
+  border-radius: 1rem;
+}
+
+.parallel-slider__dot {
+  width: 48px;
+  height: 2px;
+  border-radius: 1px;
+  border: none;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.parallel-slider__dot:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.parallel-slider__dot.active {
+  background: #8bc9ca;
+}
+
+.parallel-slider__dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.parallel-slider__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8e8e8;
+  color: #999;
+  font-size: 1rem;
+  text-align: center;
+  height: 0;
+  padding-bottom: 70.31%;
+  position: relative;
+}
+
+.parallel-slider__placeholder span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 641px) {
+  .parallel-slider__placeholder {
+    padding-bottom: 43.27%;
+  }
+}
+
+@media screen and (min-width: 1041px) {
+  .parallel-slider__placeholder {
+    padding-bottom: 20%;
+  }
+}

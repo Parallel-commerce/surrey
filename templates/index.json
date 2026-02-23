@@ -9,58 +9,29 @@
  */
 {
   "sections": {
-    "slideshow_CXXdEB": {
-      "type": "slideshow",
+    "parallel_custom_slider_6LeTKw": {
+      "type": "parallel-custom-slider",
       "blocks": {
-        "slide_DThWXB": {
+        "slide_eJUM96": {
           "type": "slide",
           "settings": {
-            "image_overlay_opacity": 20,
-            "heading": "",
-            "heading_size": "h2",
-            "subheading": "",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": true,
-            "show_text_box": false,
-            "box_align": "top-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "left",
-            "color_scheme": "scheme-3"
-          }
-        },
-        "slide_FYEDif": {
-          "type": "slide",
-          "settings": {
-            "image_overlay_opacity": 10,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "https://shop.kiaoval.com/gifts/gifts-souvenirs/darts",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "bottom-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-2"
+            "desktop_image": "shopify://shop_images/189.jpg",
+            "tablet_image": "shopify://shop_images/m-189.jpg",
+            "mobile_image": "shopify://shop_images/s-189.jpg",
+            "link": "shopify://products/surrey-ccc-scarf",
+            "alt_text": ""
           }
         }
       },
       "block_order": [
-        "slide_DThWXB",
-        "slide_FYEDif"
+        "slide_eJUM96"
       ],
-      "name": "t:sections.slideshow.presets.name",
+      "name": "Custom Slider",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "adapt_image",
-        "slider_visual": "dots",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
+        "autoplay_speed": 5,
+        "accessibility_label": "Promotional slider",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "parallel_scrolling_announcement_UKVe9x": {
@@ -439,7 +410,7 @@
     }
   },
   "order": [
-    "slideshow_CXXdEB",
+    "parallel_custom_slider_6LeTKw",
     "parallel_scrolling_announcement_UKVe9x",
     "featured_collection_p4q3k3",
     "parallel_shop_the_look_3yFGmL",

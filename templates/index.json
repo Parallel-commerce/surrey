@@ -15,7 +15,6 @@
         "slide_DThWXB": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/2000x400_2x_6a8a475c-8bb7-48ed-b72a-3fc9b00fc590.jpg",
             "image_overlay_opacity": 20,
             "heading": "",
             "heading_size": "h2",
@@ -57,7 +56,6 @@
         "layout": "full_bleed",
         "slide_height": "adapt_image",
         "slider_visual": "dots",
-        "pagination_background": false,
         "auto_rotate": false,
         "change_slides_speed": 5,
         "image_behavior": "none",
@@ -72,27 +70,21 @@
           "type": "announcement",
           "settings": {
             "text": "Free shipping on orders over $50",
-            "link": "",
-            "text_bold": false,
-            "text_italic": false
+            "link": ""
           }
         },
         "announcement_bKhkLC": {
           "type": "announcement",
           "settings": {
             "text": "New arrivals just in",
-            "link": "",
-            "text_bold": false,
-            "text_italic": false
+            "link": ""
           }
         },
         "announcement_zeKMw8": {
           "type": "announcement",
           "settings": {
             "text": "Sign up for 10% off your first order",
-            "link": "",
-            "text_bold": false,
-            "text_italic": false
+            "link": ""
           }
         }
       },
@@ -107,6 +99,9 @@
         "scroll_speed": 55,
         "scroll_direction": "normal",
         "text_size": 13,
+        "font_weight": "500",
+        "font_italic": false,
+        "font_uppercase": false,
         "color_scheme": "",
         "padding_top": 12,
         "padding_bottom": 12
@@ -149,27 +144,24 @@
           "type": "product",
           "settings": {
             "product": "sccc-rugby-jersey-stripes-brown-cream-1056",
-            "label": "",
-            "position_x": 47,
-            "position_y": 50
+            "dot_position_x": 50,
+            "dot_position_y": 50
           }
         },
         "product_PEr43Q": {
           "type": "product",
           "settings": {
             "product": "surrey-ccc-scarf",
-            "label": "",
-            "position_x": 60,
-            "position_y": 65
+            "dot_position_x": 50,
+            "dot_position_y": 50
           }
         },
         "product_yTHGJM": {
           "type": "product",
           "settings": {
             "product": "sccc-rugby-jersey-cream-cream-1055",
-            "label": "",
-            "position_x": 50,
-            "position_y": 87
+            "dot_position_x": 50,
+            "dot_position_y": 50
           }
         }
       },
@@ -180,15 +172,11 @@
       ],
       "name": "Shop the Look",
       "settings": {
-        "title": "Shop the Look",
-        "heading_size": "h1",
         "image": "shopify://shop_images/Jesse_Scarf_2.jpg",
-        "image_position": "left",
         "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
+        "heading": "Shop the look",
+        "subheading": "",
+        "heading_size": "h1",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
@@ -246,7 +234,7 @@
         "card_title_position": "below_card",
         "card_title_alignment": "center",
         "title_font_size": 32,
-        "title_color": "#FFFFFF",
+        "title_color": "#ffffff",
         "show_button": true,
         "button_text": "Shop Now",
         "color_scheme": "",
@@ -432,6 +420,7 @@
         "logo_BPmKDg",
         "logo_gwDmpg"
       ],
+      "disabled": true,
       "name": "Logo Block",
       "settings": {
         "color_scheme": "scheme-5",

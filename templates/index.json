@@ -57,12 +57,20 @@
             "text": "Sign up for 10% off your first order",
             "link": ""
           }
+        },
+        "announcement_XQiRfz": {
+          "type": "announcement",
+          "settings": {
+            "text": "Members Get 10% Off",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "announcement_Eqb93c",
         "announcement_bKhkLC",
-        "announcement_zeKMw8"
+        "announcement_zeKMw8",
+        "announcement_XQiRfz"
       ],
       "name": "Scrolling Announcement",
       "settings": {

@@ -37,10 +37,10 @@
     "parallel_scrolling_announcement_UKVe9x": {
       "type": "parallel-scrolling-announcement",
       "blocks": {
-        "announcement_F7E74H": {
+        "announcement_Eqb93c": {
           "type": "announcement",
           "settings": {
-            "text": "Free shipping on orders over $50",
+            "text": "Official Kit",
             "link": ""
           }
         },
@@ -60,7 +60,7 @@
         }
       },
       "block_order": [
-        "announcement_F7E74H",
+        "announcement_Eqb93c",
         "announcement_bKhkLC",
         "announcement_zeKMw8"
       ],

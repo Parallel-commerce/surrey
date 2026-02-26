@@ -426,7 +426,7 @@
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
+        <small class="copyright__content"><a href="https://www.parallelcommerce.co.uk" target="_blank" rel="noopener">Developed by Parallel</a></small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}

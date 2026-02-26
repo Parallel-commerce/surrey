@@ -37,24 +37,10 @@
     "parallel_scrolling_announcement_UKVe9x": {
       "type": "parallel-scrolling-announcement",
       "blocks": {
-        "announcement_Eqb93c": {
-          "type": "announcement",
-          "settings": {
-            "text": "Official Kit",
-            "link": ""
-          }
-        },
         "announcement_bKhkLC": {
           "type": "announcement",
           "settings": {
-            "text": "New arrivals just in",
-            "link": ""
-          }
-        },
-        "announcement_zeKMw8": {
-          "type": "announcement",
-          "settings": {
-            "text": "Sign up for 10% off your first order",
+            "text": "Free P&P - use code NEWWEBSITE",
             "link": ""
           }
         },
@@ -67,9 +53,7 @@
         }
       },
       "block_order": [
-        "announcement_Eqb93c",
         "announcement_bKhkLC",
-        "announcement_zeKMw8",
         "announcement_XQiRfz"
       ],
       "name": "Scrolling Announcement",

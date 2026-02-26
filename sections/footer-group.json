@@ -25,8 +25,8 @@
         "footer-0": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "heading": "Kits",
+            "menu": "top-catagories-footer-menu"
           }
         },
         "footer-1": {

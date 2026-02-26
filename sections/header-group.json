@@ -19,7 +19,7 @@
           "settings": {
             "icon": "icon-star",
             "text": "TICKETS",
-            "link": ""
+            "link": "https://tickets.surreycricket.com/content"
           }
         },
         "link_item_JWXCLi": {
@@ -27,7 +27,7 @@
           "settings": {
             "icon": "icon-account",
             "text": "MEMBERSHIP",
-            "link": ""
+            "link": "https://www.kiaoval.com/membership/"
           }
         },
         "link_item_K4UccC": {

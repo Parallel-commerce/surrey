@@ -31,10 +31,9 @@
         },
         "footer-1": {
           "type": "link_list",
-          "disabled": true,
           "settings": {
-            "heading": "Info",
-            "menu": "footer"
+            "heading": "Popular Categories",
+            "menu": "top-categories-footer-menu"
           }
         },
         "link_list_b9y3bX": {

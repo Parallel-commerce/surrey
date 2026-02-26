@@ -167,44 +167,36 @@
         "featured_collection_KyPUC7": {
           "type": "featured_collection",
           "settings": {
-            "collection": "kit-one-day-cup",
-            "custom_title": "One Day Cup"
+            "collection": "fashion-men-s-supporter-wear",
+            "custom_title": "Men's Supporter Wear"
           }
         },
         "featured_collection_RUnynn": {
           "type": "featured_collection",
           "settings": {
-            "collection": "training",
+            "collection": "gifts-golf",
             "custom_title": ""
           }
         },
         "featured_collection_DeD9DY": {
           "type": "featured_collection",
           "settings": {
-            "collection": "kit-county-championship",
-            "custom_title": "County Championship"
-          }
-        },
-        "featured_collection_C9GV4D": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "kit-t20",
-            "custom_title": "T20"
+            "collection": "fashion-women-s-supporter-wear",
+            "custom_title": "Women's Supporter Wear"
           }
         }
       },
       "block_order": [
         "featured_collection_KyPUC7",
         "featured_collection_RUnynn",
-        "featured_collection_DeD9DY",
-        "featured_collection_C9GV4D"
+        "featured_collection_DeD9DY"
       ],
       "name": "Custom Collection List",
       "settings": {
         "title": "Collection List",
         "heading_size": "h1",
         "use_vertical_side_title": false,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "card_min_height_desktop": 500,

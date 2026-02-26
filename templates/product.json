@@ -130,6 +130,7 @@
       ],
       "settings": {
         "enable_sticky_info": true,
+        "enable_sticky_cart": true,
         "color_scheme": "",
         "media_size": "medium",
         "constrain_to_viewport": true,
@@ -221,6 +222,7 @@
         "image-with-text-0",
         "image-with-text-1"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/1576577236-3-scaled.jpg",
         "height": "small",
@@ -263,6 +265,7 @@
         "column-0",
         "column-1"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "heading_size": "h1",

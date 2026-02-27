@@ -231,11 +231,10 @@
                       {{ block.settings.content }}
                       {{ block.settings.page.content }}
                       {%- if block.settings.policy != blank -%}
-                        {%- for policy in shop.policies -%}
-                          {%- if policy.handle == block.settings.policy -%}
-                            {{ policy.body }}
-                          {%- endif -%}
-                        {%- endfor -%}
+                        {%- assign selected_policy = shop[block.settings.policy] -%}
+                        {%- if selected_policy -%}
+                          {{ selected_policy.body }}
+                        {%- endif -%}
                       {%- endif -%}
                     </div>
                   </details>

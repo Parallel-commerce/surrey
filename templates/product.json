@@ -87,7 +87,8 @@
             "heading": "Description",
             "icon": "none",
             "content": "{{ product.description }}",
-            "page": ""
+            "page": "",
+            "policy": ""
           }
         },
         "collapsible_tab_P6mxw4": {
@@ -96,7 +97,8 @@
             "heading": "Size Guide",
             "icon": "none",
             "content": "",
-            "page": ""
+            "page": "",
+            "policy": ""
           }
         },
         "collapsible_tab_XmBNK6": {
@@ -105,7 +107,8 @@
             "heading": "Specification",
             "icon": "none",
             "content": "",
-            "page": ""
+            "page": "",
+            "policy": ""
           }
         },
         "collapsible_tab_MdMqDT": {
@@ -114,7 +117,8 @@
             "heading": "Delivery & Returns",
             "icon": "none",
             "content": "",
-            "page": ""
+            "page": "",
+            "policy": "shipping_policy"
           }
         }
       },

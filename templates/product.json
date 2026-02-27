@@ -103,6 +103,7 @@
         },
         "collapsible_tab_XmBNK6": {
           "type": "collapsible_tab",
+          "disabled": true,
           "settings": {
             "heading": "Specification",
             "icon": "none",

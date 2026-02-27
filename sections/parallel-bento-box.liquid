@@ -237,15 +237,15 @@
                             {{ collection.description | strip_html | truncatewords: 15 }}
                           </p>
                         {%- endif -%}
-                        <a
-                          href="{{ collection.url }}"
-                          class="bento-image-link full-unstyled-link"
-                          aria-label="{{ collection.title | escape }}"
-                        >
-                          <span class="visually-hidden">{{ collection.title | escape }}</span>
-                        </a>
                       </div>
                     </div>
+                    <a
+                      href="{{ collection.url }}"
+                      class="bento-image-link full-unstyled-link"
+                      aria-label="{{ collection.title | escape }}"
+                    >
+                      <span class="visually-hidden">{{ collection.title | escape }}</span>
+                    </a>
                   </div>
                 {%- else -%}
                   {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
@@ -263,17 +263,17 @@
                             {{ 'onboarding.collection_title' | t }}
                           {%- endif -%}
                         </h3>
-                        {%- if collection != blank -%}
-                          <a
-                            href="{{ collection.url }}"
-                            class="bento-image-link full-unstyled-link"
-                            aria-label="{{ collection.title | escape }}"
-                          >
-                            <span class="visually-hidden">{{ collection.title | escape }}</span>
-                          </a>
-                        {%- endif -%}
                       </div>
                     </div>
+                    {%- if collection != blank -%}
+                      <a
+                        href="{{ collection.url }}"
+                        class="bento-image-link full-unstyled-link"
+                        aria-label="{{ collection.title | escape }}"
+                      >
+                        <span class="visually-hidden">{{ collection.title | escape }}</span>
+                      </a>
+                    {%- endif -%}
                   </div>
                 {%- endif -%}
               </div>

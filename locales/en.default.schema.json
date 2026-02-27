@@ -2071,6 +2071,9 @@
             "page": {
               "label": "Row content from page"
             },
+            "hide_if_empty": {
+              "label": "Hide if empty"
+            },
             "policy": {
               "label": "Policy document",
               "info": "Policies are managed in your store's Settings > Policies.",

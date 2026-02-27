@@ -216,29 +216,43 @@
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
-                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
-                  <details id="Details-{{ block.id }}-{{ section.id }}">
-                    <summary>
-                      <div class="summary__title">
-                        {% render 'icon-accordion', icon: block.settings.icon %}
-                        <h2 class="h4 accordion__title inline-richtext">
-                          {{ block.settings.heading | default: block.settings.page.title | escape }}
-                        </h2>
-                      </div>
-                      {{- 'icon-caret.svg' | inline_asset_content -}}
-                    </summary>
-                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
-                      {%- if block.settings.policy != blank -%}
-                        {%- assign selected_policy = shop[block.settings.policy] -%}
-                        {%- if selected_policy -%}
-                          {{ selected_policy.body }}
+                {%- liquid
+                  assign has_content = false
+                  if block.settings.content != blank
+                    assign has_content = true
+                  endif
+                  if block.settings.page != blank and block.settings.page.content != blank
+                    assign has_content = true
+                  endif
+                  if block.settings.policy != blank and shop[block.settings.policy]
+                    assign has_content = true
+                  endif
+                -%}
+                {%- unless block.settings.hide_if_empty and has_content == false -%}
+                  <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                    <details id="Details-{{ block.id }}-{{ section.id }}">
+                      <summary>
+                        <div class="summary__title">
+                          {% render 'icon-accordion', icon: block.settings.icon %}
+                          <h2 class="h4 accordion__title inline-richtext">
+                            {{ block.settings.heading | default: block.settings.page.title | escape }}
+                          </h2>
+                        </div>
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </summary>
+                      <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                        {{ block.settings.content }}
+                        {{ block.settings.page.content }}
+                        {%- if block.settings.policy != blank -%}
+                          {%- assign selected_policy = shop[block.settings.policy] -%}
+                          {%- if selected_policy -%}
+                            {{ selected_policy.body }}
+                          {%- endif -%}
                         {%- endif -%}
-                      {%- endif -%}
-                    </div>
-                  </details>
-                </div>
+                      </div>
+                    </details>
+                  </div>
+                {%- endunless -%}
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -1267,6 +1281,12 @@
           "default": "",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.label",
           "info": "t:sections.main-product.blocks.collapsible_tab.settings.policy.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_if_empty",
+          "default": false,
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.hide_if_empty.label"
         }
       ]
     },

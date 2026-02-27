@@ -2062,6 +2062,28 @@
             "page": {
               "label": "Row content from page"
             },
+            "policy": {
+              "label": "Policy document",
+              "info": "Policies are managed in your store's Settings > Policies.",
+              "options__1": {
+                "label": "None"
+              },
+              "options__2": {
+                "label": "Privacy policy"
+              },
+              "options__3": {
+                "label": "Refund policy"
+              },
+              "options__4": {
+                "label": "Shipping policy"
+              },
+              "options__5": {
+                "label": "Terms of service"
+              },
+              "options__6": {
+                "label": "Subscription policy"
+              }
+            },
             "icon": {
               "label": "Icon",
               "options__1": {

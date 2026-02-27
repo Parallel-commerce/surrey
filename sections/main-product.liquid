@@ -230,6 +230,13 @@
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                       {{ block.settings.content }}
                       {{ block.settings.page.content }}
+                      {%- if block.settings.policy != blank -%}
+                        {%- for policy in shop.policies -%}
+                          {%- if policy.handle == block.settings.policy -%}
+                            {{ policy.body }}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      {%- endif -%}
                     </div>
                   </details>
                 </div>
@@ -1228,6 +1235,39 @@
           "type": "page",
           "id": "page",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        },
+        {
+          "type": "select",
+          "id": "policy",
+          "options": [
+            {
+              "value": "",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.options__1.label"
+            },
+            {
+              "value": "privacy_policy",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.options__2.label"
+            },
+            {
+              "value": "refund_policy",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.options__3.label"
+            },
+            {
+              "value": "shipping_policy",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.options__4.label"
+            },
+            {
+              "value": "terms_of_service",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.options__5.label"
+            },
+            {
+              "value": "subscription_policy",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.options__6.label"
+            }
+          ],
+          "default": "",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.policy.label",
+          "info": "t:sections.main-product.blocks.collapsible_tab.settings.policy.info"
         }
       ]
     },

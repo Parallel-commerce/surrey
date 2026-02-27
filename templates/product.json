@@ -98,7 +98,7 @@
             "heading": "Size Guide",
             "icon": "none",
             "content": "",
-            "page": "",
+            "page": "{{ product.metafields.custom.size_guide.value }}",
             "policy": "",
             "hide_if_empty": true
           }

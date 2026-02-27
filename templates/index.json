@@ -203,14 +203,14 @@
         "collection_QVX39V": {
           "type": "collection",
           "settings": {
-            "collection": "collectables",
+            "collection": "gifts-bottles-mugs",
             "size": "medium"
           }
         },
         "collection_WVkqVM": {
           "type": "collection",
           "settings": {
-            "collection": "gifts-cricket-accessories",
+            "collection": "gifts-gentlemans-accessories",
             "size": "tall"
           }
         },

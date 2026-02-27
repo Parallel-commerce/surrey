@@ -101,25 +101,24 @@
             "policy": ""
           }
         },
-        "collapsible_tab_XmBNK6": {
-          "type": "collapsible_tab",
-          "disabled": true,
-          "settings": {
-            "heading": "Specification",
-            "icon": "none",
-            "content": "",
-            "page": "",
-            "policy": ""
-          }
-        },
         "collapsible_tab_MdMqDT": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Delivery & Returns",
+            "heading": "Delivery",
             "icon": "none",
             "content": "",
             "page": "",
             "policy": "shipping_policy"
+          }
+        },
+        "collapsible_tab_XmBNK6": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Returns",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "policy": "refund_policy"
           }
         }
       },
@@ -135,8 +134,8 @@
         "buy_buttons",
         "collapsible_tab_jnwBdY",
         "collapsible_tab_P6mxw4",
-        "collapsible_tab_XmBNK6",
-        "collapsible_tab_MdMqDT"
+        "collapsible_tab_MdMqDT",
+        "collapsible_tab_XmBNK6"
       ],
       "settings": {
         "enable_sticky_info": true,

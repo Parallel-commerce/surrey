@@ -198,32 +198,33 @@
             {%- when 'collection' -%}
               {%- liquid
                 assign collection = block.settings.collection
-                if collection != blank and collection.featured_image
-                  assign focal_point = collection.featured_image.presentation.focal_point
+                assign collection_image = block.settings.custom_image | default: collection.featured_image
+                if collection_image != blank
+                  assign focal_point = collection_image.presentation.focal_point
                   if focal_point == blank
                     assign focal_point = 'center center'
                   endif
                 endif
               -%}
               <div class="bento-image-card">
-                {%- if collection != blank and collection.featured_image -%}
+                {%- if collection != blank and collection_image != blank -%}
                   <div class="bento-image-wrapper">
                     <div class="bento-image-media">
                       <img
                         srcset="
-                          {%- if collection.featured_image.width >= 375 -%}{{ collection.featured_image | image_url: width: 375 }} 375w,{%- endif -%}
-                          {%- if collection.featured_image.width >= 750 -%}{{ collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
-                          {%- if collection.featured_image.width >= 1100 -%}{{ collection.featured_image | image_url: width: 1100 }} 1100w,{%- endif -%}
-                          {%- if collection.featured_image.width >= 1500 -%}{{ collection.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                          {%- if collection.featured_image.width >= 2000 -%}{{ collection.featured_image | image_url: width: 2000 }} 2000w,{%- endif -%}
-                          {{ collection.featured_image | image_url }} {{ collection.featured_image.width }}w
+                          {%- if collection_image.width >= 375 -%}{{ collection_image | image_url: width: 375 }} 375w,{%- endif -%}
+                          {%- if collection_image.width >= 750 -%}{{ collection_image | image_url: width: 750 }} 750w,{%- endif -%}
+                          {%- if collection_image.width >= 1100 -%}{{ collection_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                          {%- if collection_image.width >= 1500 -%}{{ collection_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                          {%- if collection_image.width >= 2000 -%}{{ collection_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                          {{ collection_image | image_url }} {{ collection_image.width }}w
                         "
-                        src="{{ collection.featured_image | image_url: width: 1500 }}"
+                        src="{{ collection_image | image_url: width: 1500 }}"
                         sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 4 }}px, (min-width: 750px) calc((100vw - 100px) / 4), calc(100vw - 30px)"
-                        alt="{{ collection.featured_image.alt | escape }}"
+                        alt="{{ collection_image.alt | default: collection.title | escape }}"
                         loading="lazy"
-                        width="{{ collection.featured_image.width }}"
-                        height="{{ collection.featured_image.height }}"
+                        width="{{ collection_image.width }}"
+                        height="{{ collection_image.height }}"
                         class="bento-image"
                         style="object-position: {{ focal_point }};"
                       >
@@ -255,7 +256,22 @@
                     </div>
                     <div class="bento-image-overlay">
                       <div class="bento-image-content">
-                        <h3 class="bento-image-title h2">{{ 'onboarding.collection_title' | t }}</h3>
+                        <h3 class="bento-image-title h2">
+                          {%- if collection != blank -%}
+                            {{ collection.title | escape }}
+                          {%- else -%}
+                            {{ 'onboarding.collection_title' | t }}
+                          {%- endif -%}
+                        </h3>
+                        {%- if collection != blank -%}
+                          <a
+                            href="{{ collection.url }}"
+                            class="bento-image-link full-unstyled-link"
+                            aria-label="{{ collection.title | escape }}"
+                          >
+                            <span class="visually-hidden">{{ collection.title | escape }}</span>
+                          </a>
+                        {%- endif -%}
                       </div>
                     </div>
                   </div>
@@ -588,6 +604,12 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom image",
+          "info": "Overrides the collection image"
         },
         {
           "type": "select",

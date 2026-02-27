@@ -88,7 +88,8 @@
             "icon": "none",
             "content": "{{ product.description }}",
             "page": "",
-            "policy": ""
+            "policy": "",
+            "hide_if_empty": false
           }
         },
         "collapsible_tab_P6mxw4": {
@@ -98,7 +99,8 @@
             "icon": "none",
             "content": "",
             "page": "",
-            "policy": ""
+            "policy": "",
+            "hide_if_empty": true
           }
         },
         "collapsible_tab_MdMqDT": {
@@ -108,7 +110,8 @@
             "icon": "none",
             "content": "",
             "page": "",
-            "policy": "shipping_policy"
+            "policy": "shipping_policy",
+            "hide_if_empty": false
           }
         },
         "collapsible_tab_XmBNK6": {
@@ -118,7 +121,8 @@
             "icon": "none",
             "content": "",
             "page": "",
-            "policy": "refund_policy"
+            "policy": "refund_policy",
+            "hide_if_empty": false
           }
         }
       },

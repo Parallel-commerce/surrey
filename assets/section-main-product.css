@@ -1492,3 +1492,29 @@ a.product__text {
     border: none;
   }
 }
+
+/* Pre-order notification */
+.preorder-notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.6rem;
+  background-color: rgb(var(--color-background));
+  border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  border-left: 0.3rem solid rgba(var(--color-foreground), 0.6);
+  border-radius: var(--inputs-radius, 0);
+}
+
+.preorder-notification__icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  opacity: 0.7;
+}
+
+.preorder-notification__text {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: rgb(var(--color-foreground));
+}

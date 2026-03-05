@@ -12,22 +12,22 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
-        "slide_gwEBbA": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Shop_Banner_2000x400_2x_dc3670f2-5ba1-4236-b329-d16df44c683d.png",
-            "tablet_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Tablet_1040x450_2x_c0ae71b9-7946-4ad8-aea0-d764cffb1966.png",
-            "mobile_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Mobile_650x450_2x_047cc934-df4e-4210-b631-eb6891bb92ea.png",
-            "link": "",
-            "alt_text": ""
-          }
-        },
         "slide_iXrzAF": {
           "type": "slide",
           "settings": {
             "desktop_image": "shopify://shop_images/Shop_Banner_2000x400_2x_082f7f6e-330e-4823-a637-e9a31d3cde38.png",
             "tablet_image": "shopify://shop_images/Tablet_1040x450_2x_95197e5b-20fb-4a54-81c8-59c6467f2e60.png",
             "mobile_image": "shopify://shop_images/Mobile_650x450_2x_73b192d7-3218-4992-83b4-c1058a2e32e7.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "slide_gwEBbA": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Shop_Banner_2000x400_2x_dc3670f2-5ba1-4236-b329-d16df44c683d.png",
+            "tablet_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Tablet_1040x450_2x_c0ae71b9-7946-4ad8-aea0-d764cffb1966.png",
+            "mobile_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Mobile_650x450_2x_047cc934-df4e-4210-b631-eb6891bb92ea.png",
             "link": "",
             "alt_text": ""
           }
@@ -44,8 +44,8 @@
         }
       },
       "block_order": [
-        "slide_gwEBbA",
         "slide_iXrzAF",
+        "slide_gwEBbA",
         "slide_eJUM96"
       ],
       "name": "Custom Slider",

@@ -222,13 +222,6 @@
     "bento_box_CU6q8C": {
       "type": "parallel-bento-box",
       "blocks": {
-        "collection_QVX39V": {
-          "type": "collection",
-          "settings": {
-            "collection": "collectables",
-            "size": "medium"
-          }
-        },
         "collection_WVkqVM": {
           "type": "collection",
           "settings": {
@@ -236,14 +229,22 @@
             "size": "tall"
           }
         },
-        "collection_NMqUmJ": {
+        "collection_eJj7QK": {
           "type": "collection",
           "settings": {
-            "collection": "balls",
+            "collection": "darts",
+            "custom_image": "shopify://shop_images/3SCCCcrestflights_1.png",
             "size": "small"
           }
         },
-        "collection_ymQWac": {
+        "collection_QVX39V": {
+          "type": "collection",
+          "settings": {
+            "collection": "collectables",
+            "size": "medium"
+          }
+        },
+        "collection_mHKFTU": {
           "type": "collection",
           "settings": {
             "collection": "gifts-bags",
@@ -252,10 +253,10 @@
         }
       },
       "block_order": [
-        "collection_QVX39V",
         "collection_WVkqVM",
-        "collection_NMqUmJ",
-        "collection_ymQWac"
+        "collection_eJj7QK",
+        "collection_QVX39V",
+        "collection_mHKFTU"
       ],
       "name": "Bento Box",
       "settings": {

@@ -222,11 +222,18 @@
     "bento_box_CU6q8C": {
       "type": "parallel-bento-box",
       "blocks": {
+        "collection_mHKFTU": {
+          "type": "collection",
+          "settings": {
+            "collection": "retro-collection",
+            "size": "tall"
+          }
+        },
         "collection_WVkqVM": {
           "type": "collection",
           "settings": {
             "collection": "gifts-cricket-accessories",
-            "size": "tall"
+            "size": "small"
           }
         },
         "collection_hQATnD": {
@@ -264,23 +271,16 @@
             "collection": "collectables",
             "size": "small"
           }
-        },
-        "collection_mHKFTU": {
-          "type": "collection",
-          "settings": {
-            "collection": "gifts-bags",
-            "size": "small"
-          }
         }
       },
       "block_order": [
+        "collection_mHKFTU",
         "collection_WVkqVM",
         "collection_hQATnD",
         "collection_g9FxGn",
         "collection_6dhCEW",
         "collection_eJj7QK",
-        "collection_QVX39V",
-        "collection_mHKFTU"
+        "collection_QVX39V"
       ],
       "name": "Bento Box",
       "settings": {

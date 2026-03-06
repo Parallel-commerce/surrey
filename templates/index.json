@@ -41,23 +41,12 @@
             "link": "https://shop.kiaoval.com/products/surrey-ccc-and-new-era-cream-cord-cap-1140",
             "alt_text": ""
           }
-        },
-        "slide_eJUM96": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/189.jpg",
-            "tablet_image": "shopify://shop_images/m-189.jpg",
-            "mobile_image": "shopify://shop_images/s-189.jpg",
-            "link": "shopify://products/surrey-ccc-scarf",
-            "alt_text": ""
-          }
         }
       },
       "block_order": [
         "slide_ehXhzT",
         "slide_iXrzAF",
-        "slide_gwEBbA",
-        "slide_eJUM96"
+        "slide_gwEBbA"
       ],
       "name": "Custom Slider",
       "settings": {

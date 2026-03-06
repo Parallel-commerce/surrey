@@ -229,6 +229,27 @@
             "size": "tall"
           }
         },
+        "collection_hQATnD": {
+          "type": "collection",
+          "settings": {
+            "collection": "gifts-books",
+            "size": "small"
+          }
+        },
+        "collection_g9FxGn": {
+          "type": "collection",
+          "settings": {
+            "collection": "balls",
+            "size": "small"
+          }
+        },
+        "collection_6dhCEW": {
+          "type": "collection",
+          "settings": {
+            "collection": "sophie-allport",
+            "size": "small"
+          }
+        },
         "collection_eJj7QK": {
           "type": "collection",
           "settings": {
@@ -241,7 +262,7 @@
           "type": "collection",
           "settings": {
             "collection": "collectables",
-            "size": "medium"
+            "size": "small"
           }
         },
         "collection_mHKFTU": {
@@ -254,6 +275,9 @@
       },
       "block_order": [
         "collection_WVkqVM",
+        "collection_hQATnD",
+        "collection_g9FxGn",
+        "collection_6dhCEW",
         "collection_eJj7QK",
         "collection_QVX39V",
         "collection_mHKFTU"

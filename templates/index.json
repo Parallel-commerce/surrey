@@ -12,6 +12,16 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_3Azk4p": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Shop_Banner_ALL_2000x400_2x_04772199-10ca-4a74-8ef5-ded7043ac1a1.png",
+            "tablet_image": "shopify://shop_images/Tablet_ALL_1040x450_2x_8afc2ec6-1531-4355-ab07-f34dff86f69d.png",
+            "mobile_image": "shopify://shop_images/Mobile_ALL_650x450_2x_500eb7c6-ed51-4491-aa3e-51bd83ab61b1.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
         "slide_ehXhzT": {
           "type": "slide",
           "settings": {
@@ -44,6 +54,7 @@
         }
       },
       "block_order": [
+        "slide_3Azk4p",
         "slide_ehXhzT",
         "slide_iXrzAF",
         "slide_gwEBbA"
@@ -62,7 +73,7 @@
         "announcement_bKhkLC": {
           "type": "announcement",
           "settings": {
-            "text": "Free P&P - use code NEWWEBSITE",
+            "text": "New 2026 Kit available NOW!",
             "link": ""
           }
         },
@@ -162,7 +173,7 @@
           "settings": {
             "product": "sccc-rubber-duck",
             "dot_position_x": 52,
-            "dot_position_y": 40
+            "dot_position_y": 38
           }
         },
         "product_yGrPQy": {
@@ -170,7 +181,7 @@
           "settings": {
             "product": "the-kia-oval-jigsaw-1379",
             "dot_position_x": 50,
-            "dot_position_y": 90
+            "dot_position_y": 92
           }
         }
       },
@@ -185,7 +196,7 @@
       "name": "Shop the Look",
       "settings": {
         "image": "shopify://shop_images/BH1_8389_9mZMBQp5.jpg",
-        "image_ratio": "landscape",
+        "image_ratio": "square",
         "heading": "Shop the look",
         "subheading": "",
         "heading_size": "h1",

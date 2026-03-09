@@ -128,37 +128,64 @@
         "product_zNAYUD": {
           "type": "product",
           "settings": {
-            "product": "sccc-rugby-jersey-stripes-brown-cream-1056",
-            "dot_position_x": 47,
+            "product": "2026-surrey-castore-county-championship-shirt",
+            "dot_position_x": 35,
             "dot_position_y": 40
           }
         },
         "product_PEr43Q": {
           "type": "product",
           "settings": {
-            "product": "surrey-ccc-scarf",
-            "dot_position_x": 40,
+            "product": "2026-womens-surrey-castore-t20-shirt",
+            "dot_position_x": 20,
             "dot_position_y": 50
           }
         },
         "product_yTHGJM": {
           "type": "product",
           "settings": {
-            "product": "sccc-rugby-jersey-cream-cream-1055",
+            "product": "2026-surrey-castore-one-day-shirt",
             "dot_position_x": 47,
-            "dot_position_y": 60
+            "dot_position_y": 67
+          }
+        },
+        "product_wkFeY6": {
+          "type": "product",
+          "settings": {
+            "product": "2026-unisex-surrey-castore-long-sleeve-t20-shirt",
+            "dot_position_x": 80,
+            "dot_position_y": 50
+          }
+        },
+        "product_zxJAKC": {
+          "type": "product",
+          "settings": {
+            "product": "sccc-rubber-duck",
+            "dot_position_x": 52,
+            "dot_position_y": 40
+          }
+        },
+        "product_yGrPQy": {
+          "type": "product",
+          "settings": {
+            "product": "the-kia-oval-jigsaw-1379",
+            "dot_position_x": 50,
+            "dot_position_y": 90
           }
         }
       },
       "block_order": [
         "product_zNAYUD",
         "product_PEr43Q",
-        "product_yTHGJM"
+        "product_yTHGJM",
+        "product_wkFeY6",
+        "product_zxJAKC",
+        "product_yGrPQy"
       ],
       "name": "Shop the Look",
       "settings": {
-        "image": "shopify://shop_images/Jesse_Scarf_2.jpg",
-        "image_ratio": "adapt",
+        "image": "shopify://shop_images/BH1_8389_9mZMBQp5.jpg",
+        "image_ratio": "landscape",
         "heading": "Shop the look",
         "subheading": "",
         "heading_size": "h1",

@@ -172,6 +172,22 @@
             "dot_position_x": 50,
             "dot_position_y": 92
           }
+        },
+        "product_78a6TQ": {
+          "type": "product",
+          "settings": {
+            "product": "surrey-ccc-shield-mug-516",
+            "dot_position_x": 20,
+            "dot_position_y": 90
+          }
+        },
+        "product_aaB8pn": {
+          "type": "product",
+          "settings": {
+            "product": "surrey-ccc-top-flask-water-bottle-446",
+            "dot_position_x": 75,
+            "dot_position_y": 85
+          }
         }
       },
       "block_order": [
@@ -180,7 +196,9 @@
         "product_yTHGJM",
         "product_wkFeY6",
         "product_zxJAKC",
-        "product_yGrPQy"
+        "product_yGrPQy",
+        "product_78a6TQ",
+        "product_aaB8pn"
       ],
       "name": "Shop the Look",
       "settings": {

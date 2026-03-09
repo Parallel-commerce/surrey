@@ -62,14 +62,7 @@
         "announcement_ap9GJi": {
           "type": "announcement",
           "settings": {
-            "text": "BUY ALL 3 KITS & GET 20% OFF",
-            "link": ""
-          }
-        },
-        "announcement_bKhkLC": {
-          "type": "announcement",
-          "settings": {
-            "text": "New 2026 Kit available NOW!",
+            "text": "BUY ALL 3 KITS & GET 25% OFF - USE CODE KIT2026",
             "link": ""
           }
         },
@@ -83,7 +76,6 @@
       },
       "block_order": [
         "announcement_ap9GJi",
-        "announcement_bKhkLC",
         "announcement_XQiRfz"
       ],
       "name": "Scrolling Announcement",

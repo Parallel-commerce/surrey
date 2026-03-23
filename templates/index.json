@@ -15,9 +15,9 @@
         "slide_3Azk4p": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/Shop_Banner_ALL_2000x400_2x_04772199-10ca-4a74-8ef5-ded7043ac1a1.png",
-            "tablet_image": "shopify://shop_images/Tablet_ALL_1040x450_2x_8afc2ec6-1531-4355-ab07-f34dff86f69d.png",
-            "mobile_image": "shopify://shop_images/Mobile_ALL_650x450_2x_500eb7c6-ed51-4491-aa3e-51bd83ab61b1.png",
+            "desktop_image": "shopify://shop_images/Shop_Banner_ALL_2000x400_2x_1.png",
+            "tablet_image": "shopify://shop_images/Tablet_ALL_1040x450_2x_1.png",
+            "mobile_image": "shopify://shop_images/Mobile_ALL_650x450_2x_1.png",
             "link": "https://shop.kiaoval.com/collections/2026-kit",
             "alt_text": ""
           }

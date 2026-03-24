@@ -219,7 +219,14 @@
           "type": "featured_collection",
           "settings": {
             "collection": "fashion-men-s-supporter-wear",
-            "custom_title": "Men's Supporter Wear"
+            "custom_title": "Men's"
+          }
+        },
+        "featured_collection_DeD9DY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fashion-women-s-supporter-wear",
+            "custom_title": "Women's"
           }
         },
         "featured_collection_RUnynn": {
@@ -229,25 +236,26 @@
             "custom_title": ""
           }
         },
-        "featured_collection_DeD9DY": {
+        "featured_collection_JhLfka": {
           "type": "featured_collection",
           "settings": {
-            "collection": "fashion-women-s-supporter-wear",
-            "custom_title": "Women's Supporter Wear"
+            "collection": "unisex-supporter-wear",
+            "custom_title": "UNISEX"
           }
         }
       },
       "block_order": [
         "featured_collection_KyPUC7",
+        "featured_collection_DeD9DY",
         "featured_collection_RUnynn",
-        "featured_collection_DeD9DY"
+        "featured_collection_JhLfka"
       ],
       "name": "Custom Collection List",
       "settings": {
         "title": "Supporter Wear",
         "heading_size": "h1",
         "use_vertical_side_title": false,
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "card_min_height_desktop": 600,

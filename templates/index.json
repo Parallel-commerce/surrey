@@ -12,6 +12,16 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_6JkLbw": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Oddballs_Shop_Banner_2000x400_2x_bea78c73-1b46-4939-8382-25f3c21a4bf7.png",
+            "tablet_image": "shopify://shop_images/Oddballs_Tablet_1040x450_2x_2e0bdea2-9803-465e-90e3-c42fd2feafc4.png",
+            "mobile_image": "shopify://shop_images/Oddballs_Mobile_650x450_2x_2bf45c07-3077-4f3d-aaf5-bf9539081e90.png",
+            "link": "shopify://products/sccc-oddballs-boxers",
+            "alt_text": ""
+          }
+        },
         "slide_3Azk4p": {
           "type": "slide",
           "settings": {
@@ -44,6 +54,7 @@
         }
       },
       "block_order": [
+        "slide_6JkLbw",
         "slide_3Azk4p",
         "slide_ehXhzT",
         "slide_gwEBbA"

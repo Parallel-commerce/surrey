@@ -1,0 +1,108 @@
+.name-print-upsell {
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  border-radius: var(--inputs-radius);
+}
+
+.name-print-upsell__label {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.name-print-upsell__toggle-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.name-print-upsell__toggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.name-print-upsell__checkbox-custom {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.2rem solid rgba(var(--color-foreground), 0.55);
+  border-radius: 0.3rem;
+  background: transparent;
+  transition: background 0.2s, border-color 0.2s;
+  position: relative;
+}
+
+.name-print-upsell__toggle:checked + .name-print-upsell__checkbox-custom {
+  background: rgb(var(--color-foreground));
+  border-color: rgb(var(--color-foreground));
+}
+
+.name-print-upsell__toggle:checked + .name-print-upsell__checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 0.2rem;
+  left: 0.55rem;
+  width: 0.55rem;
+  height: 1rem;
+  border: 0.2rem solid rgb(var(--color-background));
+  border-top: 0;
+  border-left: 0;
+  transform: rotate(45deg);
+}
+
+.name-print-upsell__toggle:focus-visible + .name-print-upsell__checkbox-custom {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.2rem;
+}
+
+.name-print-upsell__label-text {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex: 1;
+  gap: 1rem;
+}
+
+.name-print-upsell__heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.name-print-upsell__price {
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.7);
+  white-space: nowrap;
+}
+
+.name-print-upsell__panel {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.1);
+}
+
+.name-print-upsell__description {
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.7);
+  margin: 0 0 1rem;
+}
+
+.name-print-upsell__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.name-print-upsell__input {
+  width: 100%;
+}
+
+.name-print-upsell__char-count-wrapper {
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.6);
+  margin: 0;
+}

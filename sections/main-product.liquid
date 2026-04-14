@@ -701,6 +701,10 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'name_print_upsell' -%}
+                {{ 'component-name-print-upsell.css' | asset_url | stylesheet_tag }}
+                <script src="{{ 'product-name-print-upsell.js' | asset_url }}" defer="defer"></script>
+                {%- render 'product-name-print-upsell', block: block, product: product -%}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -2211,6 +2215,38 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "name_print_upsell",
+      "name": "Name Print Upsell",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "product",
+          "id": "print_product",
+          "label": "Print service product",
+          "info": "Select the product that represents your name printing service (must have a single variant)."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Add name printing"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Personalise this item with a name printed on the shirt"
+        },
+        {
+          "type": "number",
+          "id": "max_chars",
+          "label": "Maximum characters",
+          "default": 20,
+          "info": "Limits how many characters the customer can enter."
         }
       ]
     }

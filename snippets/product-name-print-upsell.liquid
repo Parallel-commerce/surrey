@@ -1,0 +1,65 @@
+{% comment %}
+  Renders the name print upsell panel on the product page.
+  Accepts:
+  - block: {Object} block with settings (print_product, heading, description, max_chars)
+  - product: {Object} the current product
+{% endcomment %}
+
+{%- liquid
+  assign print_product = block.settings.print_product
+  assign heading = block.settings.heading | default: 'Add name printing'
+  assign description = block.settings.description | default: 'Personalise this item with a name printed on the shirt'
+  assign max_chars = block.settings.max_chars | default: 20
+-%}
+
+{%- if print_product != blank and print_product.available -%}
+  {%- assign print_variant = print_product.selected_or_first_available_variant -%}
+
+  <name-print-upsell
+    class="name-print-upsell"
+    data-print-variant-id="{{ print_variant.id }}"
+    data-product-title="{{ product.title | escape }}"
+    data-max-chars="{{ max_chars }}"
+    {{ block.shopify_attributes }}
+  >
+    <label class="name-print-upsell__label" for="NamePrintToggle-{{ block.id }}">
+      <span class="name-print-upsell__toggle-wrapper">
+        <input
+          type="checkbox"
+          id="NamePrintToggle-{{ block.id }}"
+          class="name-print-upsell__toggle"
+          aria-expanded="false"
+          aria-controls="NamePrintPanel-{{ block.id }}"
+        >
+        <span class="name-print-upsell__checkbox-custom" aria-hidden="true"></span>
+      </span>
+      <span class="name-print-upsell__label-text">
+        <span class="name-print-upsell__heading">{{ heading }}</span>
+        {%- if print_variant.price > 0 -%}
+          <span class="name-print-upsell__price">+ {{ print_variant.price | money }}</span>
+        {%- endif -%}
+      </span>
+    </label>
+
+    <div id="NamePrintPanel-{{ block.id }}" class="name-print-upsell__panel" hidden>
+      {%- if description != blank -%}
+        <p class="name-print-upsell__description">{{ description }}</p>
+      {%- endif -%}
+      <div class="name-print-upsell__input-wrapper">
+        <label class="visually-hidden" for="NamePrintText-{{ block.id }}">Name to print</label>
+        <input
+          type="text"
+          id="NamePrintText-{{ block.id }}"
+          class="name-print-upsell__input field__input"
+          placeholder="Enter name to print"
+          maxlength="{{ max_chars }}"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <p class="name-print-upsell__char-count-wrapper">
+          <span class="name-print-upsell__char-count">{{ max_chars }}</span> characters remaining
+        </p>
+      </div>
+    </div>
+  </name-print-upsell>
+{%- endif -%}

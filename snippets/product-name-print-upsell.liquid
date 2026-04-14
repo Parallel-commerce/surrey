@@ -17,7 +17,8 @@
     assign product_is_eligible = true
   else
     for tag in product.tags
-      if tag | downcase == required_tag
+      assign tag_downcased = tag | downcase
+      if tag_downcased == required_tag
         assign product_is_eligible = true
         break
       endif

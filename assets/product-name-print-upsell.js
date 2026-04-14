@@ -70,10 +70,13 @@ if (!customElements.get('name-print-upsell')) {
         const quantity = parseInt(this.atcForm.querySelector('[name="quantity"]')?.value || '1', 10);
         const cart = document.querySelector('cart-drawer') || document.querySelector('cart-notification');
 
-        // Use the items[] array format to add both products in one request
+        // Use the items[] array format to add both products in one request.
+        // The printed name is attached to BOTH line items so the cart, checkout,
+        // and order fulfilment always show which name belongs to which shirt.
         const formData = new FormData();
         formData.append('items[0][id]', mainVariantId);
         formData.append('items[0][quantity]', quantity);
+        formData.append('items[0][properties][Printed Name]', name);
         formData.append('items[1][id]', printVariantId);
         formData.append('items[1][quantity]', 1);
         formData.append('items[1][properties][Printed Name]', name);

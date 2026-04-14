@@ -20,13 +20,12 @@
       assign tag_downcased = tag | downcase
       if tag_downcased == required_tag
         assign product_is_eligible = true
-        break
       endif
     endfor
   endif
 -%}
 
-{%- if product_is_eligible and print_product != blank and print_product.available -%}
+{%- if product_is_eligible and print_product != blank -%}
   {%- assign print_variant = print_product.selected_or_first_available_variant -%}
 
   <name-print-upsell

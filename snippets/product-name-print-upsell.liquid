@@ -1,7 +1,7 @@
 {% comment %}
   Renders the name print upsell panel on the product page.
   Accepts:
-  - block: {Object} block with settings (print_product, heading, description, max_chars)
+  - block: {Object} block with settings (print_product, heading, description, max_chars, required_tag)
   - product: {Object} the current product
 {% endcomment %}
 
@@ -10,9 +10,22 @@
   assign heading = block.settings.heading | default: 'Add name printing'
   assign description = block.settings.description | default: 'Personalise this item with a name printed on the shirt'
   assign max_chars = block.settings.max_chars | default: 20
+  assign required_tag = block.settings.required_tag | strip | downcase
+
+  assign product_is_eligible = false
+  if required_tag == blank
+    assign product_is_eligible = true
+  else
+    for tag in product.tags
+      if tag | downcase == required_tag
+        assign product_is_eligible = true
+        break
+      endif
+    endfor
+  endif
 -%}
 
-{%- if print_product != blank and print_product.available -%}
+{%- if product_is_eligible and print_product != blank and print_product.available -%}
   {%- assign print_variant = print_product.selected_or_first_available_variant -%}
 
   <name-print-upsell

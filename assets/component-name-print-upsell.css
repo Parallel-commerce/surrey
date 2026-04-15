@@ -106,3 +106,19 @@
   color: rgba(var(--color-foreground), 0.6);
   margin: 0;
 }
+
+/* Cart add-on row styling */
+.cart-item--print-addon td {
+  background-color: rgba(var(--color-foreground), 0.03);
+}
+
+.cart-item__print-label {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* Hide the image cell for the print service — no product image needed */
+.cart-item--print-addon .cart-item__media {
+  visibility: hidden;
+}

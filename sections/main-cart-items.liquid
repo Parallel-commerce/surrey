@@ -219,6 +219,7 @@
                         {%- endif -%}
                       </div>
                     </td>
+                    {%- unless is_print_addon -%}
                     {%- liquid
                       assign has_qty_rules = false
                       if item.variant.quantity_rule.increment > 1 or item.variant.quantity_rule.min > 1 or item.variant.quantity_rule.max != null
@@ -414,6 +415,24 @@
                         </div>
                       </quantity-popover>
                     </td>
+                    {%- else -%}
+                      <td class="cart-item__quantity">
+                        <cart-remove-button
+                          id="Remove-{{ item.index | plus: 1 }}"
+                          data-index="{{ item.index | plus: 1 }}"
+                        >
+                          <a
+                            href="{{ item.url_to_remove }}"
+                            class="button button--tertiary"
+                            aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
+                          >
+                            <span class="svg-wrapper">
+                              {{- 'icon-remove.svg' | inline_asset_content -}}
+                            </span>
+                          </a>
+                        </cart-remove-button>
+                      </td>
+                    {%- endunless -%}
 
                     <td class="cart-item__totals right small-hide">
                       {%- render 'loading-spinner' -%}

@@ -273,6 +273,7 @@
                             {%- endif -%}
                           </div>
                         </td>
+                        {%- unless is_print_addon -%}
                         {%- liquid
                           assign has_qty_rules = false
                           if item.variant.quantity_rule.increment > 1 or item.variant.quantity_rule.min > 1 or item.variant.quantity_rule.max != null
@@ -471,6 +472,25 @@
                             </div>
                           </quantity-popover>
                         </td>
+                        {%- else -%}
+                          <td class="cart-item__quantity" role="cell" headers="CartDrawer-ColumnQuantity">
+                            <cart-remove-button
+                              id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
+                              data-index="{{ item.index | plus: 1 }}"
+                            >
+                              <button
+                                type="button"
+                                class="button button--tertiary cart-remove-button"
+                                aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
+                                data-variant-id="{{ item.variant.id }}"
+                              >
+                                <span class="svg-wrapper">
+                                  {{- 'icon-remove.svg' | inline_asset_content -}}
+                                </span>
+                              </button>
+                            </cart-remove-button>
+                          </td>
+                        {%- endunless -%}
                       </tr>
                     {%- endfor -%}
                   </tbody>

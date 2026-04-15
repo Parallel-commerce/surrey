@@ -107,9 +107,13 @@
   margin: 0;
 }
 
-/* Cart add-on row styling */
-.cart-item--print-addon td {
-  background-color: rgba(var(--color-foreground), 0.03);
+/* Cart add-on row styling.
+   Background is on the row (grid container) rather than individual cells
+   so it fills the grid gap and appears as one solid block. */
+.cart-item--print-addon {
+  background-color: rgba(var(--color-foreground), 0.04);
+  border-radius: 0.4rem;
+  padding: 0.6rem;
 }
 
 .cart-item__print-label {

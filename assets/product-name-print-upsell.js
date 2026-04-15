@@ -73,15 +73,19 @@ if (!customElements.get('name-print-upsell')) {
         // Use the items[] array format to add both products in one request.
         // The printed name is attached to BOTH line items so the cart, checkout,
         // and order fulfilment always show which name belongs to which shirt.
+        //
+        // Shopify displays the most recently added item first in the cart.
+        // items[1] is processed last, so the shirt (items[1]) appears at the top
+        // and the print service (items[0]) appears below it as an add-on.
         const formData = new FormData();
-        formData.append('items[0][id]', mainVariantId);
-        formData.append('items[0][quantity]', quantity);
+        formData.append('items[0][id]', printVariantId);
+        formData.append('items[0][quantity]', 1);
         formData.append('items[0][properties][Printed Name]', name);
-        formData.append('items[1][id]', printVariantId);
-        formData.append('items[1][quantity]', 1);
-        formData.append('items[1][properties][Printed Name]', name);
         // _-prefixed property is hidden on storefront but visible in Shopify admin orders
-        formData.append('items[1][properties][_for_product]', this.dataset.productTitle);
+        formData.append('items[0][properties][_for_product]', this.dataset.productTitle);
+        formData.append('items[1][id]', mainVariantId);
+        formData.append('items[1][quantity]', quantity);
+        formData.append('items[1][properties][Printed Name]', name);
 
         if (cart) {
           formData.append('sections', cart.getSectionsToRender().map((s) => s.id));

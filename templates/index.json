@@ -12,6 +12,16 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_DY4PjD": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/VINTAGE_Shop_Banner_2000x400_2x_1f7c9436-503c-4bbb-af16-55af70ecc2f2.jpg",
+            "tablet_image": "shopify://shop_images/VINTAGE_Tablet_1040x450_2x_14ec5577-496f-45e2-9b09-39c30692c4a2.jpg",
+            "mobile_image": "shopify://shop_images/VINTAGE_Mobile_650x450_2x_07bdbf21-8e45-4b53-99a4-ddf874bb137b.jpg",
+            "link": "shopify://collections/vintage-collection",
+            "alt_text": ""
+          }
+        },
         "slide_6JkLbw": {
           "type": "slide",
           "settings": {
@@ -54,6 +64,7 @@
         }
       },
       "block_order": [
+        "slide_DY4PjD",
         "slide_6JkLbw",
         "slide_3Azk4p",
         "slide_ehXhzT",

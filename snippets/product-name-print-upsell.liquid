@@ -1,0 +1,142 @@
+{% comment %}
+  Renders the name print upsell panel on the product page.
+  Accepts:
+  - block: {Object} block with settings
+  - product: {Object} the current product
+{% endcomment %}
+
+{%- liquid
+  assign print_product = block.settings.print_product
+  assign heading       = block.settings.heading | default: 'Add name printing'
+  assign description   = block.settings.description | default: 'Personalise this item with a name and number printed on the shirt'
+  assign max_chars     = block.settings.max_chars | default: 12
+  assign required_tag  = block.settings.required_tag | strip | downcase
+
+  assign product_is_eligible = false
+  if required_tag == blank
+    assign product_is_eligible = true
+  else
+    for tag in product.tags
+      assign tag_downcased = tag | downcase
+      if tag_downcased == required_tag
+        assign product_is_eligible = true
+      endif
+    endfor
+  endif
+
+  assign mens_setting   = block.settings.mens_squad   | default: ''
+  assign womens_setting = block.settings.womens_squad | default: ''
+  assign has_squad = false
+  if mens_setting != blank or womens_setting != blank
+    assign has_squad = true
+  endif
+-%}
+
+{%- if product_is_eligible and print_product != blank -%}
+  {%- assign print_variant = print_product.selected_or_first_available_variant -%}
+
+  <name-print-upsell
+    class="name-print-upsell"
+    data-print-variant-id="{{ print_variant.id }}"
+    data-product-title="{{ product.title | escape }}"
+    data-max-chars="{{ max_chars }}"
+    {{ block.shopify_attributes }}
+  >
+    {%- comment -%}
+      Squad data is stored in hidden <textarea> elements rather than data
+      attributes or script tags. A textarea's .value property in JavaScript
+      always preserves newlines correctly, which avoids both the HTML-attribute
+      newline-normalisation problem and the Liquid split: "\n" literal-string
+      issue confirmed in debugging.
+    {%- endcomment -%}
+    {%- if has_squad -%}
+      <textarea class="name-print-upsell__mens-data" hidden aria-hidden="true" tabindex="-1" readonly>{{ mens_setting }}</textarea>
+      <textarea class="name-print-upsell__womens-data" hidden aria-hidden="true" tabindex="-1" readonly>{{ womens_setting }}</textarea>
+    {%- endif -%}
+
+    <label class="name-print-upsell__label" for="NamePrintToggle-{{ block.id }}">
+      <span class="name-print-upsell__toggle-wrapper">
+        <input
+          type="checkbox"
+          id="NamePrintToggle-{{ block.id }}"
+          class="name-print-upsell__toggle"
+          aria-expanded="false"
+          aria-controls="NamePrintPanel-{{ block.id }}"
+        >
+        <span class="name-print-upsell__checkbox-custom" aria-hidden="true"></span>
+      </span>
+      <span class="name-print-upsell__label-text">
+        <span class="name-print-upsell__heading">{{ heading }}</span>
+        {%- if print_variant.price > 0 -%}
+          <span class="name-print-upsell__price">+ {{ print_variant.price | money }}</span>
+        {%- endif -%}
+      </span>
+    </label>
+
+    <div id="NamePrintPanel-{{ block.id }}" class="name-print-upsell__panel" hidden>
+      {%- if description != blank -%}
+        <p class="name-print-upsell__description">{{ description }}</p>
+      {%- endif -%}
+
+      <p class="name-print-upsell__hint">Fill in the details below, then click the <strong>Add to cart</strong> button to include name printing with your order.</p>
+
+      <p class="name-print-upsell__error" hidden>Please enter both a name and a squad number before adding to cart.</p>
+
+      {%- comment -%} ── Section A: Custom name + number ── {%- endcomment -%}
+      <details class="name-print-upsell__accordion" open>
+        <summary class="name-print-upsell__accordion-summary">
+          <span>Enter custom name and number</span>
+          <span class="name-print-upsell__caret" aria-hidden="true"></span>
+        </summary>
+        <div class="name-print-upsell__fields">
+          <div class="name-print-upsell__field-row">
+            <div class="name-print-upsell__field-group name-print-upsell__field-group--name">
+              <label class="name-print-upsell__field-label" for="NamePrintText-{{ block.id }}">Name</label>
+              <input
+                type="text"
+                id="NamePrintText-{{ block.id }}"
+                class="name-print-upsell__name-input name-print-upsell__text-input field__input"
+                placeholder="e.g. Smith"
+                maxlength="{{ max_chars }}"
+                autocomplete="off"
+                spellcheck="false"
+              >
+              <p class="name-print-upsell__char-count-wrapper">
+                <span class="name-print-upsell__char-count">{{ max_chars }}</span> / {{ max_chars }} characters
+              </p>
+            </div>
+            <div class="name-print-upsell__field-group name-print-upsell__field-group--number">
+              <label class="name-print-upsell__field-label" for="NamePrintNumber-{{ block.id }}">Number</label>
+              <input
+                type="text"
+                id="NamePrintNumber-{{ block.id }}"
+                class="name-print-upsell__number-input name-print-upsell__text-input field__input"
+                placeholder="00"
+                maxlength="2"
+                inputmode="numeric"
+                pattern="\d{1,2}"
+                autocomplete="off"
+              >
+              <p class="name-print-upsell__char-count-wrapper">1–2 digits</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      {%- comment -%} ── Section B: Squad picker (populated by JS) ── {%- endcomment -%}
+      {%- if has_squad -%}
+        <details class="name-print-upsell__accordion">
+          <summary class="name-print-upsell__accordion-summary">
+            <span>Pick from the squad</span>
+            <span class="name-print-upsell__caret" aria-hidden="true"></span>
+          </summary>
+          <div class="name-print-upsell__squad">
+            <div class="name-print-upsell__squad-tabs name-print-upsell__squad-tabs--hidden"></div>
+            <ul class="name-print-upsell__squad-list" data-squad="mens" role="list"></ul>
+            <ul class="name-print-upsell__squad-list name-print-upsell__squad-list--hidden" data-squad="womens" role="list"></ul>
+          </div>
+        </details>
+      {%- endif -%}
+    </div>
+  </name-print-upsell>
+{%- endif -%}

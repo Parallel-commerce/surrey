@@ -70,7 +70,7 @@
             "description": "Personalise this item with a name printed on the shirt",
             "max_chars": 12,
             "required_tag": "name-print",
-            "mens_squad": "Matthew, 20\nSamuel, 21",
+            "mens_squad": "EALHAM, 5\nFOAKES, 7\nWORRALL, 8\nJACKS, 9\nEVANS, 10\nSMITH, 11\nFISHER, 15\nCLARK, 16\nBURNS, 17\nBLAKE, 18\nROY, 20\nALBERT, 22\nFRENCH, 23\nTOPLEY, 24\nTAYLOR, 25\nPATEL, 26\nSTUART-RECKLING, 27\nLAWRENCE, 28\nBARNWELL, 29\nLAWES, 30\nPOPE, 32\nJORDAN, 34\nATKINSON, 37\nSTEEL, 44\nSIBLEY, 45\nSYKES, 54\nCURRAN, 58\nCURRAN, 59\nTHOMAS, 64\nMAJID, 68\nCHAHAR, 71\nGORANTLA, 75\nABBOTT, 77\nOVERTON, 88",
             "womens_squad": "Claire, 25"
           }
         },

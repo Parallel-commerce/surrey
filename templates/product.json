@@ -62,6 +62,18 @@
             "swatch_shape": "circle"
           }
         },
+        "name_print_upsell_xbFJYU": {
+          "type": "name_print_upsell",
+          "settings": {
+            "print_product": "name-printing-service",
+            "heading": "Add name printing",
+            "description": "Personalise this item with a name printed on the shirt",
+            "max_chars": 12,
+            "required_tag": "name-print",
+            "mens_squad": "Matthew, 20\nSamuel, 21",
+            "womens_squad": "Claire, 25"
+          }
+        },
         "inventory_n7iBp4": {
           "type": "inventory",
           "settings": {
@@ -133,6 +145,7 @@
         "price",
         "short_description_XBPPEM",
         "variant_picker",
+        "name_print_upsell_xbFJYU",
         "inventory_n7iBp4",
         "quantity_selector",
         "buy_buttons",

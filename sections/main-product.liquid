@@ -2244,9 +2244,9 @@
         {
           "type": "number",
           "id": "max_chars",
-          "label": "Maximum characters",
-          "default": 20,
-          "info": "Limits how many characters the customer can enter."
+          "label": "Maximum name characters",
+          "default": 12,
+          "info": "Limits how many characters the customer can enter for the printed name. Number is always limited to 2 digits."
         },
         {
           "type": "text",
@@ -2254,6 +2254,18 @@
           "label": "Required product tag",
           "default": "name-print",
           "info": "Only show this upsell on products that have this tag. Leave blank to show on all products."
+        },
+        {
+          "type": "textarea",
+          "id": "mens_squad",
+          "label": "Men's squad",
+          "info": "One player per line in the format: Name, Number (e.g. John Smith, 10)"
+        },
+        {
+          "type": "textarea",
+          "id": "womens_squad",
+          "label": "Women's squad",
+          "info": "One player per line in the format: Name, Number (e.g. Jane Doe, 7)"
         }
       ]
     }

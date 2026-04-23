@@ -1,13 +1,36 @@
 {% comment %}
   Renders a megamenu for the header.
+  Accepts an optional `split_nav` parameter ('left' or 'right') to render
+  only the first or second half of menu items for a split-nav layout.
 
   Usage:
   {% render 'header-mega-menu' %}
+  {% render 'header-mega-menu', split_nav: 'left' %}
+  {% render 'header-mega-menu', split_nav: 'right' %}
 {% endcomment %}
 
-<nav class="header__inline-menu">
+{%- liquid
+  assign menu_half = section.settings.menu.links.size | plus: 1 | divided_by: 2
+  if split_nav == 'left'
+    assign nav_class = 'header__inline-menu header__inline-menu--left'
+  elsif split_nav == 'right'
+    assign nav_class = 'header__inline-menu header__inline-menu--right'
+  else
+    assign nav_class = 'header__inline-menu'
+  endif
+-%}
+
+<nav class="{{ nav_class }}">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {%- liquid
+        if split_nav == 'left' and forloop.index > menu_half
+          continue
+        endif
+        if split_nav == 'right' and forloop.index <= menu_half
+          continue
+        endif
+      -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>
@@ -31,7 +54,7 @@
                 tabindex="-1"
               >
                 <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}{% if link.links.size > 6 %} mega-menu__list--many-items{% endif %}"
                   role="list"
                 >
                   {%- for childlink in link.links -%}
@@ -39,7 +62,7 @@
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
-                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% if childlink.child_active %} mega-menu__link--parent-active{% endif %}{% endif %}"
                         {% if childlink.current %}
                           aria-current="page"
                         {% endif %}
@@ -65,6 +88,42 @@
                         </ul>
                       {%- endif -%}
                     </li>
+                  {%- endfor -%}
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'mega_menu_image' -%}
+                      {%- assign block_handle = block.settings.menu_item_handle | handleize -%}
+                      {%- if block_handle == blank or block_handle == link.handle -%}
+                        {%- assign col_start = block.settings.column_position | default: 'auto' -%}
+                        {%- assign col_span = block.settings.column_span | default: '1' -%}
+                        {%- assign promo_url = block.settings.link | default: '#' -%}
+                        <li class="mega-menu__promo-item"
+                            style="grid-column: {{ col_start }} / span {{ col_span }};"
+                            {{ block.shopify_attributes }}>
+                          <a href="{{ promo_url }}" class="mega-menu__promo-link">
+                            {%- if block.settings.image != blank -%}
+                              <img
+                                src="{{ block.settings.image | image_url: width: 600 }}"
+                                loading="lazy"
+                                width="{{ block.settings.image.width }}"
+                                height="{{ block.settings.image.height }}"
+                                alt="{{ block.settings.alt_text | default: block.settings.heading | escape }}"
+                                class="mega-menu__promo-image"
+                              >
+                            {%- endif -%}
+                            {%- if block.settings.heading != blank or block.settings.subheading != blank -%}
+                              <div class="mega-menu__promo-overlay">
+                                {%- if block.settings.heading != blank -%}
+                                  <p class="mega-menu__promo-heading">{{ block.settings.heading | escape }}</p>
+                                {%- endif -%}
+                                {%- if block.settings.subheading != blank -%}
+                                  <p class="mega-menu__promo-subheading">{{ block.settings.subheading | escape }}</p>
+                                {%- endif -%}
+                              </div>
+                            {%- endif -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+                    {%- endif -%}
                   {%- endfor -%}
                 </ul>
               </div>

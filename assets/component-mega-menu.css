@@ -2,6 +2,58 @@
   position: static;
 }
 
+/* Top-level mega menu link styling */
+.header__inline-menu .header__menu-item:hover {
+  color: #8bc9c9;
+}
+
+.header__inline-menu .header__menu-item:hover span {
+  text-decoration: none !important;
+}
+
+.header__inline-menu .header__active-menu-item {
+  color: #8bc9c9 !important;
+  text-decoration: none !important;
+}
+
+.header__inline-menu .header__menu-item .header__active-menu-item {
+  color: #8bc9c9 !important;
+  text-decoration: none !important;
+}
+
+/* Override base.css active state underline */
+.header__inline-menu .header__menu-item .header__active-menu-item,
+.header__inline-menu .header__active-menu-item {
+  text-decoration: none !important;
+  text-underline-offset: 0 !important;
+}
+
+/* Override base.css open state underline */
+details[open] > .header__inline-menu .header__menu-item,
+.mega-menu[open] > .header__menu-item,
+details[open] > .header__menu-item {
+  text-decoration: none !important;
+}
+
+details[open] > .header__inline-menu .header__menu-item span,
+.mega-menu[open] > .header__menu-item span,
+details[open] > .header__menu-item span {
+  text-decoration: none !important;
+}
+
+details[open] > .header__inline-menu .header__menu-item .header__active-menu-item,
+.mega-menu[open] > .header__menu-item .header__active-menu-item,
+details[open] > .header__menu-item .header__active-menu-item {
+  text-decoration: none !important;
+}
+
+/* Override hover on active items */
+.header__inline-menu .header__menu-item:hover .header__active-menu-item {
+  color: #8bc9c9 !important;
+  text-decoration: none !important;
+  text-decoration-thickness: 0 !important;
+}
+
 .mega-menu__content {
   background-color: rgb(var(--color-background));
   border-left: 0;
@@ -37,7 +89,8 @@
 .mega-menu__list {
   display: grid;
   gap: 1.8rem 4rem;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-flow: row;
   list-style: none;
 }
 
@@ -48,12 +101,16 @@
   padding-bottom: 0.6rem;
   padding-top: 0.6rem;
   text-decoration: none;
-  transition: text-decoration var(--duration-short) ease;
+  transition: text-decoration var(--duration-short) ease, background-color var(--duration-short) ease;
   word-wrap: break-word;
+  border-radius: 0.4rem;
 }
 
 .mega-menu__link--level-2 {
   font-weight: bold;
+  color: #8bc9c9;
+  text-transform: uppercase;
+  padding-left: 4px;
 }
 
 .header--top-center .mega-menu__list {
@@ -71,17 +128,122 @@
 .mega-menu__link:hover,
 .mega-menu__link--active {
   color: rgb(var(--color-foreground));
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.mega-menu__link--level-2:hover {
+  color: #8bc9c9;
+  background-color: #32343d;
+  text-decoration: none;
+}
+
+/* Level-2 active state - only show if it's the actual active page */
+.mega-menu__link--level-2.mega-menu__link--active {
+  color: #8bc9c9;
+  background-color: #32343d;
+  text-decoration: none;
+}
+
+/* When level-2 is active but has an active child, don't show background */
+.mega-menu__link--level-2.mega-menu__link--parent-active {
+  color: #8bc9c9;
+  background-color: transparent;
+}
+
+/* Level-3 links (children of level-2) - no underline, background on hover */
+.list-unstyled .mega-menu__link {
+  padding-left: 4px;
+}
+
+.list-unstyled .mega-menu__link:hover {
+  background-color: #32343d;
+  text-decoration: none;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* Level-3 active state - should show as active, not the parent */
+.list-unstyled .mega-menu__link--active {
+  background-color: #32343d;
+  text-decoration: none;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* When level-3 is active, parent level-2 should not show as active */
+.list-unstyled .mega-menu__link--active ~ *,
+li:has(.list-unstyled .mega-menu__link--active) > .mega-menu__link--level-2.mega-menu__link--active {
+  color: #8bc9c9;
+  background-color: transparent;
 }
 
 .mega-menu__link--active:hover {
-  text-decoration-thickness: 0.2rem;
+  text-decoration: none;
 }
 
 .mega-menu .mega-menu__list--condensed {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0 2rem;
 }
 
 .mega-menu__list--condensed .mega-menu__link {
   font-weight: normal;
+}
+
+.mega-menu__promo-item {
+  position: relative;
+  overflow: hidden;
+  height: 20rem;
+}
+
+.mega-menu__promo-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.mega-menu__promo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.mega-menu__promo-link:hover .mega-menu__promo-image {
+  transform: scale(1.05);
+}
+
+.mega-menu__promo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  color: #fff;
+}
+
+.mega-menu__promo-heading {
+  margin: 0 0 0.3rem;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.mega-menu__promo-subheading {
+  margin: 0;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mega-menu__list--many-items {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.mega-menu .mega-menu__list--condensed.mega-menu__list--many-items {
+  max-height: calc(6 * 4rem);
 }

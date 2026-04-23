@@ -1,0 +1,435 @@
+{%- style -%}
+    #ScrollingAnnouncement-{{ section.id }} {
+      --scrolling-speed: {{ section.settings.scroll_speed }}s;
+      --scrolling-direction: {{ section.settings.scroll_direction }};
+      --text-size: {{ section.settings.text_size | default: 13 }}px;
+      --font-weight: {{ section.settings.font_weight | default: '500' }};
+      --font-style: {% if section.settings.font_italic %}italic{% else %}normal{% endif %};
+      --text-transform: {% if section.settings.font_uppercase %}uppercase{% else %}none{% endif %};
+      padding-top: {{ section.settings.padding_top | times: 0.1 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.1 }}rem;
+    }
+
+    .scrolling-announcement {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .scrolling-announcement__wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scrolling-announcement__track {
+    display: flex;
+    width: fit-content;
+    will-change: transform;
+    gap: 1.5rem;
+  }
+
+  .scrolling-announcement__track--normal {
+    animation: scroll var(--scrolling-speed, 30s) linear infinite;
+  }
+
+  .scrolling-announcement__track--reverse {
+    animation: scroll-reverse var(--scrolling-speed, 30s) linear infinite;
+  }
+
+
+  .scrolling-announcement__content {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    gap: 1.5rem;
+  }
+
+  .scrolling-announcement__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .scrolling-announcement__text {
+    font-size: var(--text-size, 13px);
+    line-height: 1.5;
+    font-weight: var(--font-weight, 500);
+    font-style: var(--font-style, normal);
+    text-transform: var(--text-transform, none);
+    color: rgb(var(--color-foreground));
+  }
+
+  .scrolling-announcement__link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+  }
+
+  .scrolling-announcement__link:hover {
+    opacity: 0.8;
+  }
+
+  .scrolling-announcement__separator {
+    opacity: 0.6;
+    font-size: 1.2rem;
+    color: rgb(var(--color-foreground));
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Pause on hover for better UX */
+  .scrolling-announcement:hover .scrolling-announcement__track {
+    animation-play-state: paused;
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 749px) {
+    .scrolling-announcement__text {
+      font-size: calc(var(--text-size, 13px) * 0.923);
+    }
+
+    .scrolling-announcement__track {
+      gap: 1rem;
+    }
+
+    .scrolling-announcement__content {
+      gap: 1rem;
+    }
+
+    .scrolling-announcement__item {
+      gap: 1rem;
+    }
+  }
+{%- endstyle -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div
+    id="ScrollingAnnouncement-{{ section.id }}"
+    class="scrolling-announcement color-{{ section.settings.color_scheme }} gradient"
+    role="region"
+    aria-label="{{ 'sections.header.announcement' | t }}"
+  >
+    <div class="scrolling-announcement__wrapper">
+      <div
+        class="scrolling-announcement__track scrolling-announcement__track--{{ section.settings.scroll_direction }}"
+        data-scroll-track
+      >
+        {%- comment -%} First set of announcements {%- endcomment -%}
+        <div class="scrolling-announcement__content">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <div class="scrolling-announcement__item" {{ block.shopify_attributes }}>
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" class="scrolling-announcement__link link link--text focus-inset">
+                {%- endif -%}
+                <span class="scrolling-announcement__text">
+                  {{- block.settings.text | escape -}}
+                </span>
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+                <span class="scrolling-announcement__separator">{{ section.settings.separator | default: '•' }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- comment -%} Duplicate set for seamless infinite loop {%- endcomment -%}
+        <div class="scrolling-announcement__content" aria-hidden="true">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <div class="scrolling-announcement__item">
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" class="scrolling-announcement__link link link--text focus-inset">
+                {%- endif -%}
+                <span class="scrolling-announcement__text">
+                  {{- block.settings.text | escape -}}
+                </span>
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+                <span class="scrolling-announcement__separator">{{ section.settings.separator | default: '•' }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const section = document.querySelector('#ScrollingAnnouncement-{{ section.id }}');
+      const track = section?.querySelector('[data-scroll-track]');
+      if (!track) return;
+
+      function initScroll() {
+        const contents = track.querySelectorAll('.scrolling-announcement__content');
+        if (contents.length < 1) return;
+
+        const wrapper = track.parentElement;
+        const viewportWidth = wrapper.offsetWidth;
+        const firstContent = contents[0];
+
+        // Get the original content HTML (the first set of items)
+        const originalItems = Array.from(firstContent.children);
+        if (originalItems.length === 0) return;
+
+        // Calculate how many times we need to duplicate to fill 100% of viewport
+        // Start with original content
+        let currentHTML = firstContent.innerHTML;
+        void track.offsetHeight; // Force reflow
+
+        let contentWidth = firstContent.offsetWidth;
+        const singleSetWidth = contentWidth; // Width of one set of announcements
+
+        // Duplicate content until it fills at least 100% of viewport
+        while (contentWidth < viewportWidth) {
+          // Clone all original items and append
+          originalItems.forEach((item) => {
+            const clone = item.cloneNode(true);
+            firstContent.appendChild(clone);
+          });
+          void track.offsetHeight; // Force reflow
+          contentWidth = firstContent.offsetWidth;
+        }
+
+        // Now ensure we have exactly 2 copies with identical content
+        // Remove any existing second copy
+        if (contents.length > 1) {
+          contents[1].remove();
+        }
+
+        // Create second copy with identical content
+        const secondContent = firstContent.cloneNode(true);
+        secondContent.setAttribute('aria-hidden', 'true');
+        track.appendChild(secondContent);
+
+        // Force final reflow
+        void track.offsetHeight;
+
+        // Verify both copies have identical widths
+        const firstWidth = firstContent.offsetWidth;
+        const secondWidth = secondContent.offsetWidth;
+
+        if (Math.abs(firstWidth - secondWidth) > 1) {
+          // If widths don't match, re-clone
+          const clone = firstContent.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          secondContent.replaceWith(clone);
+          void track.offsetHeight;
+        }
+
+        // Ensure animation is running smoothly
+        const isReverse = track.classList.contains('scrolling-announcement__track--reverse');
+        const speed = getComputedStyle(section).getPropertyValue('--scrolling-speed') || '30s';
+
+        // Reset animation to ensure it starts fresh
+        track.style.animation = 'none';
+        requestAnimationFrame(() => {
+          track.style.animation = isReverse
+            ? `scroll-reverse ${speed} linear infinite`
+            : `scroll ${speed} linear infinite`;
+        });
+      }
+
+      // Initialize when ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScroll);
+      } else {
+        setTimeout(initScroll, 10);
+      }
+
+      // Handle resize
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(initScroll, 100);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Scrolling Announcement",
+  "max_blocks": 20,
+  "class": "scrolling-announcement-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "•",
+      "info": "Character or text to separate announcements"
+    },
+    {
+      "type": "header",
+      "content": "Scrolling Settings"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 30,
+      "info": "Time for one complete cycle (lower = faster)"
+    },
+    {
+      "type": "select",
+      "id": "scroll_direction",
+      "label": "Scroll Direction",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Left to Right"
+        },
+        {
+          "value": "reverse",
+          "label": "Right to Left"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 13,
+      "info": "Text size in pixels"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra-bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "checkbox",
+      "id": "font_italic",
+      "label": "Italic",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "font_uppercase",
+      "label": "Uppercase",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-4"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Welcome to our store"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Announcement",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over $50"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "New arrivals just in"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Sign up for 10% off your first order"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

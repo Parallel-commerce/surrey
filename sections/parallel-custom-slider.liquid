@@ -1,0 +1,235 @@
+{{ 'parallel-custom-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parallel-custom-slider.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="section-{{ section.id }}-padding">
+    <parallel-custom-slider
+      data-section-id="{{ section.id }}"
+      data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+      role="region"
+      aria-label="{{ section.settings.accessibility_label | default: 'Promotional slider' }}"
+      aria-roledescription="carousel"
+    >
+      <div class="parallel-slider">
+        <div class="parallel-slider__track" data-slider-track>
+          {%- for block in section.blocks -%}
+            <div
+              class="parallel-slider__slide"
+              data-slider-slide
+              data-block-id="{{ block.id }}"
+              role="group"
+              aria-roledescription="slide"
+              aria-label="Slide {{ forloop.index }} of {{ section.blocks.size }}"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.desktop_image != blank -%}
+                {%- liquid
+                  assign mobile_image = block.settings.mobile_image | default: block.settings.tablet_image | default: block.settings.desktop_image
+                  assign tablet_image = block.settings.tablet_image | default: block.settings.desktop_image
+                  assign desktop_image = block.settings.desktop_image
+                  assign alt_text = block.settings.alt_text | default: desktop_image.alt | default: 'Slide image'
+                -%}
+
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" aria-label="{{ alt_text }}">
+                {%- endif -%}
+
+                <picture>
+                  <source
+                    media="(min-width: 1041px)"
+                    srcset="{{ desktop_image | image_url: width: 2000 }}"
+                  >
+                  <source
+                    media="(min-width: 641px)"
+                    srcset="{{ tablet_image | image_url: width: 1040 }}"
+                  >
+                  <img
+                    src="{{ mobile_image | image_url: width: 640 }}"
+                    alt="{{ alt_text | escape }}"
+                    width="2000"
+                    height="400"
+                    {% if forloop.first %}
+                      loading="eager"
+                      fetchpriority="high"
+                    {% else %}
+                      loading="lazy"
+                    {% endif %}
+                  >
+                </picture>
+
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+              {%- else -%}
+                <div class="parallel-slider__placeholder">
+                  <span>{{ 'Slide' }} {{ forloop.index }} &mdash; add an image</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if section.blocks.size > 1 -%}
+          <div class="parallel-slider__indicators" role="tablist" aria-label="Slide controls">
+            {%- for block in section.blocks -%}
+              <button
+                class="parallel-slider__dot{% if forloop.first %} active{% endif %}"
+                data-slider-dot
+                data-index="{{ forloop.index0 }}"
+                type="button"
+                role="tab"
+                aria-label="Go to slide {{ forloop.index }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-controls="slide-{{ section.id }}-{{ forloop.index0 }}"
+              ></button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </parallel-custom-slider>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Custom Slider",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Autoplay"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 2,
+      "max": 15,
+      "step": 1,
+      "unit": "s",
+      "label": "Slide speed",
+      "default": 5,
+      "info": "Time between each slide transition"
+    },
+    {
+      "type": "header",
+      "content": "Accessibility"
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "Promotional slider",
+      "info": "Describes the slider for screen readers"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop image",
+          "info": "Recommended: 2000x400px"
+        },
+        {
+          "type": "image_picker",
+          "id": "tablet_image",
+          "label": "Tablet image",
+          "info": "Recommended: 1040x450px. Falls back to desktop image."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "Recommended: 640x450px. Falls back to tablet, then desktop."
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Slide link",
+          "info": "The entire slide image is clickable"
+        },
+        {
+          "type": "header",
+          "content": "Accessibility"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text",
+          "info": "Describe the image for screen readers. Falls back to the image alt text."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Custom Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

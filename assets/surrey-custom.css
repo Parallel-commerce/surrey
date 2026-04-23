@@ -1,0 +1,110 @@
+/* Surrey Custom Styles - Reusable Components */
+
+/* Vertical Side Title - Background Heading Effect */
+
+/* Base styles for larger screens (rotated vertical title) */
+.surrey-vertical-side-title {
+  position: relative;
+}
+
+.surrey-vertical-side-title .surrey-background-heading {
+  transform: rotate(-90deg);
+  display: table;
+  position: absolute;
+  text-transform: uppercase;
+  top: 8rem !important;
+  left: -12.75rem !important;
+  font-size: calc(var(--font-heading-scale) * 2.5rem);
+  line-height: 2.5rem;
+  font-style: italic;
+  opacity: 0.1;
+  /*width: 18.75rem;*/
+  text-align: right;
+  pointer-events: none;
+  z-index: 0;
+  color: #202126;
+  letter-spacing: 0.03125rem;
+  margin-bottom: -0.625rem;
+}
+
+.surrey-vertical-side-title .title-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Large background heading for tablet and below (max-width 989px) */
+@media screen and (max-width: 1650px) {
+  .surrey-vertical-side-title .surrey-background-heading {
+    transform: none;
+    display: block;
+    text-align: left;
+    font-size: calc(var(--font-heading-scale) * 8rem);
+    line-height: 1;
+    left: 2.5rem !important;
+    top: -10rem !important;
+    opacity: 0.05;
+    background: -webkit-linear-gradient(#000, #0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    width: auto;
+    font-family: inherit;
+    font-style: normal;
+    letter-spacing: normal;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .surrey-vertical-side-title .surrey-background-heading {
+    font-size: calc(var(--font-heading-scale) * 6rem);
+    top: -7rem !important;
+  }
+}
+
+/* Mobile styles (max-width 749px) */
+@media screen and (max-width: 749px) {
+  .surrey-vertical-side-title .surrey-background-heading {
+    left: 0 !important;
+    right: 0 !important;
+    text-align: center;
+    position: relative;
+    top: 2rem !important;
+    margin-bottom: 0.9375rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    font-size: clamp(calc(var(--font-heading-scale) * 2rem), 8vw, calc(var(--font-heading-scale) * 4rem)) !important;
+    transform: none;
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    opacity: 0.09;
+    background: -webkit-linear-gradient(#000, #0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: inherit;
+    font-style: normal;
+    letter-spacing: normal;
+    white-space: normal;
+  }
+}
+
+/* Last child margin reset */
+.surrey-vertical-side-title> :last-child {
+  margin-bottom: 0;
+}
+
+/* Pre-order badge */
+.badge--preorder {
+  background-color: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #ffffff;
+}

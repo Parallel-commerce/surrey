@@ -1,0 +1,507 @@
+{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign related_collections = collection.metafields.custom.related_collections.value
+  assign has_metafield_collections = false
+  if related_collections != blank
+    if related_collections.size > 0
+      assign has_metafield_collections = true
+    endif
+  endif
+
+  assign show_collections = false
+  if has_metafield_collections
+    assign show_collections = true
+  elsif section.blocks.size > 0
+    assign show_collections = true
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .related-collections-banner-{{ section.id }} {
+    width: 100%;
+  }
+
+  .related-collections-banner-{{ section.id }}__container {
+    max-width: {{ settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .related-collections-banner-{{ section.id }}__container {
+      padding: 0 5rem;
+    }
+  }
+
+  .related-collections-banner-{{ section.id }}__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media screen and (min-width: 750px) {
+    .related-collections-banner-{{ section.id }}__grid {
+      grid-template-columns: {{ section.settings.left_column_width }}fr {{ section.settings.right_column_width }}fr;
+      gap: {{ section.settings.column_gap }}px;
+      align-items: {{ section.settings.vertical_alignment }};
+    }
+  }
+
+  .related-collections-banner-{{ section.id }}__left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .related-collections-banner-{{ section.id }}__title {
+    margin: 0;
+    font-style: italic;
+  }
+
+  .related-collections-banner-{{ section.id }}__description {
+    margin: 0;
+  }
+
+  .related-collections-banner-{{ section.id }}__short-description {
+    margin: 0;
+  }
+
+  .related-collections-banner-{{ section.id }}__right {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 1rem;
+    min-width: 0;
+  }
+
+  .related-collections-banner-{{ section.id }}__right::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .related-collections-banner-{{ section.id }}__right::-webkit-scrollbar-track {
+    background: rgba(var(--color-foreground), 0.1);
+  }
+
+  .related-collections-banner-{{ section.id }}__right::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-foreground), 0.3);
+    border-radius: 2px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .related-collections-banner-{{ section.id }}__right {
+      justify-content: flex-end;
+      padding-bottom: 1rem;
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
+  }
+
+  .related-collections-banner-{{ section.id }}__collection-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    width: {{ section.settings.circle_size | times: 0.75 | round }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .related-collections-banner-{{ section.id }}__collection-item {
+      width: {{ section.settings.circle_size }}px;
+    }
+  }
+
+  .related-collections-banner-{{ section.id }}__collection-circle {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+    background-color: rgba(var(--color-foreground), 0.05);
+  }
+
+  .related-collections-banner-{{ section.id }}__collection-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .related-collections-banner-{{ section.id }}__collection-title {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+  .related-collections-banner-{{ section.id }}__collection-link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+  }
+
+  .related-collections-banner-{{ section.id }}__collection-link:hover {
+    opacity: 0.7;
+  }
+
+  @media screen and (min-width: 750px) {
+    .related-collections-banner-{{ section.id }}__collection-title {
+      font-size: 1rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="related-collections-banner-{{ section.id }} section-{{ section.id }}-padding isolate">
+    <div class="related-collections-banner-{{ section.id }}__container">
+      <div class="related-collections-banner-{{ section.id }}__grid">
+        {%- comment -%} Left side: Collection name and description {%- endcomment -%}
+        <div class="related-collections-banner-{{ section.id }}__left{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {%- if section.settings.show_collection_title -%}
+            <h1 class="related-collections-banner-{{ section.id }}__title {{ section.settings.title_size }}">
+              {{- collection.title | escape -}}
+            </h1>
+          {%- endif -%}
+          {%- if section.settings.show_collection_description and collection.description != blank -%}
+            <div class="related-collections-banner-{{ section.id }}__description rte">
+              {{ collection.description }}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.show_short_description and collection.metafields.custom.short_description != blank -%}
+            <div class="related-collections-banner-{{ section.id }}__short-description rte">
+              {{ collection.metafields.custom.short_description }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Right side: Related collections {%- endcomment -%}
+        {%- if show_collections -%}
+          <div class="related-collections-banner-{{ section.id }}__right{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {%- if has_metafield_collections -%}
+              {%- for related_collection in related_collections -%}
+                {%- if related_collection != blank -%}
+                  <div
+                    class="related-collections-banner-{{ section.id }}__collection-item"
+                    {% if settings.animations_reveal_on_scroll %}
+                      data-cascade
+                      style="--animation-order: {{ forloop.index }};"
+                    {% endif %}
+                  >
+                    <a
+                      href="{{ related_collection.url }}"
+                      class="related-collections-banner-{{ section.id }}__collection-link"
+                    >
+                      <div class="related-collections-banner-{{ section.id }}__collection-circle">
+                        {%- if related_collection.featured_image -%}
+                          {{
+                            related_collection.featured_image
+                            | image_url: width: 400
+                            | image_tag: loading: 'lazy', alt: related_collection.title
+                            | escape
+                          }}
+                        {%- else -%}
+                          {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {%- endif -%}
+                      </div>
+                      <h3 class="related-collections-banner-{{ section.id }}__collection-title">
+                        {{ related_collection.title | escape }}
+                      </h3>
+                    </a>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- for block in section.blocks -%}
+                {%- if block.settings.collection != blank -%}
+                  {%- assign block_collection = block.settings.collection -%}
+                  <div
+                    class="related-collections-banner-{{ section.id }}__collection-item"
+                    {{ block.shopify_attributes }}
+                    {% if settings.animations_reveal_on_scroll %}
+                      data-cascade
+                      style="--animation-order: {{ forloop.index }};"
+                    {% endif %}
+                  >
+                    <a
+                      href="{{ block_collection.url }}"
+                      class="related-collections-banner-{{ section.id }}__collection-link"
+                    >
+                      <div class="related-collections-banner-{{ section.id }}__collection-circle">
+                        {%- if block_collection.featured_image -%}
+                          {{
+                            block_collection.featured_image
+                            | image_url: width: 400
+                            | image_tag: loading: 'lazy', alt: block_collection.title
+                            | escape
+                          }}
+                        {%- else -%}
+                          {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {%- endif -%}
+                      </div>
+                      <h3 class="related-collections-banner-{{ section.id }}__collection-title">
+                        {{ block_collection.title | escape }}
+                      </h3>
+                    </a>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Related Collections",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Collection Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_title",
+      "label": "Show collection title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        },
+        {
+          "value": "hxl",
+          "label": "Extra large"
+        },
+        {
+          "value": "hxxl",
+          "label": "Extra extra large"
+        }
+      ],
+      "default": "h1",
+      "label": "Title size"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_short_description",
+      "label": "Show short description",
+      "default": false,
+      "info": "Displays the collection's 'custom.short_description' metafield"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "left_column_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2,
+      "label": "Left column width",
+      "info": "Relative width compared to right column"
+    },
+    {
+      "type": "range",
+      "id": "right_column_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "Right column width",
+      "info": "Relative width compared to left column"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center",
+      "label": "Vertical alignment"
+    },
+    {
+      "type": "header",
+      "content": "Related Collections"
+    },
+    {
+      "type": "paragraph",
+      "content": "Related collections will be pulled from the collection's 'custom.related_collections' metafield. If no metafield is set, the default collections below will be used."
+    },
+    {
+      "type": "range",
+      "id": "circle_size",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Circle size",
+      "default": 120,
+      "info": "Diameter of the circular collection images"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Number of columns (desktop)"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "2",
+      "label": "Number of columns (mobile)"
+    },
+    {
+      "type": "range",
+      "id": "collection_spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Collection spacing",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "default_collection",
+      "name": "Default Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "This collection will be shown when the current collection doesn't have related collections set in its metafield."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Related Collections",
+      "blocks": [
+        {
+          "type": "default_collection"
+        },
+        {
+          "type": "default_collection"
+        },
+        {
+          "type": "default_collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

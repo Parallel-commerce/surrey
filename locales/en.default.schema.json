@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "settings_schema": {
     "global": {
@@ -2061,6 +2070,31 @@
             },
             "page": {
               "label": "Row content from page"
+            },
+            "hide_if_empty": {
+              "label": "Hide if empty"
+            },
+            "policy": {
+              "label": "Policy document",
+              "info": "Policies are managed in your store's Settings > Policies.",
+              "options__1": {
+                "label": "None"
+              },
+              "options__2": {
+                "label": "Privacy policy"
+              },
+              "options__3": {
+                "label": "Refund policy"
+              },
+              "options__4": {
+                "label": "Shipping policy"
+              },
+              "options__5": {
+                "label": "Terms of service"
+              },
+              "options__6": {
+                "label": "Subscription policy"
+              }
             },
             "icon": {
               "label": "Icon",

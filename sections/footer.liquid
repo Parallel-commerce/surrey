@@ -28,6 +28,24 @@
 {%- endstyle -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  {%- if section.settings.background_image != blank -%}
+    <div
+      class="footer__background-image"
+      style="
+        opacity: {{ section.settings.background_image_opacity | divided_by: 100.0 }};
+        {% if section.settings.background_image_invert %}filter: invert(1);{% endif %}
+      "
+    >
+      {{
+        section.settings.background_image
+        | image_url: width: 3840
+        | image_tag:
+          loading: 'lazy',
+          widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          sizes: '100vw'
+      }}
+    </div>
+  {%- endif -%}
   {%- liquid
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -250,6 +268,112 @@
     {%- endunless -%}
   {%- endif -%}
 
+  {%- liquid
+    assign has_partner_logos = false
+    for i in (1..6)
+      assign logo_key = 'partner_logo_' | append: i
+      if section.settings[logo_key] != blank
+        assign has_partner_logos = true
+        break
+      endif
+    endfor
+  -%}
+
+  {%- if has_partner_logos -%}
+    {%- liquid
+      assign partner_logo_count = 0
+      for i in (1..6)
+        assign logo_key = 'partner_logo_' | append: i
+        if section.settings[logo_key] != blank
+          assign partner_logo_count = partner_logo_count | plus: 1
+        endif
+      endfor
+    -%}
+    <div
+      class="footer__partners{% unless section.settings.partners_transparent_bg %} color-{{ section.settings.partners_color_scheme }}{% endunless %}"
+      style="{% if section.settings.partners_transparent_bg %}background: transparent;{% endif %}"
+    >
+      <div class="footer__partners-inner page-width">
+        {%- if section.settings.partners_heading != blank -%}
+          <p class="footer__partners-heading">{{ section.settings.partners_heading }}</p>
+        {%- endif -%}
+        <div class="footer__partners-logos" data-partner-carousel data-logo-count="{{ partner_logo_count }}" style="--partner-logo-max-width: {{ section.settings.partners_logo_width }}px;">
+          {%- for i in (1..6) -%}
+            {%- assign logo_key = 'partner_logo_' | append: i -%}
+            {%- assign link_key = 'partner_logo_link_' | append: i -%}
+            {%- if section.settings[logo_key] != blank -%}
+              {%- assign logo_width_2x = section.settings.partners_logo_width | times: 2 | at_most: 5760 -%}
+              <div class="footer__partners-logo">
+                {%- if section.settings[link_key] != blank -%}
+                  <a href="{{ section.settings[link_key] }}">
+                {%- endif -%}
+                <img
+                  srcset="{{ section.settings[logo_key] | image_url: width: section.settings.partners_logo_width }}, {{ section.settings[logo_key] | image_url: width: logo_width_2x }} 2x"
+                  src="{{ section.settings[logo_key] | image_url: width: section.settings.partners_logo_width }}"
+                  alt="{{ section.settings[logo_key].alt | escape }}"
+                  loading="lazy"
+                  width="{{ section.settings[logo_key].width }}"
+                  height="{{ section.settings[logo_key].height }}"
+                >
+                {%- if section.settings[link_key] != blank -%}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        const wrapper = document.querySelector('[data-partner-carousel]');
+        if (!wrapper) return;
+
+        const logos = wrapper.querySelectorAll('.footer__partners-logo');
+        if (logos.length < 2) return;
+
+        let mobileActive = false;
+        let currentIndex = 0;
+        let intervalId = null;
+
+        function startCarousel() {
+          if (mobileActive) return;
+          mobileActive = true;
+          currentIndex = 0;
+          logos.forEach(function(logo, i) {
+            logo.classList.add('partner-fade');
+            logo.classList.toggle('partner-fade--active', i === 0);
+          });
+          intervalId = setInterval(advance, 3000);
+        }
+
+        function stopCarousel() {
+          if (!mobileActive) return;
+          mobileActive = false;
+          if (intervalId) clearInterval(intervalId);
+          intervalId = null;
+          logos.forEach(function(logo) {
+            logo.classList.remove('partner-fade', 'partner-fade--active');
+          });
+        }
+
+        function advance() {
+          logos[currentIndex].classList.remove('partner-fade--active');
+          currentIndex = (currentIndex + 1) % logos.length;
+          logos[currentIndex].classList.add('partner-fade--active');
+        }
+
+        var mql = window.matchMedia('(max-width: 749px)');
+        function handleMQ(e) {
+          if (e.matches) startCarousel(); else stopCarousel();
+        }
+        mql.addEventListener('change', handleMQ);
+        handleMQ(mql);
+      })();
+    </script>
+  {%- endif -%}
+
   <div
     class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
@@ -302,7 +426,7 @@
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
+        <small class="copyright__content"><a href="https://www.parallelcommerce.co.uk" target="_blank" rel="noopener">Developed by Parallel</a></small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
@@ -432,6 +556,32 @@
     },
     {
       "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "background_image_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background image opacity",
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "background_image_invert",
+      "default": false,
+      "label": "Invert image",
+      "info": "Inverts the image colours (e.g. black to white)"
+    },
+    {
+      "type": "header",
       "content": "t:sections.footer.settings.header__1.content",
       "info": "t:sections.footer.settings.header__1.info"
     },
@@ -491,6 +641,99 @@
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label",
       "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "header",
+      "content": "Partner logos"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "partners_heading",
+      "label": "Heading",
+      "default": "Our Partners"
+    },
+    {
+      "type": "color_scheme",
+      "id": "partners_color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "partners_transparent_bg",
+      "default": true,
+      "label": "Transparent background",
+      "info": "Overrides the colour scheme background so the footer background image shows through"
+    },
+    {
+      "type": "range",
+      "id": "partners_logo_width",
+      "min": 40,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 100
+    },
+    {
+      "type": "image_picker",
+      "id": "partner_logo_1",
+      "label": "Logo 1"
+    },
+    {
+      "type": "url",
+      "id": "partner_logo_link_1",
+      "label": "Logo 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner_logo_2",
+      "label": "Logo 2"
+    },
+    {
+      "type": "url",
+      "id": "partner_logo_link_2",
+      "label": "Logo 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner_logo_3",
+      "label": "Logo 3"
+    },
+    {
+      "type": "url",
+      "id": "partner_logo_link_3",
+      "label": "Logo 3 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner_logo_4",
+      "label": "Logo 4"
+    },
+    {
+      "type": "url",
+      "id": "partner_logo_link_4",
+      "label": "Logo 4 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner_logo_5",
+      "label": "Logo 5"
+    },
+    {
+      "type": "url",
+      "id": "partner_logo_link_5",
+      "label": "Logo 5 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner_logo_6",
+      "label": "Logo 6"
+    },
+    {
+      "type": "url",
+      "id": "partner_logo_link_6",
+      "label": "Logo 6 link"
     },
     {
       "type": "header",

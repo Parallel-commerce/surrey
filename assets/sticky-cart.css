@@ -1,0 +1,133 @@
+/* Sticky Add to Cart — Mobile Only */
+
+.sticky-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: rgb(var(--color-background));
+  border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem 1.6rem;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.sticky-cart.is-visible {
+  transform: translateY(0);
+}
+
+.sticky-cart__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 100%;
+}
+
+.sticky-cart__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.sticky-cart__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(var(--color-foreground));
+}
+
+.sticky-cart__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+.sticky-cart__variant {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 12rem;
+}
+
+.sticky-cart__separator {
+  opacity: 0.4;
+}
+
+.sticky-cart__price {
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+  white-space: nowrap;
+}
+
+.sticky-cart__price s {
+  font-weight: 400;
+  color: rgba(var(--color-foreground), 0.5);
+  margin-right: 0.4rem;
+  font-size: 0.95em;
+}
+
+.sticky-cart__button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  font-family: inherit;
+  line-height: 1;
+}
+
+.sticky-cart__button:hover {
+  opacity: 0.85;
+}
+
+.sticky-cart__button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sticky-cart__button .loading__spinner {
+  display: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: 0.6rem;
+}
+
+.sticky-cart__button.loading .loading__spinner {
+  display: inline-flex;
+}
+
+.sticky-cart__button.loading span:first-child {
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Hide on desktop — mobile only */
+@media screen and (min-width: 750px) {
+  .sticky-cart {
+    display: none !important;
+  }
+}

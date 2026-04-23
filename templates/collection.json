@@ -1,25 +1,105 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_collection_description": true,
         "show_collection_image": false,
         "color_scheme": "scheme-1"
       }
     },
+    "related_collections_banner_8ABYVY": {
+      "type": "parallel-related-collections-banner",
+      "blocks": {
+        "default_collection_WwPRh3": {
+          "type": "default_collection",
+          "settings": {
+            "collection": "2024"
+          }
+        },
+        "default_collection_YJa7it": {
+          "type": "default_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "default_collection_cnN7zp": {
+          "type": "default_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "default_collection_WwPRh3",
+        "default_collection_YJa7it",
+        "default_collection_cnN7zp"
+      ],
+      "name": "Related Collections",
+      "settings": {
+        "color_scheme": "",
+        "show_collection_title": true,
+        "title_size": "h1",
+        "show_collection_description": true,
+        "show_short_description": false,
+        "left_column_width": 2,
+        "right_column_width": 3,
+        "column_gap": 40,
+        "vertical_alignment": "center",
+        "circle_size": 120,
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "collection_spacing": 20,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "parallel_breadcrumbs_mUnKHf": {
+      "type": "parallel-breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "home_label": "Home",
+        "color_scheme": "",
+        "hide_on_homepage": true,
+        "font_size": 12,
+        "font_bold": true,
+        "font_italic": true,
+        "text_uppercase": true,
+        "link_color": "#8bc9ca",
+        "alignment": "left",
+        "separator_type": "slash",
+        "page_width_class": "page-width",
+        "side_padding": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
-        "products_per_page": 16,
+        "products_per_page": 20,
         "columns_desktop": 4,
-        "image_ratio": "adapt",
+        "columns_mobile": "2",
+        "color_scheme": "",
+        "image_ratio": "portrait",
+        "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
+        "quick_add": "none",
         "enable_filtering": true,
+        "filter_type": "vertical",
         "enable_sorting": true,
-        "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -27,6 +107,8 @@
   },
   "order": [
     "banner",
+    "related_collections_banner_8ABYVY",
+    "parallel_breadcrumbs_mUnKHf",
     "product-grid"
   ]
 }

@@ -1,210 +1,499 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "parallel_custom_slider_6LeTKw": {
+      "type": "parallel-custom-slider",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide_3Azk4p": {
+          "type": "slide",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "desktop_image": "shopify://shop_images/Shop_Banner_ALL_2000x400_2x_04772199-10ca-4a74-8ef5-ded7043ac1a1.png",
+            "tablet_image": "shopify://shop_images/Tablet_ALL_1040x450_2x_8afc2ec6-1531-4355-ab07-f34dff86f69d.png",
+            "mobile_image": "shopify://shop_images/Mobile_ALL_650x450_2x_500eb7c6-ed51-4491-aa3e-51bd83ab61b1.png",
+            "link": "https://shop.kiaoval.com/collections/2026-kit",
+            "alt_text": ""
           }
         },
-        "text": {
-          "type": "text",
+        "slide_ehXhzT": {
+          "type": "slide",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400_2x_1.png",
+            "tablet_image": "shopify://shop_images/Tablet_1040x450_2x_1.png",
+            "mobile_image": "shopify://shop_images/Mobile_650x450_2x_1.png",
+            "link": "https://shop.kiaoval.com/collections/training-adult-training-wear",
+            "alt_text": ""
           }
         },
-        "button": {
-          "type": "buttons",
+        "slide_gwEBbA": {
+          "type": "slide",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "desktop_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Shop_Banner_2000x400_2x_dc3670f2-5ba1-4236-b329-d16df44c683d.png",
+            "tablet_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Tablet_1040x450_2x_c0ae71b9-7946-4ad8-aea0-d764cffb1966.png",
+            "mobile_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Mobile_650x450_2x_047cc934-df4e-4210-b631-eb6891bb92ea.png",
+            "link": "https://shop.kiaoval.com/products/surrey-ccc-and-new-era-cream-cord-cap-1140",
+            "alt_text": ""
           }
         }
       },
       "block_order": [
-        "heading",
-        "text",
-        "button"
+        "slide_3Azk4p",
+        "slide_ehXhzT",
+        "slide_gwEBbA"
       ],
+      "name": "Custom Slider",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
+        "autoplay_speed": 5,
+        "accessibility_label": "Promotional slider",
+        "padding_top": 0,
         "padding_bottom": 0
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "parallel_scrolling_announcement_UKVe9x": {
+      "type": "parallel-scrolling-announcement",
+      "blocks": {
+        "announcement_ap9GJi": {
+          "type": "announcement",
+          "settings": {
+            "text": "BUY ALL 3 KITS & GET 25% OFF - USE CODE KIT2026",
+            "link": ""
+          }
+        },
+        "announcement_XQiRfz": {
+          "type": "announcement",
+          "settings": {
+            "text": "MEMBERS GET 10% DISCOUNT",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_ap9GJi",
+        "announcement_XQiRfz"
+      ],
+      "name": "Scrolling Announcement",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
+        "separator": "•",
+        "scroll_speed": 55,
+        "scroll_direction": "normal",
+        "text_size": 16,
+        "font_weight": "700",
+        "font_italic": true,
+        "font_uppercase": false,
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "featured_collection_p4q3k3": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "2026-kit",
+        "products_to_show": 4,
+        "title": "Kit",
+        "heading_size": "h1",
+        "use_vertical_side_title": false,
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
         "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
+        "quick_add": "standard",
         "columns_mobile": "2",
-        "padding_top": 28,
+        "swipe_on_mobile": true,
+        "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "collage": {
-      "type": "collage",
+    "parallel_shop_the_look_3yFGmL": {
+      "type": "parallel-shop-the-look",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "product": {
+        "product_zNAYUD": {
           "type": "product",
           "settings": {
-            "product": "",
-            "second_image": false
+            "product": "2026-surrey-castore-county-championship-shirt",
+            "dot_position_x": 35,
+            "dot_position_y": 40
           }
         },
-        "collection-1": {
+        "product_PEr43Q": {
+          "type": "product",
+          "settings": {
+            "product": "2026-womens-surrey-castore-t20-shirt",
+            "dot_position_x": 20,
+            "dot_position_y": 50
+          }
+        },
+        "product_yTHGJM": {
+          "type": "product",
+          "settings": {
+            "product": "2026-surrey-castore-one-day-shirt",
+            "dot_position_x": 47,
+            "dot_position_y": 67
+          }
+        },
+        "product_wkFeY6": {
+          "type": "product",
+          "settings": {
+            "product": "2026-unisex-surrey-castore-long-sleeve-t20-shirt",
+            "dot_position_x": 80,
+            "dot_position_y": 50
+          }
+        },
+        "product_zxJAKC": {
+          "type": "product",
+          "settings": {
+            "product": "sccc-rubber-duck",
+            "dot_position_x": 52,
+            "dot_position_y": 38
+          }
+        },
+        "product_yGrPQy": {
+          "type": "product",
+          "settings": {
+            "product": "the-kia-oval-jigsaw-1379",
+            "dot_position_x": 50,
+            "dot_position_y": 92
+          }
+        },
+        "product_78a6TQ": {
+          "type": "product",
+          "settings": {
+            "product": "surrey-ccc-shield-mug-516",
+            "dot_position_x": 20,
+            "dot_position_y": 90
+          }
+        },
+        "product_aaB8pn": {
+          "type": "product",
+          "settings": {
+            "product": "surrey-ccc-top-flask-water-bottle-446",
+            "dot_position_x": 75,
+            "dot_position_y": 85
+          }
+        }
+      },
+      "block_order": [
+        "product_zNAYUD",
+        "product_PEr43Q",
+        "product_yTHGJM",
+        "product_wkFeY6",
+        "product_zxJAKC",
+        "product_yGrPQy",
+        "product_78a6TQ",
+        "product_aaB8pn"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "image": "shopify://shop_images/BH1_8389_9mZMBQp5.jpg",
+        "image_ratio": "square",
+        "heading": "Shop the look",
+        "subheading": "",
+        "heading_size": "h1",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_collection_list_NFp63g": {
+      "type": "custom-collection-list",
+      "blocks": {
+        "featured_collection_KyPUC7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fashion-men-s-supporter-wear",
+            "custom_title": "Men's Supporter Wear"
+          }
+        },
+        "featured_collection_RUnynn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gifts-golf",
+            "custom_title": ""
+          }
+        },
+        "featured_collection_DeD9DY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fashion-women-s-supporter-wear",
+            "custom_title": "Women's Supporter Wear"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_KyPUC7",
+        "featured_collection_RUnynn",
+        "featured_collection_DeD9DY"
+      ],
+      "name": "Custom Collection List",
+      "settings": {
+        "title": "Supporter Wear",
+        "heading_size": "h1",
+        "use_vertical_side_title": false,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "card_min_height_desktop": 600,
+        "card_min_height_mobile": 400,
+        "card_border_radius": 0,
+        "card_title_position": "below_card",
+        "card_title_alignment": "center",
+        "title_font_size": 32,
+        "title_color": "#ffffff",
+        "show_button": true,
+        "button_text": "Shop Now",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "bento_box_CU6q8C": {
+      "type": "parallel-bento-box",
+      "blocks": {
+        "collection_mHKFTU": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "retro-collection",
+            "size": "tall"
+          }
+        },
+        "collection_WVkqVM": {
+          "type": "collection",
+          "settings": {
+            "collection": "gifts-cricket-accessories",
+            "size": "small"
+          }
+        },
+        "collection_hQATnD": {
+          "type": "collection",
+          "settings": {
+            "collection": "gifts-books",
+            "size": "small"
+          }
+        },
+        "collection_g9FxGn": {
+          "type": "collection",
+          "settings": {
+            "collection": "balls",
+            "size": "small"
+          }
+        },
+        "collection_6dhCEW": {
+          "type": "collection",
+          "settings": {
+            "collection": "sophie-allport",
+            "size": "small"
+          }
+        },
+        "collection_eJj7QK": {
+          "type": "collection",
+          "settings": {
+            "collection": "darts",
+            "custom_image": "shopify://shop_images/3SCCCcrestflights_1.png",
+            "size": "small"
+          }
+        },
+        "collection_QVX39V": {
+          "type": "collection",
+          "settings": {
+            "collection": "collectables",
+            "size": "small"
           }
         }
       },
       "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
+        "collection_mHKFTU",
+        "collection_WVkqVM",
+        "collection_hQATnD",
+        "collection_g9FxGn",
+        "collection_6dhCEW",
+        "collection_eJj7QK",
+        "collection_QVX39V"
       ],
-      "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "video": {
-      "type": "video",
+      "name": "Bento Box",
       "settings": {
         "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
+    "featured_collection_EPx84V": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "headwear",
+        "products_to_show": 3,
+        "title": "HEADWEAR",
+        "heading_size": "hxl",
+        "use_vertical_side_title": true,
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "parallel_product_highlights_PKdXrR": {
+      "type": "parallel-product-highlights",
       "blocks": {
-        "column1": {
-          "type": "column",
+        "highlight_7xMiAa": {
+          "type": "highlight",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "icon": "shirt",
+            "heading": "Official club merchandise",
+            "description": "Authentic licensed product"
           }
         },
-        "column2": {
-          "type": "column",
+        "highlight_UYRVij": {
+          "type": "highlight",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "icon": "star",
+            "heading": "Worn by first team",
+            "description": "Same design as match day"
           }
         },
-        "column3": {
-          "type": "column",
+        "highlight_PUwCA4": {
+          "type": "highlight",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "icon": "lightning_bolt",
+            "heading": "Performance fabric",
+            "description": "Moisture-wicking and breathable"
+          }
+        },
+        "highlight_G9BG9U": {
+          "type": "highlight",
+          "settings": {
+            "icon": "price_tag",
+            "heading": "Limited edition",
+            "description": "Exclusive seasonal release"
           }
         }
       },
       "block_order": [
-        "column1",
-        "column2",
-        "column3"
+        "highlight_7xMiAa",
+        "highlight_UYRVij",
+        "highlight_PUwCA4",
+        "highlight_G9BG9U"
       ],
+      "name": "Product Highlights",
       "settings": {
-        "title": "",
+        "heading": "",
         "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
+        "heading_alignment": "center",
+        "columns_desktop": "4",
+        "layout": "center",
+        "icon_shape": "circle",
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "logo_block_EpWmnH": {
+      "type": "parallel-logo-block",
+      "blocks": {
+        "logo_zCCiRq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Kia_Logo_White.png",
+            "alt_text": "KIA Partner Logo",
+            "link": "",
+            "link_target_blank": false
+          }
+        },
+        "logo_4jAHJT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/JM_Finn_Logo_White.png",
+            "alt_text": "JM FINN Partner Logo",
+            "link": "https://www.jmfinn.com/?utm_source=website&utm_medium=partner_ad&utm_campaign=web_footer",
+            "link_target_blank": false
+          }
+        },
+        "logo_BPmKDg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/SSE_White.png",
+            "alt_text": "SSE Partner Logo",
+            "link": "https://www.xbox.com/en-GB/?utm_source=website&utm_medium=partner_ad&utm_campaign=web_footer",
+            "link_target_blank": false
+          }
+        },
+        "logo_gwDmpg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Xbox_Logo_White.png",
+            "alt_text": "Logo",
+            "link": "",
+            "link_target_blank": false
+          }
+        }
+      },
+      "block_order": [
+        "logo_zCCiRq",
+        "logo_4jAHJT",
+        "logo_BPmKDg",
+        "logo_gwDmpg"
+      ],
+      "disabled": true,
+      "name": "Logo Block",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "title": "Our Partners",
+        "heading_size": "h1",
+        "title_alignment": "center",
+        "title_spacing": 0,
+        "logo_width": 200,
+        "logo_spacing": 40,
+        "logo_opacity": 100,
+        "logo_hover_opacity": 100,
+        "mobile_columns": "1",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
+    "parallel_custom_slider_6LeTKw",
+    "parallel_scrolling_announcement_UKVe9x",
+    "featured_collection_p4q3k3",
+    "parallel_shop_the_look_3yFGmL",
+    "custom_collection_list_NFp63g",
+    "bento_box_CU6q8C",
+    "featured_collection_EPx84V",
+    "parallel_product_highlights_PKdXrR",
+    "logo_block_EpWmnH"
   ]
 }

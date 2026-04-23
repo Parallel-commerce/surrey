@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -5,45 +14,73 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "image_PimANY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Surrey-Kia-Oval-Logo.svg",
+            "image_width": 100,
+            "alignment": ""
+          }
+        },
         "footer-0": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "heading": "Kits",
+            "menu": "top-catagories-footer-menu"
           }
         },
         "footer-1": {
           "type": "link_list",
           "settings": {
-            "heading": "Info",
-            "menu": "footer"
+            "heading": "Popular Categories",
+            "menu": "top-categories-footer-menu"
           }
         },
-        "footer-2": {
-          "type": "text",
+        "link_list_b9y3bX": {
+          "type": "link_list",
+          "disabled": true,
           "settings": {
-            "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+            "heading": "Quick links",
+            "menu": "footer"
           }
         }
       },
       "block_order": [
+        "image_PimANY",
         "footer-0",
         "footer-1",
-        "footer-2"
+        "link_list_b9y3bX"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
+        "background_image": "shopify://shop_images/Black_Outline_3_Feathers.png",
+        "background_image_opacity": 10,
+        "background_image_invert": true,
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": true,
-        "show_policy": false,
-        "margin_top": 48,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "show_policy": true,
+        "partners_heading": "Our Partners",
+        "partners_color_scheme": "",
+        "partners_transparent_bg": true,
+        "partners_logo_width": 100,
+        "partner_logo_1": "shopify://shop_images/Kia_Logo_White.png",
+        "partner_logo_link_1": "",
+        "partner_logo_2": "shopify://shop_images/JM_Finn_Logo_White.png",
+        "partner_logo_link_2": "",
+        "partner_logo_3": "shopify://shop_images/SSE_White.png",
+        "partner_logo_link_3": "",
+        "partner_logo_4": "shopify://shop_images/Xbox_Logo_White.png",
+        "partner_logo_link_4": "",
+        "partner_logo_link_5": "",
+        "partner_logo_link_6": "",
+        "margin_top": 0,
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     }
   },

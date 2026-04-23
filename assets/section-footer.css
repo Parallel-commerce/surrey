@@ -1,5 +1,26 @@
 .footer {
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer__background-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.footer__background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer__content-top,
+.footer__content-bottom {
+  position: relative;
+  z-index: 1;
 }
 
 .footer:not(.color-scheme-1) {
@@ -37,6 +58,95 @@
   .footer__content-top .grid {
     row-gap: 6rem;
     margin-bottom: 0;
+  }
+}
+
+.footer__partners {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem 0;
+  border-top: solid 0.1rem rgba(var(--color-foreground), 0.08);
+}
+
+.footer__partners-inner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.footer__partners-heading {
+  margin: 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  opacity: 0.6;
+}
+
+.footer__partners-logos {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.footer__partners-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: var(--partner-logo-max-width, 100px);
+}
+
+.footer__partners-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: var(--partner-logo-max-width, 100px);
+}
+
+.footer__partners-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  width: 100%;
+}
+
+/* Mobile: fade carousel */
+@media screen and (max-width: 749px) {
+  .footer__partners-inner {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .footer__partners-logos {
+    position: relative;
+    justify-content: center;
+    min-height: 60px;
+  }
+
+  .footer__partners-logo.partner-fade {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 80%;
+    pointer-events: none;
+  }
+
+  .footer__partners-logo.partner-fade--active {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 

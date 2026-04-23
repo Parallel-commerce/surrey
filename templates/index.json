@@ -297,6 +297,13 @@
     "custom_collection_list_NFp63g": {
       "type": "custom-collection-list",
       "blocks": {
+        "featured_collection_JhLfka": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "unisex-supporter-wear",
+            "custom_title": "UNISEX"
+          }
+        },
         "featured_collection_KyPUC7": {
           "type": "featured_collection",
           "settings": {
@@ -317,20 +324,13 @@
             "collection": "gifts-golf",
             "custom_title": ""
           }
-        },
-        "featured_collection_JhLfka": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "unisex-supporter-wear",
-            "custom_title": "UNISEX"
-          }
         }
       },
       "block_order": [
+        "featured_collection_JhLfka",
         "featured_collection_KyPUC7",
         "featured_collection_DeD9DY",
-        "featured_collection_RUnynn",
-        "featured_collection_JhLfka"
+        "featured_collection_RUnynn"
       ],
       "name": "Custom Collection List",
       "settings": {

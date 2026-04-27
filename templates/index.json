@@ -41,34 +41,12 @@
             "link": "shopify://products/sccc-oddballs-boxers",
             "alt_text": ""
           }
-        },
-        "slide_3Azk4p": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Shop_Banner_ALL_2000x400_2x_1.png",
-            "tablet_image": "shopify://shop_images/Tablet_ALL_1040x450_2x_1.png",
-            "mobile_image": "shopify://shop_images/Mobile_ALL_650x450_2x_1.png",
-            "link": "https://shop.kiaoval.com/collections/2026-kit",
-            "alt_text": ""
-          }
-        },
-        "slide_gwEBbA": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Shop_Banner_2000x400_2x_dc3670f2-5ba1-4236-b329-d16df44c683d.png",
-            "tablet_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Tablet_1040x450_2x_c0ae71b9-7946-4ad8-aea0-d764cffb1966.png",
-            "mobile_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Mobile_650x450_2x_047cc934-df4e-4210-b631-eb6891bb92ea.png",
-            "link": "https://shop.kiaoval.com/products/surrey-ccc-and-new-era-cream-cord-cap-1140",
-            "alt_text": ""
-          }
         }
       },
       "block_order": [
         "slide_VcFni7",
         "slide_DY4PjD",
-        "slide_6JkLbw",
-        "slide_3Azk4p",
-        "slide_gwEBbA"
+        "slide_6JkLbw"
       ],
       "name": "Custom Slider",
       "settings": {

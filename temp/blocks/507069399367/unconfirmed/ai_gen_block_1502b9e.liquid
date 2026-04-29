@@ -1,6 +1,200 @@
+{% doc %}
+  @prompt
+    Create an "Online Only" badge that displays on product cards and the product page when a product has the tag "Fourex". The badge should match the style of any existing badges in the theme (such as pre-order or sale badges), appearing as a label/pill overlay on the product image or near the product title. It should only show when the product is tagged with "Fourex".
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% if product.tags contains 'Fourex' %}
+  {% style %}
+    .ai-online-only-badge-{{ ai_gen_id }} {
+      position: absolute;
+      z-index: 3;
+      border-radius: {{ settings.badge_corner_radius }}px;
+      padding: {{ block.settings.badge_padding_vertical }}px {{ block.settings.badge_padding_horizontal }}px;
+      font-size: {{ block.settings.badge_font_size }}px;
+      font-weight: {{ block.settings.badge_font_weight }};
+      text-transform: {{ block.settings.badge_text_transform }};
+      letter-spacing: {{ block.settings.badge_letter_spacing }};
+      background-color: {{ block.settings.badge_background_color }};
+      color: {{ block.settings.badge_text_color }};
+      display: inline-block;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .ai-online-only-badge-{{ ai_gen_id }}--bottom-left {
+      bottom: {{ block.settings.badge_offset }}px;
+      left: {{ block.settings.badge_offset }}px;
+    }
+
+    .ai-online-only-badge-{{ ai_gen_id }}--bottom-right {
+      bottom: {{ block.settings.badge_offset }}px;
+      right: {{ block.settings.badge_offset }}px;
+    }
+
+    .ai-online-only-badge-{{ ai_gen_id }}--top-left {
+      top: {{ block.settings.badge_offset }}px;
+      left: {{ block.settings.badge_offset }}px;
+    }
+
+    .ai-online-only-badge-{{ ai_gen_id }}--top-right {
+      top: {{ block.settings.badge_offset }}px;
+      right: {{ block.settings.badge_offset }}px;
+    }
+
+    @media screen and (max-width: 749px) {
+      .ai-online-only-badge-{{ ai_gen_id }} {
+        font-size: {{ block.settings.badge_font_size | times: 0.9 }}px;
+        padding: {{ block.settings.badge_padding_vertical | times: 0.9 }}px {{ block.settings.badge_padding_horizontal | times: 0.9 }}px;
+      }
+    }
+  {% endstyle %}
+
+  <span
+    class="ai-online-only-badge-{{ ai_gen_id }} ai-online-only-badge-{{ ai_gen_id }}--{{ settings.badge_position | replace: ' ', '-' }}"
+    {{ block.shopify_attributes }}
+  >
+    {{ block.settings.badge_text }}
+  </span>
+{% endif %}
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Online only badge",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Badge content"
+    },
+    {
+      "type": "paragraph",
+      "content": "This badge displays when a product has the 'Fourex' tag. It follows your theme's badge position setting."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Online Only"
+    },
+    {
+      "type": "header",
+      "content": "Badge style"
+    },
+    {
+      "type": "color",
+      "id": "badge_background_color",
+      "label": "Background color",
+      "default": "#202126"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "badge_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "badge_text_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "badge_letter_spacing",
+      "min": 0,
+      "max": 2,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 0.5
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_vertical",
+      "min": 2,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_horizontal",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "badge_offset",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Offset from edge",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Online only badge"
+    }
+  ]
+}
 {% endschema %}

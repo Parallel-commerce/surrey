@@ -54,7 +54,19 @@
       },
     });
 
-    // Keep the local cart snapshot in sync
+    // Synchronously update the snapshot using the add response data so that
+    // remove_from_cart can diff correctly even if the user removes the item
+    // before the async _refreshSnapshotFromApi() fetch completes.
+    if (item.variant_id) {
+      var existing = _prevCartItems.find(function (p) { return p.variant_id === item.variant_id; });
+      if (existing) {
+        existing.quantity += (item.quantity || 1);
+      } else {
+        _prevCartItems.push(item);
+      }
+    }
+
+    // Full async refresh to keep the snapshot accurate for any other changes
     _refreshSnapshotFromApi();
   });
 

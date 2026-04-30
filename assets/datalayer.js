@@ -54,15 +54,28 @@
       },
     });
 
-    // Synchronously update the snapshot using the add response data so that
-    // remove_from_cart can diff correctly even if the user removes the item
-    // before the async _refreshSnapshotFromApi() fetch completes.
-    if (item.variant_id) {
-      var existing = _prevCartItems.find(function (p) { return p.variant_id === item.variant_id; });
+    // Synchronously update the snapshot so remove_from_cart can diff correctly
+    // even if the user removes the item before the async refresh completes.
+    // Use event.productVariantId (always present from the form input) rather than
+    // item.variant_id which is absent when sections are appended to the add request.
+    var addedVariantId = parseInt(event.productVariantId, 10);
+    if (addedVariantId) {
+      var existing = _prevCartItems.find(function (p) {
+        return parseInt(p.variant_id, 10) === addedVariantId;
+      });
       if (existing) {
         existing.quantity += (item.quantity || 1);
       } else {
-        _prevCartItems.push(item);
+        _prevCartItems.push({
+          variant_id: addedVariantId,
+          quantity: item.quantity || 1,
+          price: item.price || 0,
+          product_title: item.product_title || item.title || '',
+          sku: item.sku || '',
+          vendor: item.vendor || '',
+          product_type: item.product_type || '',
+          variant_title: item.variant_title || '',
+        });
       }
     }
 
@@ -107,7 +120,7 @@
 
     _prevCartItems.forEach(function (prevItem, idx) {
       var newItem = newItems.find(function (n) {
-        return n.variant_id === prevItem.variant_id;
+        return parseInt(n.variant_id, 10) === parseInt(prevItem.variant_id, 10);
       });
       var removedQty = newItem
         ? prevItem.quantity - newItem.quantity

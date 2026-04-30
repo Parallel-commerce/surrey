@@ -825,6 +825,30 @@
   {%- endif -%}
 </product-info>
 
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ ecommerce: null });
+  window.dataLayer.push({
+    event: 'view_item',
+    ecommerce: {
+      currency: {{ shop.currency | json }},
+      value: {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }},
+      items: [{
+        item_name: {{ product.title | json }},
+        item_id: {{ product.selected_or_first_available_variant.sku | default: '' | json }},
+        item_brand: {{ product.vendor | default: '' | json }},
+        item_category: {{ product.type | default: '' | json }},
+        price: {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }},
+        item_variant: {{ product.selected_or_first_available_variant.title | default: '' | json }},
+        item_list_id: {{ collection.id | default: '' | json }},
+        item_list_name: {{ collection.title | default: '' | json }},
+        index: 0,
+        quantity: 1
+      }]
+    }
+  });
+</script>
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",

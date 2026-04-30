@@ -1,0 +1,31 @@
+<script>window.dataLayer = window.dataLayer || [];</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NDG54GG');</script>
+<!-- End Google Tag Manager -->
+<script>
+  window.dataLayer.push({
+    event: 'page_view',
+    page: {
+      pageName: {{ page_title | json }},
+      siteSection: {{ request.page_type | json }},
+      destinationURL: {{ canonical_url | json }},
+      referringURL: {{ request.headers['referer'] | default: '' | json }},
+      environment: 'web',
+      language: {{ request.locale.iso_code | json }}
+    },
+    user: {
+      loggedIn: {% if customer %}true{% else %}false{% endif %},
+      country: {{ localization.country.iso_code | downcase | json }},
+      timeStamp: '{{ 'now' | date: '%s' }}',
+      date: '{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}',
+      email: {% if customer %}{{ customer.email | json }}{% else %}''{% endif %},
+      uniqueUserId: {% if customer %}{{ customer.id | json }}{% else %}''{% endif %},
+      language: {{ request.locale.iso_code | json }},
+      returnUser: {% if customer %}{% if customer.orders_count > 1 %}'returning'{% else %}'new'{% endif %}{% else %}''{% endif %}
+    }
+  });
+</script>

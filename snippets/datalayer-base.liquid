@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       timeStamp: '{{ 'now' | date: '%s' }}',
       date: '{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}',
       email: {% if customer %}{{ customer.email | json }}{% else %}''{% endif %},
-      uniqueUserId: {% if customer %}{{ customer.id | json }}{% else %}''{% endif %},
+      uniqueUserId: {% if customer %}"{{ customer.id }}"{% else %}''{% endif %},
       language: {{ request.locale.iso_code | json }},
       returnUser: {% if customer %}{% if customer.orders_count > 1 %}'returning'{% else %}'new'{% endif %}{% else %}''{% endif %}
     }

@@ -16,13 +16,19 @@
   // Map a Shopify cart API line-item object to the GA4 item shape.
   // Works for both /cart/add.js (single item) and /cart/change.js (items array).
   function mapLineItem(item, index) {
+    // Shopify sets variant_title to "Default Title" for single-variant products.
+    // Treat that as an absent variant so analytics tools receive an empty string.
+    var variantTitle = (item.variant_title && item.variant_title !== 'Default Title')
+      ? item.variant_title
+      : '';
+
     return {
       item_name: item.product_title || item.title || '',
       item_id: item.sku || '',
       item_brand: item.vendor || '',
       item_category: item.product_type || '',
       price: centsToCurrency(item.price),
-      item_variant: item.variant_title || '',
+      item_variant: variantTitle,
       index: index || 0,
       quantity: item.quantity || 1,
     };

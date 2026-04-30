@@ -13,7 +13,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       pageName: {{ page_title | json }},
       siteSection: {{ request.page_type | json }},
       destinationURL: {{ canonical_url | json }},
-      referringURL: {{ request.headers['referer'] | default: '' | json }},
+      referringURL: document.referrer || '',
       environment: 'web',
       language: {{ request.locale.iso_code | json }}
     },

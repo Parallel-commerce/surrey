@@ -494,13 +494,19 @@
 
   var _surreyCartItems = [
     {%- for item in cart.items -%}
+    {%- liquid
+      assign dl_cart_variant = ''
+      unless item.product.has_only_default_variant
+        assign dl_cart_variant = item.variant.title | default: ''
+      endunless
+    -%}
     {
       item_name: {{ item.product.title | json }},
       item_id: {{ item.sku | default: '' | json }},
       item_brand: {{ item.vendor | default: '' | json }},
       item_category: {{ item.product.type | default: '' | json }},
       price: {{ item.price | divided_by: 100.0 | json }},
-      item_variant: {{ item.variant.title | default: '' | json }},
+      item_variant: {{ dl_cart_variant | json }},
       index: {{ forloop.index0 }},
       quantity: {{ item.quantity }}
     }{%- unless forloop.last -%},{%- endunless -%}

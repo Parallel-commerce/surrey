@@ -238,7 +238,9 @@
         return;
       }
 
-      if (rule.type === 'number' || (Array.isArray(rule.type) && rule.type.indexOf('number') !== -1)) {
+      // Only warn about suspiciously large numbers on price/value fields, not ID fields
+      var isPriceField = label.indexOf('price') !== -1 || label.indexOf('value') !== -1 || label.indexOf('discount') !== -1;
+      if (isPriceField && (rule.type === 'number' || (Array.isArray(rule.type) && rule.type.indexOf('number') !== -1))) {
         if (typeof val === 'number' && val > 10000) {
           warnings.push(label + ' = ' + val + ' — looks like it might still be in pence/cents rather than pounds. Expected a decimal like 85.00');
         }

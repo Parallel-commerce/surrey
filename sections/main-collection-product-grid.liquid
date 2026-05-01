@@ -195,6 +195,41 @@
   {%- endif -%}
 </div>
 
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ ecommerce: null });
+  window.dataLayer.push({
+    event: 'view_item_list',
+    ecommerce: {
+      currency: {{ shop.currency | json }},
+      item_list_id: {{ collection.id | default: '' | json }},
+      item_list_name: {{ collection.title | default: '' | json }},
+      items: [
+        {%- for product in collection.products -%}
+        {%- liquid
+          assign dl_cv_title = ''
+          unless product.has_only_default_variant
+            assign dl_cv_title = product.selected_or_first_available_variant.title | default: ''
+          endunless
+        -%}
+        {
+          item_name: {{ product.title | json }},
+          item_id: {{ product.selected_or_first_available_variant.sku | default: '' | json }},
+          item_brand: {{ product.vendor | default: '' | json }},
+          item_category: {{ product.type | default: '' | json }},
+          price: {{ product.price | divided_by: 100.0 | json }},
+          item_variant: {{ dl_cv_title | json }},
+          index: {{ forloop.index0 }},
+          item_list_id: {{ collection.id | default: '' | json }},
+          item_list_name: {{ collection.title | default: '' | json }},
+          quantity: 1
+        }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  });
+</script>
+
 {% schema %}
 {
   "name": "t:sections.main-collection-product-grid.name",

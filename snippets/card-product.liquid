@@ -40,7 +40,17 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover">
+  <div
+    class="card-wrapper product-card-wrapper underline-links-hover"
+    data-product-title="{{ card_product.title | escape }}"
+    data-product-id="{{ card_product.selected_or_first_available_variant.sku | default: '' | escape }}"
+    data-product-price="{{ card_product.price | divided_by: 100.0 }}"
+    data-product-brand="{{ card_product.vendor | default: '' | escape }}"
+    data-product-category="{{ card_product.type | default: '' | escape }}"
+    data-product-variant="{{ card_product.selected_or_first_available_variant.title | default: '' | escape }}"
+    data-item-list-id="{{ collection.id | default: '' }}"
+    data-item-list-name="{{ collection.title | default: '' | escape }}"
+  >
     <div
       class="
         card card--{{ settings.card_style }}

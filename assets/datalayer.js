@@ -54,6 +54,7 @@
       },
     });
 
+    console.log('[DL Debug] add_to_cart — productVariantId:', event.productVariantId, '| item keys:', Object.keys(item).join(','));
     // Synchronously update the snapshot so remove_from_cart can diff correctly
     // even if the user removes the item before the async refresh completes.
     // Use event.productVariantId (always present from the form input) rather than
@@ -114,9 +115,11 @@
   }
 
   subscribe(PUB_SUB_EVENTS.cartUpdate, function (event) {
+    console.log('[DL Debug] cartUpdate received — source:', event.source, '| _prevCartItems:', _prevCartItems.length, '| cartData keys:', event.cartData ? Object.keys(event.cartData).join(',') : 'none');
     if (event.source !== 'cart-items') return;
 
     var newItems = (event.cartData && event.cartData.items) || [];
+    console.log('[DL Debug] remove check — prevItems:', _prevCartItems.length, '| newItems:', newItems.length);
 
     _prevCartItems.forEach(function (prevItem, idx) {
       var newItem = newItems.find(function (n) {

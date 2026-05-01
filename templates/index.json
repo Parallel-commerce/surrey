@@ -12,6 +12,16 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_BkhjwU": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/SS26_Shop_Banner_2000x400_2x_97ba3b24-783f-45e6-a6c6-8f96e52a7588.jpg",
+            "tablet_image": "shopify://shop_images/SS26_Tablet_1040x450_2x_5de9ca66-ee8b-463d-9387-d45a12aa8cf0.jpg",
+            "mobile_image": "shopify://shop_images/SS26_Mobile_650x450_2x_ba0b921d-5db1-49c6-9496-469f108d33d0.jpg",
+            "link": "shopify://collections/ss26",
+            "alt_text": ""
+          }
+        },
         "slide_VcFni7": {
           "type": "slide",
           "settings": {
@@ -44,6 +54,7 @@
         }
       },
       "block_order": [
+        "slide_BkhjwU",
         "slide_VcFni7",
         "slide_DY4PjD",
         "slide_6JkLbw"

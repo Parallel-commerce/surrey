@@ -100,6 +100,43 @@
 
       const linked = findLinkedItem(cart.items, target);
 
+      // Push remove_from_cart to the dataLayer before the API call so the
+      // item data is still accurate (cart-print-addon-sync owns all remove
+      // clicks via stopImmediatePropagation, so this is the only place to fire).
+      (function () {
+        var variantTitle =
+          target.variant_title && target.variant_title !== 'Default Title'
+            ? target.variant_title
+            : '';
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ ecommerce: null });
+        window.dataLayer.push({
+          event: 'remove_from_cart',
+          ecommerce: {
+            currency:
+              (window.Shopify &&
+                window.Shopify.currency &&
+                window.Shopify.currency.active) ||
+              'GBP',
+            value: parseFloat(
+              ((target.price * target.quantity) / 100).toFixed(2)
+            ),
+            items: [
+              {
+                item_name: target.product_title || '',
+                item_id: target.sku || '',
+                item_brand: target.vendor || '',
+                item_category: target.product_type || '',
+                price: parseFloat((target.price / 100).toFixed(2)),
+                item_variant: variantTitle,
+                index: index - 1,
+                quantity: target.quantity,
+              },
+            ],
+          },
+        });
+      })();
+
       // Remove the item the customer clicked, then its partner (if any)
       await removeByKey(target.key).catch(console.error);
       if (linked) {

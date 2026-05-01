@@ -12,6 +12,16 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_BkhjwU": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/SS26_Shop_Banner_2000x400_2x_97ba3b24-783f-45e6-a6c6-8f96e52a7588.jpg",
+            "tablet_image": "shopify://shop_images/SS26_Tablet_1040x450_2x_5de9ca66-ee8b-463d-9387-d45a12aa8cf0.jpg",
+            "mobile_image": "shopify://shop_images/SS26_Mobile_650x450_2x_ba0b921d-5db1-49c6-9496-469f108d33d0.jpg",
+            "link": "shopify://collections/ss26",
+            "alt_text": ""
+          }
+        },
         "slide_VcFni7": {
           "type": "slide",
           "settings": {
@@ -41,34 +51,13 @@
             "link": "shopify://products/sccc-oddballs-boxers",
             "alt_text": ""
           }
-        },
-        "slide_3Azk4p": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Shop_Banner_ALL_2000x400_2x_1.png",
-            "tablet_image": "shopify://shop_images/Tablet_ALL_1040x450_2x_1.png",
-            "mobile_image": "shopify://shop_images/Mobile_ALL_650x450_2x_1.png",
-            "link": "https://shop.kiaoval.com/collections/2026-kit",
-            "alt_text": ""
-          }
-        },
-        "slide_gwEBbA": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Shop_Banner_2000x400_2x_dc3670f2-5ba1-4236-b329-d16df44c683d.png",
-            "tablet_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Tablet_1040x450_2x_c0ae71b9-7946-4ad8-aea0-d764cffb1966.png",
-            "mobile_image": "shopify://shop_images/SUR_260303_New_Era_Cap_Mobile_650x450_2x_047cc934-df4e-4210-b631-eb6891bb92ea.png",
-            "link": "https://shop.kiaoval.com/products/surrey-ccc-and-new-era-cream-cord-cap-1140",
-            "alt_text": ""
-          }
         }
       },
       "block_order": [
+        "slide_BkhjwU",
         "slide_VcFni7",
         "slide_DY4PjD",
-        "slide_6JkLbw",
-        "slide_3Azk4p",
-        "slide_gwEBbA"
+        "slide_6JkLbw"
       ],
       "name": "Custom Slider",
       "settings": {
@@ -297,6 +286,13 @@
     "custom_collection_list_NFp63g": {
       "type": "custom-collection-list",
       "blocks": {
+        "featured_collection_JhLfka": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "unisex-supporter-wear",
+            "custom_title": "UNISEX"
+          }
+        },
         "featured_collection_KyPUC7": {
           "type": "featured_collection",
           "settings": {
@@ -317,20 +313,13 @@
             "collection": "gifts-golf",
             "custom_title": ""
           }
-        },
-        "featured_collection_JhLfka": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "unisex-supporter-wear",
-            "custom_title": "UNISEX"
-          }
         }
       },
       "block_order": [
+        "featured_collection_JhLfka",
         "featured_collection_KyPUC7",
         "featured_collection_DeD9DY",
-        "featured_collection_RUnynn",
-        "featured_collection_JhLfka"
+        "featured_collection_RUnynn"
       ],
       "name": "Custom Collection List",
       "settings": {
@@ -573,6 +562,31 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "1777461426a9135931": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1502b9e_jJJBdC": {
+          "type": "ai_gen_block_1502b9e",
+          "settings": {
+            "badge_text": "Online Only",
+            "badge_background_color": "#202126",
+            "badge_text_color": "#ffffff",
+            "badge_font_size": 12,
+            "badge_font_weight": "500",
+            "badge_text_transform": "uppercase",
+            "badge_letter_spacing": 0.5,
+            "badge_padding_vertical": 6,
+            "badge_padding_horizontal": 10,
+            "badge_offset": 10
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1502b9e_jJJBdC"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -586,6 +600,7 @@
     "bento_box_CU6q8C",
     "featured_collection_EPx84V",
     "parallel_product_highlights_PKdXrR",
-    "logo_block_EpWmnH"
+    "logo_block_EpWmnH",
+    "1777461426a9135931"
   ]
 }

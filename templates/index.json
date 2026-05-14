@@ -133,96 +133,6 @@
         "padding_bottom": 36
       }
     },
-    "parallel_shop_the_look_3yFGmL": {
-      "type": "parallel-shop-the-look",
-      "blocks": {
-        "product_zNAYUD": {
-          "type": "product",
-          "settings": {
-            "product": "2026-surrey-castore-county-championship-shirt",
-            "dot_position_x": 35,
-            "dot_position_y": 40
-          }
-        },
-        "product_PEr43Q": {
-          "type": "product",
-          "settings": {
-            "product": "2026-womens-surrey-castore-t20-shirt",
-            "dot_position_x": 20,
-            "dot_position_y": 50
-          }
-        },
-        "product_yTHGJM": {
-          "type": "product",
-          "settings": {
-            "product": "2026-surrey-castore-one-day-shirt",
-            "dot_position_x": 47,
-            "dot_position_y": 67
-          }
-        },
-        "product_wkFeY6": {
-          "type": "product",
-          "settings": {
-            "product": "2026-unisex-surrey-castore-long-sleeve-t20-shirt",
-            "dot_position_x": 80,
-            "dot_position_y": 50
-          }
-        },
-        "product_zxJAKC": {
-          "type": "product",
-          "settings": {
-            "product": "sccc-rubber-duck",
-            "dot_position_x": 52,
-            "dot_position_y": 38
-          }
-        },
-        "product_yGrPQy": {
-          "type": "product",
-          "settings": {
-            "product": "the-kia-oval-jigsaw-1379",
-            "dot_position_x": 50,
-            "dot_position_y": 92
-          }
-        },
-        "product_78a6TQ": {
-          "type": "product",
-          "settings": {
-            "product": "surrey-ccc-shield-mug-516",
-            "dot_position_x": 20,
-            "dot_position_y": 90
-          }
-        },
-        "product_aaB8pn": {
-          "type": "product",
-          "settings": {
-            "product": "surrey-ccc-top-flask-water-bottle-446",
-            "dot_position_x": 75,
-            "dot_position_y": 85
-          }
-        }
-      },
-      "block_order": [
-        "product_zNAYUD",
-        "product_PEr43Q",
-        "product_yTHGJM",
-        "product_wkFeY6",
-        "product_zxJAKC",
-        "product_yGrPQy",
-        "product_78a6TQ",
-        "product_aaB8pn"
-      ],
-      "name": "Shop the Look",
-      "settings": {
-        "image": "shopify://shop_images/BH1_8389_9mZMBQp5.jpg",
-        "image_ratio": "square",
-        "heading": "Shop the look",
-        "subheading": "",
-        "heading_size": "h1",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "featured_collection_njqGm7": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -346,31 +256,10 @@
     "bento_box_CU6q8C": {
       "type": "parallel-bento-box",
       "blocks": {
-        "collection_mHKFTU": {
-          "type": "collection",
-          "settings": {
-            "collection": "retro-collection",
-            "size": "tall"
-          }
-        },
         "collection_WVkqVM": {
           "type": "collection",
           "settings": {
             "collection": "gifts-cricket-accessories",
-            "size": "small"
-          }
-        },
-        "collection_hQATnD": {
-          "type": "collection",
-          "settings": {
-            "collection": "gifts-books",
-            "size": "small"
-          }
-        },
-        "collection_g9FxGn": {
-          "type": "collection",
-          "settings": {
-            "collection": "balls",
             "size": "small"
           }
         },
@@ -398,10 +287,7 @@
         }
       },
       "block_order": [
-        "collection_mHKFTU",
         "collection_WVkqVM",
-        "collection_hQATnD",
-        "collection_g9FxGn",
         "collection_6dhCEW",
         "collection_eJj7QK",
         "collection_QVX39V"
@@ -411,36 +297,6 @@
         "heading": "",
         "heading_size": "h1",
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "featured_collection_EPx84V": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
-      "settings": {
-        "collection": "headwear",
-        "products_to_show": 3,
-        "title": "HEADWEAR",
-        "heading_size": "hxl",
-        "use_vertical_side_title": true,
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -593,12 +449,10 @@
     "parallel_custom_slider_6LeTKw",
     "parallel_scrolling_announcement_UKVe9x",
     "featured_collection_p4q3k3",
-    "parallel_shop_the_look_3yFGmL",
     "featured_collection_njqGm7",
     "featured_collection_xb9D4D",
     "custom_collection_list_NFp63g",
     "bento_box_CU6q8C",
-    "featured_collection_EPx84V",
     "parallel_product_highlights_PKdXrR",
     "logo_block_EpWmnH",
     "1777461426a9135931"

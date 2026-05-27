@@ -705,6 +705,8 @@
                 {{ 'component-name-print-upsell.css' | asset_url | stylesheet_tag }}
                 <script src="{{ 'product-name-print-upsell.js' | asset_url }}" defer="defer"></script>
                 {%- render 'product-name-print-upsell', block: block, product: product -%}
+              {%- when 'product_notification' -%}
+                {%- render 'product-notification', block: block, product: product -%}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -2245,6 +2247,156 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "product_notification",
+      "name": "Product Notification",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Visibility"
+        },
+        {
+          "type": "text",
+          "id": "section_tag",
+          "label": "Section trigger tag",
+          "info": "Enter a product tag. The entire panel only shows on products that carry this tag. Leave blank to always show."
+        },
+        {
+          "type": "header",
+          "content": "Panel content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Important information"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Colours"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background colour",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text colour",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Notification 1"
+        },
+        {
+          "type": "text",
+          "id": "notification_1_tag",
+          "label": "Trigger tag",
+          "info": "Only shows on products that carry this tag. Leave blank to always show."
+        },
+        {
+          "type": "select",
+          "id": "notification_1_icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "info", "label": "Info" },
+            { "value": "check", "label": "Check" },
+            { "value": "warning", "label": "Warning" },
+            { "value": "star", "label": "Star" },
+            { "value": "tag", "label": "Tag" }
+          ],
+          "default": "info"
+        },
+        {
+          "type": "text",
+          "id": "notification_1_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "notification_1_message",
+          "label": "Message"
+        },
+        {
+          "type": "header",
+          "content": "Notification 2"
+        },
+        {
+          "type": "text",
+          "id": "notification_2_tag",
+          "label": "Trigger tag",
+          "info": "Only shows on products that carry this tag. Leave blank to always show."
+        },
+        {
+          "type": "select",
+          "id": "notification_2_icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "info", "label": "Info" },
+            { "value": "check", "label": "Check" },
+            { "value": "warning", "label": "Warning" },
+            { "value": "star", "label": "Star" },
+            { "value": "tag", "label": "Tag" }
+          ],
+          "default": "info"
+        },
+        {
+          "type": "text",
+          "id": "notification_2_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "notification_2_message",
+          "label": "Message"
+        },
+        {
+          "type": "header",
+          "content": "Notification 3"
+        },
+        {
+          "type": "text",
+          "id": "notification_3_tag",
+          "label": "Trigger tag",
+          "info": "Only shows on products that carry this tag. Leave blank to always show."
+        },
+        {
+          "type": "select",
+          "id": "notification_3_icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "info", "label": "Info" },
+            { "value": "check", "label": "Check" },
+            { "value": "warning", "label": "Warning" },
+            { "value": "star", "label": "Star" },
+            { "value": "tag", "label": "Tag" }
+          ],
+          "default": "info"
+        },
+        {
+          "type": "text",
+          "id": "notification_3_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "notification_3_message",
+          "label": "Message"
         }
       ]
     },

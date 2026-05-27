@@ -1,0 +1,179 @@
+{% doc %}
+Renders a tag-gated product notification panel with up to three configurable notification rows.
+The entire panel is hidden unless the product carries the block's section trigger tag (if set).
+Each notification row is hidden unless the product carries that row's own trigger tag (if set).
+@param {block} block - The section block containing all settings
+@param {product} product - The current product object
+@example
+{% render 'product-notification', block: block, product: product %}
+{% enddoc %}
+
+{%- liquid
+  assign show_panel = false
+  if block.settings.section_tag == blank
+    assign show_panel = true
+  elsif product.tags contains block.settings.section_tag
+    assign show_panel = true
+  endif
+-%}
+
+{%- if show_panel -%}
+  {%- style -%}
+    #product-notification-{{ block.id }} {
+      --pn-bg: {{ block.settings.background_color }};
+      --pn-text: {{ block.settings.text_color }};
+    }
+  {%- endstyle -%}
+
+  <div
+    id="product-notification-{{ block.id }}"
+    class="product-notification"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.title != blank or block.settings.description != blank -%}
+      <div class="product-notification__header">
+        {%- if block.settings.title != blank -%}
+          <h3 class="product-notification__title">{{ block.settings.title | escape }}</h3>
+        {%- endif -%}
+        {%- if block.settings.description != blank -%}
+          <div class="product-notification__description">{{ block.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- for i in (1..3) -%}
+      {%- liquid
+        assign tag_key   = 'notification_' | append: i | append: '_tag'
+        assign title_key = 'notification_' | append: i | append: '_title'
+        assign msg_key   = 'notification_' | append: i | append: '_message'
+        assign icon_key  = 'notification_' | append: i | append: '_icon'
+
+        assign notif_tag   = block.settings[tag_key]
+        assign notif_title = block.settings[title_key]
+        assign notif_msg   = block.settings[msg_key]
+        assign notif_icon  = block.settings[icon_key]
+
+        assign show_notif = false
+        if notif_tag == blank
+          assign show_notif = true
+        elsif product.tags contains notif_tag
+          assign show_notif = true
+        endif
+
+        unless notif_title != blank or notif_msg != blank
+          assign show_notif = false
+        endunless
+      -%}
+
+      {%- if show_notif -%}
+        <div class="product-notification__item">
+          {%- if notif_icon != 'none' -%}
+            <span class="product-notification__icon" aria-hidden="true">
+              {%- case notif_icon -%}
+                {%- when 'info' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                {%- when 'check' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+                {%- when 'warning' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                {%- when 'star' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                {%- when 'tag' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              {%- endcase -%}
+            </span>
+          {%- endif -%}
+          <div class="product-notification__content">
+            {%- if notif_title != blank -%}
+              <strong class="product-notification__item-title">{{ notif_title | escape }}</strong>
+            {%- endif -%}
+            {%- if notif_msg != blank -%}
+              <div class="product-notification__message">{{ notif_msg }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .product-notification {
+    background-color: var(--pn-bg, #1a1a1a);
+    color: var(--pn-text, #ffffff);
+    border-radius: 0.4rem;
+    padding: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .product-notification__header {
+    margin-bottom: 1.2rem;
+  }
+
+  .product-notification__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 0.6rem;
+    color: var(--pn-text, #ffffff);
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+  }
+
+  .product-notification__description {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--pn-text, #ffffff);
+    opacity: 0.9;
+  }
+
+  .product-notification__description p {
+    margin: 0;
+  }
+
+  .product-notification__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem 1.4rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-notification__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .product-notification__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    color: var(--pn-text, #ffffff);
+    margin-top: 0.1rem;
+  }
+
+  .product-notification__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+  }
+
+  .product-notification__item-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--pn-text, #ffffff);
+    font-family: var(--font-heading-family);
+  }
+
+  .product-notification__message {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--pn-text, #ffffff);
+    opacity: 0.9;
+  }
+
+  .product-notification__message p {
+    margin: 0;
+  }
+{% endstylesheet %}

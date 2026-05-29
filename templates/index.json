@@ -70,6 +70,13 @@
     "parallel_scrolling_announcement_UKVe9x": {
       "type": "parallel-scrolling-announcement",
       "blocks": {
+        "announcement_pWHDXH": {
+          "type": "announcement",
+          "settings": {
+            "text": "MI LONDON KIT NOW ON SALE",
+            "link": "shopify://collections/mi-london-kit"
+          }
+        },
         "announcement_ap9GJi": {
           "type": "announcement",
           "settings": {
@@ -86,6 +93,7 @@
         }
       },
       "block_order": [
+        "announcement_pWHDXH",
         "announcement_ap9GJi",
         "announcement_XQiRfz"
       ],

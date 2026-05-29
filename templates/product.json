@@ -32,6 +32,28 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "product_notification_EYcceH": {
+          "type": "product_notification",
+          "settings": {
+            "section_tag": "amnesty",
+            "title": "Kit Amnesty Notice",
+            "description": "<p>Take advantage of our <strong>Kit Amnesty</strong> and swap your 2025 Oval Invincibles shirt for the new MI London replica shirt <strong>free of charge</strong>.</p><p><em>Please see T&Cs here for full details.</em></p>",
+            "background_color": "#1a1a1a",
+            "text_color": "#ffffff",
+            "notification_1_tag": "",
+            "notification_1_icon": "info",
+            "notification_1_title": "",
+            "notification_1_message": "",
+            "notification_2_tag": "",
+            "notification_2_icon": "info",
+            "notification_2_title": "",
+            "notification_2_message": "",
+            "notification_3_tag": "",
+            "notification_3_icon": "info",
+            "notification_3_title": "",
+            "notification_3_message": ""
+          }
+        },
         "judge_me_reviews_preview_badge_mdADpV": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
@@ -139,6 +161,7 @@
         }
       },
       "block_order": [
+        "product_notification_EYcceH",
         "judge_me_reviews_preview_badge_mdADpV",
         "vendor",
         "title",

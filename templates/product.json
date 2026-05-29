@@ -37,7 +37,7 @@
           "settings": {
             "section_tag": "amnesty",
             "title": "Kit Amnesty Notice",
-            "description": "<p>Take advantage of our <strong>Kit Amnesty</strong> and swap your 2025 Oval Invincibles shirt for the new MI London replica shirt <strong>free of charge</strong>.</p><p><em>Please see T&Cs here for full details.</em></p>",
+            "description": "<p>Take advantage of our <strong>Kit Amnesty</strong> and swap your 2025 Oval Invincibles shirt for the new MI London replica shirt <strong>free of charge</strong>.</p><p><a href=\"/pages/kit-amnesty-terms-conditions\" title=\"Kit Amnesty Terms & Conditions\"><em>Please see T&Cs here for full details.</em></a></p>",
             "background_color": "#1a1a1a",
             "text_color": "#ffffff",
             "notification_1_tag": "",

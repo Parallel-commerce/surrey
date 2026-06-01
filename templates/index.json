@@ -32,6 +32,16 @@
             "alt_text": ""
           }
         },
+        "slide_CGTBt7": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400__SUR_2x_86434b49-9aad-489e-8698-0a3be964d4c2.png",
+            "tablet_image": "shopify://shop_images/Tablet_1040x450_SUR_2x_3b12bb2b-55ab-4bbc-8eb5-095d87d7304a.png",
+            "mobile_image": "shopify://shop_images/Mobile_650x450__SUR_2x_d825684c-2f44-4e7c-92b9-8f742ce14a21.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
         "slide_VcFni7": {
           "type": "slide",
           "settings": {
@@ -56,6 +66,7 @@
       "block_order": [
         "slide_tmnb7k",
         "slide_BkhjwU",
+        "slide_CGTBt7",
         "slide_VcFni7",
         "slide_6JkLbw"
       ],

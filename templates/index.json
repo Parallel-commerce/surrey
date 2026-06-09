@@ -12,6 +12,16 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_tmnb7k": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/MIL_KITS_SHOP_BANNER_2000x400_2x_137d60f2-36f6-4aa5-ab32-52856712da81.jpg",
+            "tablet_image": "shopify://shop_images/MIL_KITS_TABLET_1040x450_2x_b0bcc6b0-eadf-4067-8c01-52e42ce820bc.png",
+            "mobile_image": "shopify://shop_images/MIL_KITS_MOBILE_650x450_2x_5ea6e94b-4583-49ce-8265-5fd9ed80ef45.png",
+            "link": "shopify://collections/mi-london-kit",
+            "alt_text": ""
+          }
+        },
         "slide_BkhjwU": {
           "type": "slide",
           "settings": {
@@ -22,6 +32,16 @@
             "alt_text": ""
           }
         },
+        "slide_CGTBt7": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400__SUR_2x_86434b49-9aad-489e-8698-0a3be964d4c2.png",
+            "tablet_image": "shopify://shop_images/Tablet_1040x450_SUR_2x_3b12bb2b-55ab-4bbc-8eb5-095d87d7304a.png",
+            "mobile_image": "shopify://shop_images/Mobile_650x450__SUR_2x_d825684c-2f44-4e7c-92b9-8f742ce14a21.png",
+            "link": "shopify://products/surrey-ccc-top-flask-water-bottle-copy",
+            "alt_text": ""
+          }
+        },
         "slide_VcFni7": {
           "type": "slide",
           "settings": {
@@ -29,16 +49,6 @@
             "tablet_image": "shopify://shop_images/ECB_KITS_TABLET_1040x45O_2x_92fe7f52-eb08-4073-b958-1e40768d38e8.png",
             "mobile_image": "shopify://shop_images/ECB_KITS_MOBILE_650x450_2x_2f4db8e1-4163-4be3-a739-181b981c2fc9.jpg",
             "link": "shopify://collections/international",
-            "alt_text": ""
-          }
-        },
-        "slide_DY4PjD": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/VINTAGE_Shop_Banner_2000x400_2x_1f7c9436-503c-4bbb-af16-55af70ecc2f2.jpg",
-            "tablet_image": "shopify://shop_images/VINTAGE_Tablet_1040x450_2x_14ec5577-496f-45e2-9b09-39c30692c4a2.jpg",
-            "mobile_image": "shopify://shop_images/VINTAGE_Mobile_650x450_2x_07bdbf21-8e45-4b53-99a4-ddf874bb137b.jpg",
-            "link": "shopify://collections/vintage-collection",
             "alt_text": ""
           }
         },
@@ -54,9 +64,10 @@
         }
       },
       "block_order": [
+        "slide_tmnb7k",
         "slide_BkhjwU",
+        "slide_CGTBt7",
         "slide_VcFni7",
-        "slide_DY4PjD",
         "slide_6JkLbw"
       ],
       "name": "Custom Slider",
@@ -70,11 +81,18 @@
     "parallel_scrolling_announcement_UKVe9x": {
       "type": "parallel-scrolling-announcement",
       "blocks": {
+        "announcement_pWHDXH": {
+          "type": "announcement",
+          "settings": {
+            "text": "MI LONDON KIT NOW ON SALE",
+            "link": "shopify://collections/mi-london-kit"
+          }
+        },
         "announcement_ap9GJi": {
           "type": "announcement",
           "settings": {
-            "text": "BUY ALL 3 KITS & GET 25% OFF - USE CODE KIT2026",
-            "link": ""
+            "text": "BUY ALL SCCC KITS & GET 25% OFF - USE CODE KIT2026",
+            "link": "shopify://collections/2026-kit"
           }
         },
         "announcement_XQiRfz": {
@@ -86,6 +104,7 @@
         }
       },
       "block_order": [
+        "announcement_pWHDXH",
         "announcement_ap9GJi",
         "announcement_XQiRfz"
       ],

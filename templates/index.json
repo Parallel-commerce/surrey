@@ -22,13 +22,13 @@
             "alt_text": ""
           }
         },
-        "slide_BkhjwU": {
+        "slide_RwTD6y": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/SS26_Shop_Banner_2000x400_2x_97ba3b24-783f-45e6-a6c6-8f96e52a7588.jpg",
-            "tablet_image": "shopify://shop_images/SS26_Tablet_1040x450_2x_5de9ca66-ee8b-463d-9387-d45a12aa8cf0.jpg",
-            "mobile_image": "shopify://shop_images/SS26_Mobile_650x450_2x_ba0b921d-5db1-49c6-9496-469f108d33d0.jpg",
-            "link": "shopify://collections/ss26",
+            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400_HERITAGE.png",
+            "tablet_image": "shopify://shop_images/Tablet_1040x450_HERITAGE.png",
+            "mobile_image": "shopify://shop_images/Mobile_650x450_HERITAGE.png",
+            "link": "shopify://collections/heritage-collection",
             "alt_text": ""
           }
         },
@@ -65,7 +65,7 @@
       },
       "block_order": [
         "slide_tmnb7k",
-        "slide_BkhjwU",
+        "slide_RwTD6y",
         "slide_CGTBt7",
         "slide_VcFni7",
         "slide_6JkLbw"

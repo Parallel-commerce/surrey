@@ -152,36 +152,6 @@
         "padding_bottom": 36
       }
     },
-    "featured_collection_njqGm7": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
-      "settings": {
-        "collection": "international-copy",
-        "products_to_show": 3,
-        "title": "2026 International Kits",
-        "heading_size": "h1",
-        "use_vertical_side_title": false,
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "featured_collection_xb9D4D": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -235,27 +205,19 @@
             "collection": "fashion-women-s-supporter-wear",
             "custom_title": "Women's"
           }
-        },
-        "featured_collection_RUnynn": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "gifts-golf",
-            "custom_title": ""
-          }
         }
       },
       "block_order": [
         "featured_collection_JhLfka",
         "featured_collection_KyPUC7",
-        "featured_collection_DeD9DY",
-        "featured_collection_RUnynn"
+        "featured_collection_DeD9DY"
       ],
       "name": "Custom Collection List",
       "settings": {
         "title": "Supporter Wear",
         "heading_size": "h1",
         "use_vertical_side_title": false,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "card_min_height_desktop": 600,
@@ -468,7 +430,6 @@
     "parallel_custom_slider_6LeTKw",
     "parallel_scrolling_announcement_UKVe9x",
     "featured_collection_p4q3k3",
-    "featured_collection_njqGm7",
     "featured_collection_xb9D4D",
     "custom_collection_list_NFp63g",
     "bento_box_CU6q8C",

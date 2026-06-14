@@ -42,16 +42,6 @@
             "alt_text": ""
           }
         },
-        "slide_VcFni7": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/ECB_KITS_BANNER_2000x400_2x_63d013c5-1c06-4eec-9485-6d24d347e037.png",
-            "tablet_image": "shopify://shop_images/ECB_KITS_TABLET_1040x45O_2x_92fe7f52-eb08-4073-b958-1e40768d38e8.png",
-            "mobile_image": "shopify://shop_images/ECB_KITS_MOBILE_650x450_2x_2f4db8e1-4163-4be3-a739-181b981c2fc9.jpg",
-            "link": "shopify://collections/international",
-            "alt_text": ""
-          }
-        },
         "slide_6JkLbw": {
           "type": "slide",
           "settings": {
@@ -67,7 +57,6 @@
         "slide_tmnb7k",
         "slide_RwTD6y",
         "slide_CGTBt7",
-        "slide_VcFni7",
         "slide_6JkLbw"
       ],
       "name": "Custom Slider",

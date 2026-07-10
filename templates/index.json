@@ -22,6 +22,16 @@
             "alt_text": ""
           }
         },
+        "slide_CGTBt7": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400_MIL_2x_c6f20228-7569-4f7d-9b18-45af4264b247.png",
+            "tablet_image": "shopify://shop_images/Tablet_1040x450_MIL_2x_4ed3d1d0-933e-4a4b-a616-fba2311dda98.png",
+            "mobile_image": "shopify://shop_images/Mobile_650x450_MIL_2x_b72cefe9-1fdc-4974-a7ca-c42bd406b70e.png",
+            "link": "shopify://products/surrey-ccc-top-flask-water-bottle-copy",
+            "alt_text": ""
+          }
+        },
         "slide_RwTD6y": {
           "type": "slide",
           "settings": {
@@ -31,33 +41,12 @@
             "link": "shopify://collections/heritage-collection",
             "alt_text": ""
           }
-        },
-        "slide_CGTBt7": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400__SUR_2x_86434b49-9aad-489e-8698-0a3be964d4c2.png",
-            "tablet_image": "shopify://shop_images/Tablet_1040x450_SUR_2x_3b12bb2b-55ab-4bbc-8eb5-095d87d7304a.png",
-            "mobile_image": "shopify://shop_images/Mobile_650x450__SUR_2x_d825684c-2f44-4e7c-92b9-8f742ce14a21.png",
-            "link": "shopify://products/surrey-ccc-top-flask-water-bottle-copy",
-            "alt_text": ""
-          }
-        },
-        "slide_6JkLbw": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Oddballs_Shop_Banner_2000x400_2x_bea78c73-1b46-4939-8382-25f3c21a4bf7.png",
-            "tablet_image": "shopify://shop_images/Oddballs_Tablet_1040x450_2x_2e0bdea2-9803-465e-90e3-c42fd2feafc4.png",
-            "mobile_image": "shopify://shop_images/Oddballs_Mobile_650x450_2x_2bf45c07-3077-4f3d-aaf5-bf9539081e90.png",
-            "link": "shopify://products/sccc-oddballs-boxers",
-            "alt_text": ""
-          }
         }
       },
       "block_order": [
         "slide_tmnb7k",
-        "slide_RwTD6y",
         "slide_CGTBt7",
-        "slide_6JkLbw"
+        "slide_RwTD6y"
       ],
       "name": "Custom Slider",
       "settings": {

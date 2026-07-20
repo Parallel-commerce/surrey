@@ -12,6 +12,16 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_7FcL3J": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/MIL_Training_Shop_Banner_2000x400_2x_f31a162b-0d68-4205-8a71-c7fae0e1d4c0.png",
+            "tablet_image": "shopify://shop_images/MIL_Training_Tablet_1040x450_2x_625a40b5-0f89-4ab0-83e5-86d3dd48a74f.png",
+            "mobile_image": "shopify://shop_images/MIL_Training_Mobile_650x450_2x_e1d77233-d8b1-4e2c-b6c1-338fb680cce8.png",
+            "link": "shopify://collections/mi-london-training",
+            "alt_text": ""
+          }
+        },
         "slide_tmnb7k": {
           "type": "slide",
           "settings": {
@@ -44,6 +54,7 @@
         }
       },
       "block_order": [
+        "slide_7FcL3J",
         "slide_tmnb7k",
         "slide_CGTBt7",
         "slide_RwTD6y"

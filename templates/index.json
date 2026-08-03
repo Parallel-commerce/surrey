@@ -12,6 +12,26 @@
     "parallel_custom_slider_6LeTKw": {
       "type": "parallel-custom-slider",
       "blocks": {
+        "slide_eRdD4i": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/SUR_Shop_Banner_2000x400_NEW_ERA.png",
+            "tablet_image": "shopify://shop_images/SUR_Tablet_1040x450_NEW_ERA.png",
+            "mobile_image": "shopify://shop_images/SUR_Mobile_650x450_NEW_ERA.png",
+            "link": "shopify://collections/2026-new-era-collection",
+            "alt_text": ""
+          }
+        },
+        "slide_CKwRmL": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/MI_Shop_Banner_2000x400_NEW_ERA.png",
+            "tablet_image": "shopify://shop_images/MI_Tablet_1040x450_NEW_ERA.png",
+            "mobile_image": "shopify://shop_images/MI_Mobile_650x450_NEW_ERA.png",
+            "link": "shopify://collections/2026-mi-london-new-era-collection",
+            "alt_text": ""
+          }
+        },
         "slide_7FcL3J": {
           "type": "slide",
           "settings": {
@@ -31,33 +51,13 @@
             "link": "shopify://collections/mi-london-kit",
             "alt_text": ""
           }
-        },
-        "slide_CGTBt7": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400_MIL_2x_c6f20228-7569-4f7d-9b18-45af4264b247.png",
-            "tablet_image": "shopify://shop_images/Tablet_1040x450_MIL_2x_4ed3d1d0-933e-4a4b-a616-fba2311dda98.png",
-            "mobile_image": "shopify://shop_images/Mobile_650x450_MIL_2x_b72cefe9-1fdc-4974-a7ca-c42bd406b70e.png",
-            "link": "shopify://products/mi-london-ion8-water-bottle",
-            "alt_text": ""
-          }
-        },
-        "slide_RwTD6y": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Shop_Banner_2000x400_HERITAGE.png",
-            "tablet_image": "shopify://shop_images/Tablet_1040x450_HERITAGE.png",
-            "mobile_image": "shopify://shop_images/Mobile_650x450_HERITAGE.png",
-            "link": "shopify://collections/heritage-collection",
-            "alt_text": ""
-          }
         }
       },
       "block_order": [
+        "slide_eRdD4i",
+        "slide_CKwRmL",
         "slide_7FcL3J",
-        "slide_tmnb7k",
-        "slide_CGTBt7",
-        "slide_RwTD6y"
+        "slide_tmnb7k"
       ],
       "name": "Custom Slider",
       "settings": {

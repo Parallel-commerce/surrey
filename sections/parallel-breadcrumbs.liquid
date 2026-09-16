@@ -258,7 +258,7 @@
                       <meta itemprop="position" content="2">
                     </li>
                   {%- endif -%}
-                {%- when 'collection' and collection.handle -%}
+                {%- when 'collection' -%}
                   {%- if current_tags -%}
                     <li
                       class="breadcrumbs-{{ section.id }}__item"
@@ -598,3 +598,13 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- when 'collection' and collection.handle -%}"
+  to: "{%- when 'collection' -%}"
+  position: 9535..9560
+{% endcomment %}
